@@ -9,7 +9,8 @@ cook.eat-back-end/coverage
 cook.eat-front-end/build
 
 # misc
-*.env
+cook.eat-back-end/.env
+
 .DS_Store
 .env.local
 .env.development.local
