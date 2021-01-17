@@ -1,0 +1,10 @@
+.hola {
+    border: 1px solid red;
+}
+
+.carousel-item {
+    border: 5px solid red;
+    height: 700px;
+    background-color: black;
+    color: white;
+}
