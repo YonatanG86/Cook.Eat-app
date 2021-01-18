@@ -49,7 +49,11 @@ const recipeSchema = new Schema({
         type: String,
         required: false
     },
-    dishPicture:{
+    picture:{
+        type: String,
+        required: false
+    },
+    cloudinaryId: {
         type: String,
         required: false
     },
