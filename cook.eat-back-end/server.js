@@ -6,8 +6,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const recipes = require('./routes/recipes')
 const users = require('./routes/users')
-// const varifiedUser = require()
-// const auth = require()
+const auth = require('./routes/auth')
 const port = 5000;
 
 // connect to mongoDb with mongoose
@@ -21,12 +20,17 @@ mongoose.connect(dbUrl, {
         } else {
             console.log('Connencted to db')
 }});
- 
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
+// Middleware
 app.use(cors())
+app.use(express.json())
+
+// Routes
 app.use('/recipes', recipes)
 app.use('/users', users)
-// app.use('/auth', auth)
-// app.use('/varifiedUser', varifiedUser)
+app.use('/auth', auth)
 
 app.get('/', (req,res) =>{
     res.send('Cook.Eat')
