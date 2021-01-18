@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const User = require(''); //path for DB Schema
+const User = require('../models/users'); //path for DB Schema
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { registerValidation, loginValidation } = require('../functionalities/validations'); //path for DB validation
-let userNumber = 1;
+
 router.post('/signup', async (req, res) => {
 	//Validation for creating new user
 	const { error } = registerValidation(req.body);
