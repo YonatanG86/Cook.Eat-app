@@ -1,160 +1,204 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useAuth } from "../Conteaxts/autoConteaxt";
 import { Modal, Form, Col, Button } from "react-bootstrap";
 
-const SignUpModal = ({showSecondModal, onHide}) => {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmedPassword, setConfirmedPassword] = useState("");
-    const [errors, setErrors] = useState({
-      username: false,
-      email: false,
-      password: false
+const formFields = {
+  username: "",
+  email: "",
+  password: "",
+  repatePass: "",
+};
+const SignUpModal = ({ showSecondModal, onHide }) => {
+  const types = ["image/png", "image/jpeg", "image/jpg"];
+
+  const { register, handleSubmit, errors, watch } = useForm();
+  const [formInfo, setFormInfo] = useState(formFields);
+  const [file, setFile] = useState();
+  const [userImage, setUserImage] = useState();
+  const { signupUser } = useAuth();
+  const password = useRef({});
+  password.current = watch("password");
+  const handleChange = (e) => {
+    setFormInfo({
+      ...formInfo,
+      [e.target.name]: e.target.value,
     });
-
-    const history = useHistory();
-
-    const handleUsername = (event) => {
-        setUsername(event.target.value);
+  };
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (file && types.includes(file.type)) {
+      setFile(file);
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        setUserImage(e.target.result);
       };
-    
-    const handleEmail = (event) => {
-    setEmail(event.target.value);
-    };
-
-    const handlePassword = (event) => {
-    setPassword(event.target.value);
-    };
-
-    const handleConfirmedPassword = (event) => {
-    setConfirmedPassword(event.target.value);
-    };
-
-    const handleSubmit = async (event) => {
-    let isFormValid = true;
-    let usernameError = false;
-    let emailError = false;
-    let passwordError = false;
-    let confirmedPasswordError = false;
-
-    if (!username) {
-        isFormValid = false;
-        usernameError = true;
+      reader.readAsDataURL(e.target.files[0]);
+    } else {
+      alert("Please select an image file (png, jpg,jpeg)!");
     }
+  };
 
-    if (!email) {
-        isFormValid = false;
-        emailError = true;
-    }
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append("data", JSON.stringify(formInfo));
+    formData.append("petImage", file);
+    signupUser(formData);
+  };
 
-    if (!password) {
-        isFormValid = false;
-        passwordError = true;
-    }
-
-    if (!confirmedPassword || password !== confirmedPassword) {
-        isFormValid = false;
-        confirmedPasswordError = true;
-    }
-
-    setErrors({
-        username: usernameError,
-        email: emailError,
-        password: passwordError,
-        confirmedPassword: confirmedPasswordError
-    });
-
-    if (isFormValid) {
-        event.preventDefault();
-        // history.push("/home");
-        }
-    };
-
-    return (
-        <>
-            <Modal
-            show={showSecondModal}
-            onHide={onHide}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered>
-                <Modal.Header closeButton>
-                <Modal.Title>
-                    Cook.Eat
-                    <br />
-                    <span>Register to add recipes to your recipe box, rate and review recipes, and create your own recipes or menus.</span>
-                    {/* <>
+  return (
+    <>
+      <Modal
+        show={showSecondModal}
+        onHide={onHide}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>
+            Cook.Eat
+            <br />
+            <span>
+              Register to add recipes to your recipe box, rate and review
+              recipes, and create your own recipes or menus.
+            </span>
+            {/* <>
                         <h5>Get started with us today!</h5>
                         <p>Create your account by filling out the information below</p>
                     </> */}
-                </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <Form.Group as={Col} controlId="formGridUsername">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                name="username"
+                type="username"
+                placeholder="Enter username"
+                onChange={handleChange}
+                minLength="2"
+                maxLength="15"
+                ref={register({ pattern: /^[A-Za-z\s]+$/i })}
+                required
+              />
+              <div className="error-box">
+                {errors.username && errors.username.type === "pattern" && (
+                  <p className="error-field">English letters only</p>
+                )}
+              </div>
+              <Form.Control.Feedback type="invalid">
+                Username required
+              </Form.Control.Feedback>
+            </Form.Group>
 
-                <Form
-                onSubmit={(event) => handleSubmit(event)}>
-                 
-                    <Form.Group as={Col} controlId="formGridUsername">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control
-                    type="username"
-                    placeholder="Enter username"
-                    value={username}
-                    onInput={(event) => handleUsername(event)}
-                    isInvalid={!!errors.username} />
-                    <Form.Control.Feedback type="invalid">Username required</Form.Control.Feedback>
-                    </Form.Group>
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                name="email"
+                type="email"
+                placeholder="Enter email"
+                onChange={handleChange}
+                required
+                ref={register({
+                  pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
+                })}
+              />
+              <div className="error-box">
+                {errors.email && errors.email.type === "pattern" && (
+                  <p className="error-field">Invalid email</p>
+                )}
+              </div>
+              <Form.Control.Feedback type="invalid">
+                Email required
+              </Form.Control.Feedback>
+            </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridEmail">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                    type="email"
-                    placeholder="Enter email"
-                    value={email}
-                    onInput={(event) => handleEmail(event)}
-                    isInvalid={!!errors.email} />
-                    <Form.Control.Feedback type="invalid">Email required</Form.Control.Feedback>
-                    </Form.Group>
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                name="password"
+                type="password"
+                placeholder="Password"
+                onChange={handleChange}
+                required
+                ref={register({
+                  pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+                })}
+              />
+              <Form.Control.Feedback type="invalid">
+                Password required
+              </Form.Control.Feedback>
+            </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onInput={(event) => handlePassword(event)}
-                    isInvalid={!!errors.password}/>
-                    <Form.Control.Feedback type="invalid">Password required</Form.Control.Feedback>
-                    </Form.Group>
+            <Form.Group as={Col} controlId="formGridConfirmPassword">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                name="repatePass"
+                type="password"
+                placeholder="Confirm Password"
+                onChange={handleChange}
+                required
+                ref={register({
+                  validate: (value) =>
+                    value === password.current || "The passwords do not match",
+                })}
+              />
+              {errors.repatePass && (
+                <p className="error-field">{errors.repatePass.message}</p>
+              )}
+              <div className="error-box">
+                {errors.password && errors.password.type === "pattern" && (
+                  <p className="error-field">
+                    Password must contain : <br />
+                    - at least 8 characters <br />
+                    - must contain at least 1 uppercase letter,
+                    <br />
+                    1 lowercase letter, and 1 number
+                    <br />- Can contain special characters
+                  </p>
+                )}
+              </div>
+              <Form.Control.Feedback type="invalid">
+                The password is empty or doesn't match
+              </Form.Control.Feedback>
+            </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridConfirmPassword">
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control
-                    type="password"
-                    placeholder="Confirm Password"
-                    value={confirmedPassword}
-                    onInput={(event) => handleConfirmedPassword(event)}
-                    isInvalid={!!errors.confirmedPassword} />
-                    <Form.Control.Feedback type="invalid">The password is empty or doesn't match</Form.Control.Feedback>
-                    </Form.Group>
-
-                    <div className="button-container">
-                        <Button
-                        className="signup-btn btn-primary btn-block"
-                        type="submit">
-                        Sign up
-                        </Button>
-                        <p className="disclaimer">
-                            By continuing you agree to Cook.Eat's Terms of Service &amp;
-                            Privacy Policy.
-                        </p>
-                    </div>
-                </Form>
-                </Modal.Body>
-            </Modal>
-        </>
-    )
-}
+            <Form.Group>
+              <Form.Label>Profile Image</Form.Label>
+              <Form.Control
+                name="picture"
+                type="file"
+                placeholder="Avater"
+                onChange={handleFileUpload}
+                required
+              />
+              <img
+                src={userImage}
+                style={{ maxWidth: "5rem" }}
+                alt="profile-image"
+              />
+            </Form.Group>
+            <div className="button-container">
+              <Button
+                className="signup-btn btn-primary btn-block"
+                type="submit"
+              >
+                Sign up
+              </Button>
+              <p className="disclaimer">
+                By continuing you agree to Cook.Eat's Terms of Service &amp;
+                Privacy Policy.
+              </p>
+            </div>
+          </Form>
+        </Modal.Body>
+      </Modal>
+    </>
+  );
+};
 
 export default SignUpModal;
