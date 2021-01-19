@@ -5,6 +5,7 @@ const RecipesModel = require('../models/recipes')
 const cloudinary = require('../util/cloudinary')
 const upload = require('../util/multer')
 
+//middlewares
 router.use(express.static('imgaes'))
 router.use(express.json())
 
@@ -28,11 +29,13 @@ router.get('/:id', async(req,res) => {
 //add recipe
 router.post('/', upload.single('picture'), async(req, res) => {
     try{
+        //add to cloudinary
         const result = await cloudinary.uploader.upload(req.file.path)
         const recipeBody = {...req.body, 
             picture: result.secure_url, 
             cloudinaryId: result.public_id}
         let recipe = new RecipesModel(recipeBody)
+        //add to database
         await recipe.save()
         res.send(recipe)
     } catch (err){
@@ -47,7 +50,7 @@ router.delete('/:id', async(req, res) => {
         const result = await RecipesModel.findOne({_id: req.params.id})
         //delete from cloudinary
         await cloudinary.uploader.destroy(result.cloudinaryId)
-        //delete user from database
+        //delete recipe from database
         await result.remove()
         res.status(200).send('recipe has been deleted')
     } catch (err) {
@@ -59,16 +62,25 @@ router.delete('/:id', async(req, res) => {
 router.put('/:id', upload.single('picture'), async(req, res) => {
     try{
         let recipe = await RecipesModel.findById(req.params.id)
+        //remove old picture from cloudinary
         await cloudinary.uploader.destroy(recipe.cloudinaryId)
-        const result = await cloudinary.uploader.upload(req.file.path)
-        const updateRecipe = {
-            ...req.body,
-            picture: result.secure_url || recipe.picture,
-            cloudinaryId: result.public_id || recipe.cloudinaryId
+        let updateRecipe;
+        //add updated picture to cloudinary
+        if(req.file){
+            const result = await cloudinary.uploader.upload(req.file.path)
+            updateRecipe = {
+                ...req.body,
+                picture: result.secure_url || recipe.picture,
+                cloudinaryId: result.public_id || recipe.cloudinaryId
+                }
+        } else {
+            updateRecipe = {...req.body }
         }
+        //update recipe in database
         recipe = await RecipesModel.findByIdAndUpdate(req.params.id, updateRecipe, {new:true})
         res.status(200).send(recipe)
     } catch (err) {
+        console.log(err)
         res.status(500).send('the recipe did not updated')
     }
 })
