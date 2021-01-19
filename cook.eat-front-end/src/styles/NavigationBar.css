@@ -27,6 +27,10 @@ span.navbar-brand {
     margin-top: 18px;
 }
 
+span.navbar-brand a {
+    text-decoration: none;
+}
+
 img.d-inline-block.align-top {
     padding-bottom: 12px;
 }
@@ -74,7 +78,7 @@ div#dropdown-divider.dropdown-divider {
 }
 
 .links:hover {
-    color: red;
+    color: #D7A047;
 }
 
 .nav-search-bar {
