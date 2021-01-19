@@ -5,7 +5,7 @@ import { useAuth } from "../Conteaxts/autoConteaxt";
 import { Modal, Form, Col, Button } from "react-bootstrap";
 
 const formFields = {
-  username: "",
+  userName: "",
   email: "",
   password: "",
   repatePass: "",
@@ -76,7 +76,7 @@ const SignUpModal = ({ showSecondModal, onHide }) => {
             <Form.Group as={Col} controlId="formGridUsername">
               <Form.Label>Username</Form.Label>
               <Form.Control
-                name="username"
+                name="userName"
                 type="username"
                 placeholder="Enter username"
                 onChange={handleChange}
@@ -86,10 +86,11 @@ const SignUpModal = ({ showSecondModal, onHide }) => {
                 required
               />
               <div className="error-box">
-                {errors.username && errors.username.type === "pattern" && (
+                {errors.userName && errors.userName.type === "pattern" && (
                   <p className="error-field">English letters only</p>
                 )}
               </div>
+              s
               <Form.Control.Feedback type="invalid">
                 Username required
               </Form.Control.Feedback>
