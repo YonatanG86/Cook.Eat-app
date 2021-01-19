@@ -40,7 +40,7 @@ const LoginModal = ({ show, onHide }) => {
         className="login">
 
           <Modal.Header closeButton>
-            <Modal.Title>Sign in to your CookEat account</Modal.Title>
+            <Modal.Title>Sign in to your account</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
@@ -82,7 +82,7 @@ const LoginModal = ({ show, onHide }) => {
               <Button type="submit" className="login-btn btn-primary btn-block">
                 Log in
               </Button>
-              <p>Don't have a login? <span>Register now</span>.</p>
+              <p>Don't have a login? <span id="register">Register now</span>.</p>
             </Form>
           </Modal.Body>
       </Modal>
