@@ -8,3 +8,13 @@
     background-color: black;
     color: white;
 }
+
+span.button-next {
+    margin-top: 600px;
+    border: 1px solid red;
+}
+
+span.button-prev {
+    margin-top: 600px;
+    border: 1px solid red;
+}
