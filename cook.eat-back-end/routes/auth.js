@@ -1,20 +1,20 @@
 const router = require('express').Router();
-const User = require(''); //path for DB Schema
+const User = require('../models/users'); //path for DB Schema
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { registerValidation, loginValidation } = require('../functionalities/validations'); //path for DB validation
-let userNumber = 1;
+
 router.post('/signup', async (req, res) => {
 	//Validation for creating new user
-	const { error } = registerValidation(req.body);
-	if (error) return res.status(400).send({ err: error.details[0].message });
+	// const { error } = registerValidation(req.body);
+	// if (error) return res.status(400).send({ err: error.details[0].message });
 
 	//Check if email already in the DB
 	const emailExist = await User.findOne({ email: req.body.email });
 	if (emailExist) return res.status(400).send({ err: 'Email already exists' });
 
 	//Hash the password
-	const salt = bcrypt.genSaltSync(10);
+	const salt = bcrypt.genSaltSync(20);
 	const hashPassword = bcrypt.hashSync(req.body.password, salt);
 
 	//Create new user
@@ -34,8 +34,8 @@ router.post('/signup', async (req, res) => {
 //LogIn
 router.post('/login', async (req, res) => {
 	//Validation for login
-	const { error } = loginValidation(req.body);
-	if (error) return res.status(400).send(error.details[0].message);
+	// const { error } = loginValidation(req.body);
+	// if (error) return res.status(400).send(error.details[0].message);
 
 	//Check if email in the DB
 	const user = await User.findOne({ email: req.body.email });

@@ -1,0 +1,118 @@
+@font-face {
+    font-family: "BiteChocolate";
+    src: local("BiteChocolate"), url(../fonts//BiteChocolate.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Trajan";
+    src: local("Trajan"), url(../fonts//Trajan.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "LuckiestGuy";
+    src: local("LuckiestGuy"), url(../fonts//LuckiestGuy.ttf) format("truetype");
+}
+
+.nav-container {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.main-navbar {
+    background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+}
+
+span.navbar-brand {
+    margin-top: 18px;
+}
+
+span.navbar-brand a {
+    text-decoration: none;
+}
+
+img.d-inline-block.align-top {
+    padding-bottom: 18px;
+}
+
+#cook {
+    font-family: "BiteChocolate";
+    color: #B73032;
+    font-weight: 100;
+    font-size: 25px;
+}
+
+#dot {
+    color: lightgray;
+    font-size: 23px;
+}
+
+#eat {
+    font-family: "LuckiestGuy";
+    color: #D7A047;
+}
+
+#basic-nav-dropdown {
+    color: lightgray;
+}
+
+#links {
+    margin-left: 25px;
+}
+
+#basic-nav-dropdown {
+    margin-left: 30px;
+}
+
+div.dropdown-menu.show {
+    background-color: #414141;
+}
+
+div#dropdown-divider.dropdown-divider {
+    border: 1px solid #D7A047;
+}
+
+.dropdown-link {
+    color: lightgray;
+    background-color: #414141;
+}
+
+a.dropdown-link.dropdown-item {
+    background-color: #414141;
+}
+
+a.dropdown-link.dropdown-item:hover {
+    color: #B73032;
+}
+
+#links {
+    color: lightgray;
+}
+
+.links {
+    color: lightgray;
+}
+
+.links:hover {
+    color: #D7A047;
+}
+
+.nav-search-bar {
+    
+}
+
+input.search.mr-sm-2.form-control {
+    background-color: white;
+}
+
+#nav-search-button {
+    /* margin-left: -9px; */
+    color: lightgray;
+    border: none;
+    border-radius: 50%;
+}
+
+#nav-search-button:hover {
+    background-color: lightgray;
+    color: black;
+}

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -18,10 +18,14 @@ const userSchema = new Schema({
         type: String,
         required: true,
         validate(value){
-            if(value.length < 6|| value.length > 20) throw new Error("password is invalid");
+            if(value.length < 6|| value.length > 100) throw new Error("password is invalid");
         } 
     },
     profileImage: {
+        type: String,
+        required: false
+    },
+    cloudinaryId: {
         type: String,
         required: false
     },
@@ -39,4 +43,4 @@ const userSchema = new Schema({
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User
+module.exports = User;
