@@ -16,7 +16,7 @@ const NavigationBar = () => {
               <Link id="main-link" to="/">
                 {" "}
                 <span id="cook">Cook</span>
-                <span id="dot">.</span>
+                {/* <span id="dot">.</span> */}
                 <span id="eat">Eat</span>
                 <img
                   alt="logo"
@@ -28,32 +28,38 @@ const NavigationBar = () => {
             </Navbar.Brand>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
+                <Nav.Link 
+                  as={Link} 
+                  to="/home" 
+                  id="links">
+                  Home
+                </Nav.Link>
                 <NavDropdown title={<FaHamburger/>} id="basic-nav-dropdown">
                   <NavDropdown.Item 
                     as={Link} 
-                    to="/my-feed" 
+                    to="/my-recipes" 
                     className="dropdown-link">
-                    My Feed
+                    My Recipes
                   </NavDropdown.Item>
                   <NavDropdown.Item
                     as={Link}
-                    to="/recipes"
+                    to="/saved-recipes"
                     className="dropdown-link">
-                    Recipes
+                    Saved Recipes
                   </NavDropdown.Item>
                   <NavDropdown.Divider id="dropdown-divider" />
                   <NavDropdown.Item
                     as={Link}
-                    to="/something"
+                    to="/add-recipe"
                     className="dropdown-link">
-                    {" "}Something?
+                    {" "}Add Recipe
                   </NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link 
                   as={Link} 
                   to="/profile-settings" 
                   id="links">
-                  Profile Settings
+                  My Account
                 </Nav.Link>
               </Nav>
               <Form inline className="nav-search-bar">
