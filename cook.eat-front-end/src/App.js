@@ -4,12 +4,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import NavigationBar from "../src/Components/NavigationBar";
 import HomePage from "../src/Components/HomePage";
+import ProfileSettings from "../src/Components/ProfileSettings";
+import AuthenticationPage from "../src/Components/AuthenticationPage";
+// import Footer from '../src/Components/Footer';
+import AddRecipe from "../src/Components/AddRecipe"; // Don't forget to re-organize
+import Recipe from "../src/Components/Recipe"; // Don't forget to re-organize
 // import Recipe from "../src/Components/Recipe"; // This is recipes by ID
 import MyRecipes from "../src/Components/MyRecipes";
 import SavedRecipes from "../src/Components/SavedRecipes";
-import AddRecipe from "../src/Components/AddRecipe";
-import ProfileSettings from "../src/Components/ProfileSettings";
-import AuthenticationPage from "../src/Components/AuthenticationPage";
 import RecipePage from "./Components/RecipePage";
 // import Footer from '../src/Components/Footer'; // Need to implement
 
@@ -30,6 +32,9 @@ const App = () => {
               </Route>
               <Route path="/my-recipes">
                 <MyRecipes />
+              </Route>
+              <Route path="/recipes">
+                <Recipe />
               </Route>
               <Route path="/saved-recipes">
                 <SavedRecipes />
