@@ -1,11 +1,11 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 .add-recipe-form-container {
-  border: 1px solid red;
+  border: 2px solid red;
   display: flex;
   align-items: center;
   justify-content: space-around;
   font-family: "Josefin Sans", sans-serif;
+  min-height: 100vh;
 }
 .add-recipe-img {
   width: 40rem;
@@ -13,8 +13,11 @@
 .recipe-form {
   padding: 1rem;
 }
+.middle-box {
+  margin: 0 1rem;
+}
 .add-recipe-btn {
-  margin-left: 10rem;
+  margin-left: 20rem;
   margin-top: 1rem;
   background-image: linear-gradient(315deg, #a40606 0%, #d98324 74%);
   border: none;
@@ -24,11 +27,9 @@
   justify-content: space-between;
 }
 .type-diet {
-  width: 11.7rem;
+  width: 10.9rem;
 }
-.type-cuisine {
-  width: 15rem;
-}
+
 .type-cuisine,
 .type-diet option {
   color: lightgray;
@@ -59,12 +60,30 @@
   background-color: #414141;
   font-size: 1.3rem;
 }
+.add-ingredient-btn:active {
+  background-color: darkcyan !important;
+}
 .add-ingredient-btn img {
   max-width: 2.2rem;
   margin-left: 1rem;
 }
+.steps-btn img {
+  margin-left: 4rem;
+}
 .add-ingredient-btn:hover {
-  background-color: #5c4949;
+  background-color: #227e79;
+}
+.form-control.is-valid,
+.was-validated .form-control:valid {
+  background-position: center right calc(0.335em + 0.7875rem);
+}
+form-control.is-invalid,
+.was-validated .form-control:invalid {
+  border-color: #dc3545;
+  padding-right: calc(1.5em + 0.75rem);
+  background-repeat: no-repeat;
+  background-position: center right calc(0.375em + 0.7875rem);
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
 
 @keyframes FadeIn {
@@ -98,4 +117,3 @@
     display: none;
   }
 }
-
