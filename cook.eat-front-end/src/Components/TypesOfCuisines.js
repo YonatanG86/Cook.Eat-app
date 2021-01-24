@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles/TypesOfCuisines.css';
+import { Image } from "react-bootstrap";
 
 
 const TypesOfCuisines = () => {
@@ -7,9 +8,14 @@ const TypesOfCuisines = () => {
         <>
             <ul>
                 <li>
-                    <input type="checkbox" id="cb1" />
-                    <label for="cb1">
-                        <img src="https://picsum.photos/seed/1/100" />
+                    <input type="checkbox" id="american" />
+                    <label for="american">
+                    <Image
+                        width={150}
+                        height={150}
+                        alt="171x180"
+                        src="https://i.insider.com/53b579166da811b136c10d7b?width=1100&format=jpeg&auto=webp" roundedCircle
+                    />
                     </label>
                 </li>
                 <li>

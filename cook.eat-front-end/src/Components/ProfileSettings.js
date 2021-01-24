@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import TypesOfCuisines from '../Components/TypesOfCuisines';
 import '../styles/ProfileSettings.css';
-import { Col, Row, Form, Button, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
+import { Col, Row, Form, Button, ToggleButtonGroup, ToggleButton, Image } from "react-bootstrap";
 import { CountryDropdown } from "react-country-region-selector";
+import GlutenFree from "../img/gluten-free.png";
 import Keto from "../img/keto.png";
+import Vegan from '../img/vegan.png';
+import Vegeterian from '../img/vegeterian.png';
+import Pescaterian from '../img/pescaterian.png';
+import Halal from '../img/halal.png';
+import Kosher from '../img/kosher.png';
+import Paleo from '../img/paleo.png';
 
 
 const ProfileSettings = () => {
@@ -75,108 +82,161 @@ const ProfileSettings = () => {
               </CountryDropdown>
             </div>
 
+            <div className="edit-avatar-container">
+              <div className="avatar">
+                <Image
+                  width={185}
+                  height={180}
+                  alt="171x180"
+                  src="https://i2.wp.com/www.eatthis.com/wp-content/uploads/2020/05/chef-cooking.jpg?fit=1200%2C879&ssl=1" roundedCircle
+                />
+              </div>
+              <div className="file-input-edit-avatar">
+                <Form.File id="formcheck-api-regular">
+                <Form.File.Label>Edit Avatar</Form.File.Label>
+                <Form.File.Input />
+                </Form.File>
+              </div>
+            </div>
+
             <h6 id="culinary-preferences">Edit Culinary Preferences</h6>
               <div className="preferences-container">
                 <div className="diets-container">
                   <fieldset>
                     <Form.Group as={Row}>
-                      <Form.Label as="legend" column sm={3}>
+                      <Form.Label as="legend" column sm={5}>
                         Special Diets
                       </Form.Label>
-                      <Col sm={9} id="diets-checkbox-column">
+                      <Col sm={7} id="diets-checkbox-column">
                         <Form.Check
                           type="checkbox"
-                          label="Gluten-Free"
                           name="typeOfDiet"
-                          id="typeOfDiet1">
-                        </Form.Check>
+                          id="typeOfDiet1"
+                          label=
+                          {<div>Gluten-Free
+                            <img
+                            alt="logo"
+                            src={GlutenFree}
+                            className="diet-images"/>
+                            </div>}
+                          />
+                          <Form.Check
+                            type="checkbox"
+                            name="typeOfDiet"
+                            id="typeOfDiet2"
+                            label=
+                            {<div>Halal
+                              <img
+                              alt="logo"
+                              src={Halal}
+                              className="diet-images"/>
+                              </div>}
+                          />
+                          <Form.Check
+                            type="checkbox"
+                            name="typeOfDiet"
+                            id="typeOfDiet3"
+                            label=
+                            {<div>Keto
+                              <img
+                              alt="logo"
+                              src={Keto}
+                              className="diet-images"/>
+                              </div>}
+                            />
+                          <Form.Check
+                            type="checkbox"
+                            name="typeOfDiet"
+                            id="typeOfDiet4"
+                            label=
+                            {<div>Kosher
+                              <img
+                              alt="logo"
+                              src={Kosher}
+                              className="diet-images"/>
+                              </div>}
+                          />
+                          <Form.Check
+                            type="checkbox"
+                            name="typeOfDiet"
+                            id="typeOfDiet5"
+                            label=
+                            {<div>Paleo
+                              <img
+                              alt="logo"
+                              src={Paleo}
+                              className="diet-images"/>
+                              </div>}
+                          />
+                          <Form.Check
+                            type="checkbox"
+                            name="typeOfDiet"
+                            id="typeOfDiet6"
+                            label=
+                            {<div>Pescaterian
+                              <img
+                              alt="logo"
+                              src={Pescaterian}
+                              className="diet-images"/>
+                              </div>}
+                          />
+                          <Form.Check
+                            type="checkbox"
+                            name="typeOfDiet"
+                            id="typeOfDiet7"
+                            label=
+                            {<div>Vegeterian
+                              <img
+                              alt="logo"
+                              src={Vegeterian}
+                              className="diet-images"/>
+                              </div>}
+                          />
+                          <Form.Check
+                            type="checkbox"
+                            name="typeOfDiet"
+                            id="typeOfDiet8"
+                            label=
+                            {<div>Vegan
+                              <img
+                              alt="logo"
+                              src={Vegan}
+                              className="diet-images"/>
+                              </div>}
+                            />
+                        </Col>
+                      </Form.Group>
+                    </fieldset>
+                  </div>
 
-                        <Form.Check
-                          type="checkbox"
-                          label="Halal"
-                          name="typeOfDiet"
-                          id="typeOfDiet2"
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          label="Keto"
-                          // label={<img
-                          //   alt="logo"
-                          //   src={Keto}
-                          //   width="47"
-                          //   height="47"
-                          //   className="d-inline-block align-top"/>}
-                          name="typeOfDiet"
-                          id="typeOfDiet3"
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          label="Kosher"
-                          name="typeOfDiet"
-                          id="typeOfDiet4"
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          label="Paleo"
-                          name="typeOfDiet"
-                          id="typeOfDiet5"
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          label="Pescaterian"
-                          name="typeOfDiet"
-                          id="typeOfDiet6"
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          label="Vegeterian"
-                          name="typeOfDiet"
-                          id="typeOfDiet7"
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          label="Vegan"
-                          name="typeOfDiet"
-                          id="typeOfDiet8">
-                        </Form.Check>
-                      </Col>
-                    </Form.Group>
-                  </fieldset>
-                </div>
                 <div className="culinary-level">
                   <p>Culinary Level</p>    
                   <ToggleButtonGroup 
                     className="cookingskills-buttongroup"
                     type="checkbox" 
-                    value={cookingSkills} 
+                    value={cookingSkills}
                     onChange={handleCookingSkillsSelect}>
                     <ToggleButton value={1} id="beginner">
-                      Beginner
+                      <span>Z</span>
                       <br/>
-                      icon
+                      Beginner
                       </ToggleButton>
                     <ToggleButton value={2} id="intermediate">
+                      <span>z</span>
+                      <br/>
                       Intermediate
-                      <br />
-                      icon
                       </ToggleButton>
                     <ToggleButton value={3} id="advanced">
-                      Advanced
+                      <span>M</span>
                       <br/>
-                      icon
+                      Advanced
                       </ToggleButton>
                   </ToggleButtonGroup>
                 </div>
              </div>
 
-
-
-
-
-          {/* <p>Types of cuisines</p>
-          <TypesOfCuisines /> */}
-
-
+          <p>Types of cuisines</p>
+          <TypesOfCuisines />
 
             <Form.Group id="formGridCheckbox">
               <Form.Check
@@ -186,15 +246,7 @@ const ProfileSettings = () => {
                 checked={isChecked}
                 onChange={(event) => {setIsChecked(event.target.checked)}} />
             </Form.Group>
-
-
-
-
-
-
-
-
-
+            
             <Button
               className="save-profile-button"
               controlId="save-profile-button"
