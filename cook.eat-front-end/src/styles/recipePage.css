@@ -1,0 +1,51 @@
+@font-face {
+    font-family: "Trajan";
+    src: local("Trajan"), url(../fonts//Trajan.ttf) format("truetype");
+}
+
+.recipeTitle{
+    font-family: "Trajan";
+}
+
+.recipePage{
+    margin-top: 2rem;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.titleBox{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin: 0 auto
+}
+
+.likeBox{
+    display: inline-flex;
+    background-color: #F05163;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    padding: .5rem 1rem;
+    align-items: center;
+}
+
+.recipeImage{
+    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+.imageBox{
+    background-color: #108C4F;
+    width: 200px;
+    height: 400px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+    margin-left: 15rem;
+}
