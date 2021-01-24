@@ -11,10 +11,10 @@ const TypesOfCuisines = () => {
                     <input type="checkbox" id="american" />
                     <label for="american">
                     <Image
-                        width={150}
-                        height={150}
+                        width={170}
+                        height={170}
                         alt="171x180"
-                        src="https://i.insider.com/53b579166da811b136c10d7b?width=1100&format=jpeg&auto=webp" roundedCircle
+                        src="https://media-cdn.tripadvisor.com/media/photo-s/16/5e/62/88/mushie.jpg" roundedCircle
                     />
                     </label>
                 </li>

@@ -1,22 +1,101 @@
-@font-face {
-    font-family: "Trajan";
-    src: local("Trajan"), url(../fonts//Trajan.ttf) format("truetype");
-}
 
-.add-recipe-pagewrapper {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    border: 2px solid red;
-}
-
-.add-recipe-pagewrapper h4 {
-    text-align: center;
-    padding: 30px 0;
-    font-family: "Trajan";
-}
-
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 .add-recipe-form-container {
-    display: flex;
-    justify-content: center;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-family: "Josefin Sans", sans-serif;
 }
+.add-recipe-img {
+  width: 40rem;
+}
+.recipe-form {
+  padding: 1rem;
+}
+.add-recipe-btn {
+  margin-left: 10rem;
+  margin-top: 1rem;
+  background-image: linear-gradient(315deg, #a40606 0%, #d98324 74%);
+  border: none;
+}
+.add-group {
+  display: flex;
+  justify-content: space-between;
+}
+.type-diet {
+  width: 11.7rem;
+}
+.type-cuisine {
+  width: 15rem;
+}
+.type-cuisine,
+.type-diet option {
+  color: lightgray;
+  background-color: #414141;
+}
+.recipe-form label {
+  color: #a40606;
+}
+.ingredient {
+  animation: FadeIn 1.5s ease;
+}
+.plus-btn {
+  background-color: #414141;
+  border: none;
+  transition: 0.5s;
+  outline: none;
+}
+.plus-btn img {
+  max-width: 1.2rem;
+}
+.plus-btn:hover {
+  background-color: darkcyan;
+}
+.add-ingredient-btn {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: lightgray;
+  background-color: #414141;
+  font-size: 1.3rem;
+}
+.add-ingredient-btn img {
+  max-width: 2.2rem;
+  margin-left: 1rem;
+}
+.add-ingredient-btn:hover {
+  background-color: #5c4949;
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes FadeOut {
+  0% {
+    transform: scale(1);
+  }
+
+  85% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+}
+@media (max-width: 80rem) {
+  .add-recipe-img {
+    display: none;
+  }
+}
+
