@@ -12,8 +12,6 @@ import Recipe from "../src/Components/Recipe"; // Don't forget to re-organize
 // import Recipe from "../src/Components/Recipe"; // This is recipes by ID
 import MyRecipes from "../src/Components/MyRecipes";
 import SavedRecipes from "../src/Components/SavedRecipes";
-import ProfileSettings from "../src/Components/ProfileSettings";
-import AuthenticationPage from "../src/Components/AuthenticationPage";
 import RecipePage from "./Components/RecipePage";
 // import Footer from '../src/Components/Footer'; // Need to implement
 

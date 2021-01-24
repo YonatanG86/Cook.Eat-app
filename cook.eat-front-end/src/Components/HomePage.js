@@ -24,13 +24,13 @@ const HomePage = () => {
               </InputGroup.Append>
             </InputGroup>
           </div>
-          <div>
-            {mockRecipes.map(function (recipe, i) {
-              console.log("recipe", recipe);
-              return <RecipeCard key={i} recipe={recipe} />;
-            })}
-          </div>
         </div>
+      </div>
+      <div className="recipes">
+        {mockRecipes.map(function (recipe, i) {
+          console.log("recipe", recipe);
+          return <RecipeCard key={i} recipe={recipe} />;
+        })}
       </div>
     </div>
   );
