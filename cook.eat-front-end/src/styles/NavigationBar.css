@@ -32,14 +32,14 @@ span.navbar-brand a {
 }
 
 img.d-inline-block.align-top {
-    padding-bottom: 12px;
+    padding-bottom: 18px;
 }
 
 #cook {
     font-family: "BiteChocolate";
     color: #B73032;
     font-weight: 100;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 #dot {
@@ -56,17 +56,33 @@ img.d-inline-block.align-top {
     color: lightgray;
 }
 
+#links {
+    margin-left: 25px;
+}
+
+#basic-nav-dropdown {
+    margin-left: 30px;
+}
+
 div.dropdown-menu.show {
     background-color: #414141;
 }
 
 div#dropdown-divider.dropdown-divider {
-    border: 1px solid lightgray;
+    border: 1px solid #D7A047;
 }
 
 .dropdown-link {
     color: lightgray;
     background-color: #414141;
+}
+
+a.dropdown-link.dropdown-item {
+    background-color: #414141;
+}
+
+a.dropdown-link.dropdown-item:hover {
+    color: #B73032;
 }
 
 #links {

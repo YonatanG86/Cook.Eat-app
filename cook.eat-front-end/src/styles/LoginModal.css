@@ -54,10 +54,6 @@ img#login-image {
     font-size: 13px;
 }
 
-.login-form span {
-    text-decoration: underline;
-}
-
 .login-form .form-control {
     border-radius: 10px;
 }
@@ -78,4 +74,5 @@ img#login-image {
 
 #register {
     color: black;
+    text-decoration: underline;
 }
