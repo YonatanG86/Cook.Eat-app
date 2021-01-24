@@ -8,16 +8,19 @@
 }
 
 .recipePage{
-    margin-top: 2rem;
+    margin: 2rem auto;
     display: flex;
     flex-flow: column nowrap;
+    width: 80%;
 }
 
 .titleBox{
+    width: 100%;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    margin: 0 auto
+    margin: 0 auto;
+    justify-content: space-between;
 }
 
 .likeBox{
@@ -28,10 +31,37 @@
     font-weight: bold;
     padding: .5rem 1rem;
     align-items: center;
+    margin-top: 2rem;
+}
+
+.desc{
+    width: 60%;
+    font-size: 18px;
+    margin-top: 2rem;
+}
+
+.cal{
+    font-size: 22px;
+    margin-top: 2rem;
+    color: crimson;
+    border-right: 1px solid crimson;
+    padding: 1rem 2.5rem;
+}
+
+.clock{
+    border-right: none;
+}
+
+.topic{
+    width: 40rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: 2rem;
 }
 
 .recipeImage{
-    max-width: 300px;
+    max-width: 400px;
     max-height: 300px;
     width: auto;
     height: auto;
@@ -47,5 +77,34 @@
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
     position: relative;
-    margin-left: 15rem;
+}
+
+.textBox{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.textRight{
+    width: 30%;
+    margin: 1rem 2rem;
+}
+
+.textLeft{
+    width: 70%;
+    margin: 1rem 2rem;
+}
+
+.ing{
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    margin-top: 1rem;
+}
+
+ol{
+    padding-left: 1rem;
+}
+
+.step{
+    margin-top: 1rem;
 }
