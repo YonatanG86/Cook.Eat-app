@@ -6,12 +6,12 @@ const ingredientSchema = new Schema({
         type: String,
         required: true
     },
-    measurement:{
-        type: String,
-        required: true
-    },
     quantity:{
         type: Number,
+        required: true
+    },
+    measurement:{
+        type: String,
         required: true
     }
 });
@@ -35,7 +35,7 @@ const recipeSchema = new Schema({
     },
     dietType:{
         type: String,
-        required: true
+        required: false
     },
     preparationTime:{
         type: Number,
@@ -74,10 +74,10 @@ const recipeSchema = new Schema({
         required: true,
         default: 0
     },
-    ingredients: [ingredientSchema],
+    ingredients: [ ingredientSchema ],
 
 })
-
+recipeSchema.index({recipeTitle: 'text', description: 'text' });
 const Recipe = mongoose.model('Recipe', recipeSchema);
 
 module.exports = Recipe

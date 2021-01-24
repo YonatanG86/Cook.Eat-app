@@ -11,8 +11,31 @@ router.use(express.json())
 
 //get all the recipes
 router.get('/', async(req,res) => {
-    const allRecipes = await RecipesModel.find({});
-    res.send(allRecipes);
+    if(req.query.search){
+        //search by title and description and ingidients
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        const result = await RecipesModel.find({ $or: [{'ingredients.ingredientName' : regex},
+                                                        { $text: { $search: regex }}]},
+                                                        { score: { $meta: "textScore"}})
+                                                        .sort({score: {$meta: "textScore"}})
+        res.send(result)
+    } else {
+        const allRecipes = await RecipesModel.find({});
+        res.send(allRecipes);
+    }
+})
+
+//filter recipe
+router.post('/filter', async(req, res) => {
+    const { cuisineType, mealType, dietType, dishLevel } = req.body
+    let filters = {}
+    if(cuisineType) filters.cuisineType = cuisineType
+    if(mealType) filters.mealType = mealType
+    if(dietType) filters.dietType = dietType
+    if(dishLevel) filters.dishLevel = dishLevel
+        
+    const results = await PetModel.find(filters)
+    res.send(results)
 })
 
 //get recipe by Id
@@ -99,6 +122,10 @@ router.put('/likes/:id', async(req, res) => {
         res.status(500).send('the recipe did not updated')
     }
 })
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 
 module.exports = router 
