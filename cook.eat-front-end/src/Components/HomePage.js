@@ -26,6 +26,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+
       <div className="recipes">
         {mockRecipes.map(function (recipe, i) {
           console.log("recipe", recipe);
