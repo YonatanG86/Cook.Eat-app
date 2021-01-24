@@ -10,6 +10,7 @@ import SavedRecipes from "../src/Components/SavedRecipes";
 import AddRecipe from "../src/Components/AddRecipe";
 import ProfileSettings from "../src/Components/ProfileSettings";
 import AuthenticationPage from "../src/Components/AuthenticationPage";
+import RecipePage from "./Components/RecipePage";
 // import Footer from '../src/Components/Footer'; // Need to implement
 
 
@@ -24,9 +25,9 @@ const App = () => {
               <Route exact path="/home">
                 <HomePage />
               </Route>
-              {/* <Route path="/recipe/:id">
-                <Recipe />
-              </Route> */}
+              <Route path="/recipe/:id">
+                <RecipePage />
+              </Route>
               <Route path="/my-recipes">
                 <MyRecipes />
               </Route>
