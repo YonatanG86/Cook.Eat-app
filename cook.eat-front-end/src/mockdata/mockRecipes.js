@@ -1,6 +1,10 @@
 // Easy, medium, hard (levels) + add it to add recipe
 // change object to arrary for steps
 
+function  ObjectID(value) {
+  return value;
+}
+
 const mockRecipes = [
   {
     _id: ObjectID("MongoDB will decide"),
@@ -106,7 +110,7 @@ const mockRecipes = [
         ingredientName: "" 
       },
     ],
-    description: [
+    steps: [
       { 
         step1: "",
         step2: "",

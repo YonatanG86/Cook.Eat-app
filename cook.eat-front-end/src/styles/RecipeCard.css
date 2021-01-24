@@ -1,0 +1,9 @@
+.main {
+  display: block;
+  width: 100%;
+}
+
+.picture {
+  vertical-align: middle;
+  border-style: none;
+}
