@@ -7,9 +7,14 @@ import HomePage from "../src/Components/HomePage";
 import ProfileSettings from "../src/Components/ProfileSettings";
 import AuthenticationPage from "../src/Components/AuthenticationPage";
 // import Footer from '../src/Components/Footer';
-
 import AddRecipe from "../src/Components/AddRecipe"; // Don't forget to re-organize
 import Recipe from "../src/Components/Recipe"; // Don't forget to re-organize
+// import Recipe from "../src/Components/Recipe"; // This is recipes by ID
+import MyRecipes from "../src/Components/MyRecipes";
+import SavedRecipes from "../src/Components/SavedRecipes";
+import RecipePage from "./Components/RecipePage";
+// import Footer from '../src/Components/Footer'; // Need to implement
+
 
 const App = () => {
   return (
@@ -19,20 +24,26 @@ const App = () => {
           <header className="app-header">
             <NavigationBar />
             <Switch>
-              <Route exact path="/">
+              <Route exact path="/home">
                 <HomePage />
               </Route>
-              <Route path="/profile-settings">
-                <ProfileSettings />
+              <Route path="/recipe/:id">
+                <RecipePage />
+              </Route>
+              <Route path="/my-recipes">
+                <MyRecipes />
               </Route>
               <Route path="/recipes">
                 <Recipe />
               </Route>
-              {/* <Route path="/recipe/:id">
-                <Recipe />
-              </Route> */}
-              <Route path="/something">
+              <Route path="/saved-recipes">
+                <SavedRecipes />
+              </Route>
+              <Route path="/add-recipe">
                 <AddRecipe />
+              </Route>
+              <Route path="/profile-settings">
+                <ProfileSettings />
               </Route>
               <Route path="/sign-out">
                 <AuthenticationPage />

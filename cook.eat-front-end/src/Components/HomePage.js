@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import Search from "../Components/Search";
+import RegistrationCarousel from "../Components/RegistrationCarousel";
+import RecipeCard from "./RecipeCard";
+import mockRecipes from "../mockdata/mockRecipes";
 import "../styles/HomePage.css";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import { BiSearch } from "react-icons/bi";
 
+// map [{name:1},{name:2}] -> [<RecipeCard />, <RecipeCard />]
 const HomePage = () => {
   return (
     <div className="homepage-wrapper">
@@ -20,6 +25,13 @@ const HomePage = () => {
             </InputGroup>
           </div>
         </div>
+      </div>
+
+      <div className="recipes">
+        {mockRecipes.map(function (recipe, i) {
+          console.log("recipe", recipe);
+          return <RecipeCard key={i} recipe={recipe} />;
+        })}
       </div>
     </div>
   );

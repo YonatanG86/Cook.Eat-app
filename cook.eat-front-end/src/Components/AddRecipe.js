@@ -14,6 +14,7 @@ const formFields = {
   ingredients: [],
 };
 const AddRecipe = () => {
+
   const types = ["image/png", "image/jpeg", "image/jpg"];
   const { register, handleSubmit, errors, watch } = useForm();
   const [formInfo, setFormInfo] = useState(formFields);
@@ -191,6 +192,7 @@ const AddRecipe = () => {
               />
             </Form.Group>
           </div>
+
         </div>
         <Button
           className="add-ingredient-btn"
