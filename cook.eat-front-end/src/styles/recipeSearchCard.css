@@ -1,0 +1,24 @@
+*{
+   
+}
+
+.card{
+    width: 300px;
+    color: lightgray;
+    background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+    
+}
+.card:hover{
+    filter: brightness(75%);
+    cursor: pointer;
+}
+.cardRecipeName{
+    align-self: center;
+}
+.card-body{
+    padding: 0.25rem 1.25rem;
+}
+.card-text{
+    margin-bottom: 0;
+}
