@@ -77,6 +77,14 @@ div#dropdown-divider.dropdown-divider {
     background-color: #414141;
 }
 
+a.dropdown-link.dropdown-item {
+    background-color: #414141;
+}
+
+a.dropdown-link.dropdown-item:hover {
+    color: #B73032;
+}
+
 #links {
     color: lightgray;
 }
