@@ -1,5 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 .add-recipe-form-container {
-    border: 1px solid red;
-    display: flex;
-    justify-content: center;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-family: "Josefin Sans", sans-serif;
+}
+.add-recipe-img {
+  width: 40rem;
+}
+.recipe-form {
+  padding: 1rem;
+}
+.add-recipe-btn {
+  margin-left: 10rem;
+  margin-top: 1rem;
+  background-image: linear-gradient(
+    to right,
+    #ff8177 0%,
+    #ff867a 0%,
+    #ff8c7f 21%,
+    #f99185 52%,
+    #cf556c 78%,
+    #b12a5b 100%
+  );
+  border: none;
+}
+.add-group {
+  display: flex;
+  justify-content: space-between;
+}
+.type-diet {
+  width: 11.7rem;
+}
+.type-cuisine {
+  width: 15rem;
+}
+.type-cuisine,
+.type-diet option {
+  color: lightgray;
+  background-color: #414141;
+}
+.recipe-form label {
+  color: #a40606;
+}
+.plus-btn {
+  background-color: #414141;
+  border: none;
+  transition: 0.5s;
+  outline: none;
+}
+.plus-btn img {
+  max-width: 1.2rem;
+}
+.plus-btn:hover {
+  background-color: darkcyan;
+}
+
+@media (max-width: 80rem) {
+  .add-recipe-img {
+    display: none;
+  }
 }
