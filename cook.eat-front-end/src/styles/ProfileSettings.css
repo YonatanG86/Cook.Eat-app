@@ -37,17 +37,58 @@ input#formGridUsername.form-input.form-control {
 }
 
 .diets-container {
-    border: 1px solid red;
     display: inline-block;
     width: 50%;
 }
 
-#test {
+.preferences-container {
+    display: flex;
+}
+
+#diets-checkbox-column {
     margin-top: 8px;
 }
 
 .culinary-level {
-    border: 1px solid green;
     display: inline-block;
     width: 50%;
+    padding-top: 8px;
+    text-align: center;
+}
+
+.cookingskills-buttongroup {
+    /* border: 1px solid red; */
+}
+
+#beginner {
+    margin: 0 20px;
+    border: none;
+    color: white;
+    text-align: center;
+    display: inline-block;
+}
+
+#intermediate {
+    margin: 0 20px;
+    border: none;
+    color: white;
+    padding: px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 50%;
+    padding: 20px 10px;
+}
+
+#advanced {
+    margin: 0 20px;
+    margin: 0 20px;
+    border: none;
+    color: white;
+    padding: px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 50%;
+    padding: 20px 10px;
 }

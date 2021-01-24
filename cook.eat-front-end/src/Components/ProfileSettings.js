@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TypesOfCuisines from '../Components/TypesOfCuisines';
 import '../styles/ProfileSettings.css';
-import { Col, Row, Form, Button, Image } from "react-bootstrap";
+import { Col, Row, Form, Button, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import { CountryDropdown } from "react-country-region-selector";
 import Keto from "../img/keto.png";
 
@@ -13,6 +13,9 @@ const ProfileSettings = () => {
     const [date, setDate] = useState("");
     const [country, setCountry] = useState("");
     const [isChecked, setIsChecked] = useState(false);
+    const [cookingSkills, setCookingSkills] = useState([1, 3]);
+
+    const handleCookingSkillsSelect = (value) => setCookingSkills(value);
     
     return (
         <div className="profile-settings-pagewrapper">
@@ -74,14 +77,13 @@ const ProfileSettings = () => {
 
             <h6 id="culinary-preferences">Edit Culinary Preferences</h6>
               <div className="preferences-container">
-
                 <div className="diets-container">
                   <fieldset>
                     <Form.Group as={Row}>
                       <Form.Label as="legend" column sm={3}>
                         Special Diets
                       </Form.Label>
-                      <Col sm={9} id="test">
+                      <Col sm={9} id="diets-checkbox-column">
                         <Form.Check
                           type="checkbox"
                           label="Gluten-Free"
@@ -97,12 +99,13 @@ const ProfileSettings = () => {
                         />
                         <Form.Check
                           type="checkbox"
-                          label={<img
-                            alt="logo"
-                            src={Keto}
-                            width="47"
-                            height="47"
-                            className="d-inline-block align-top"/>}
+                          label="Keto"
+                          // label={<img
+                          //   alt="logo"
+                          //   src={Keto}
+                          //   width="47"
+                          //   height="47"
+                          //   className="d-inline-block align-top"/>}
                           name="typeOfDiet"
                           id="typeOfDiet3"
                         />
@@ -130,7 +133,6 @@ const ProfileSettings = () => {
                           name="typeOfDiet"
                           id="typeOfDiet7"
                         />
-
                         <Form.Check
                           type="checkbox"
                           label="Vegan"
@@ -139,19 +141,40 @@ const ProfileSettings = () => {
                         </Form.Check>
                       </Col>
                     </Form.Group>
-
                   </fieldset>
                 </div>
-
                 <div className="culinary-level">
-
+                  <p>Culinary Level</p>    
+                  <ToggleButtonGroup 
+                    className="cookingskills-buttongroup"
+                    type="checkbox" 
+                    value={cookingSkills} 
+                    onChange={handleCookingSkillsSelect}>
+                    <ToggleButton value={1} id="beginner">
+                      Beginner
+                      <br/>
+                      icon
+                      </ToggleButton>
+                    <ToggleButton value={2} id="intermediate">
+                      Intermediate
+                      <br />
+                      icon
+                      </ToggleButton>
+                    <ToggleButton value={3} id="advanced">
+                      Advanced
+                      <br/>
+                      icon
+                      </ToggleButton>
+                  </ToggleButtonGroup>
                 </div>
              </div>
 
+
+
+
+
           {/* <p>Types of cuisines</p>
           <TypesOfCuisines /> */}
-
-
 
 
 
@@ -163,6 +186,14 @@ const ProfileSettings = () => {
                 checked={isChecked}
                 onChange={(event) => {setIsChecked(event.target.checked)}} />
             </Form.Group>
+
+
+
+
+
+
+
+
 
             <Button
               className="save-profile-button"
