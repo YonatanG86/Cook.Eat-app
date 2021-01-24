@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import TypesOfCuisines from '../Components/TypesOfCuisines';
 import '../styles/ProfileSettings.css';
-import { Col, Form, Button } from "react-bootstrap";
+import { Col, Row, Form, Button, Image } from "react-bootstrap";
 import { CountryDropdown } from "react-country-region-selector";
+import Keto from "../img/keto.png";
 
 
 const ProfileSettings = () => {
@@ -70,8 +72,86 @@ const ProfileSettings = () => {
               </CountryDropdown>
             </div>
 
-
             <h6 id="culinary-preferences">Edit Culinary Preferences</h6>
+              <div className="preferences-container">
+
+                <div className="diets-container">
+                  <fieldset>
+                    <Form.Group as={Row}>
+                      <Form.Label as="legend" column sm={3}>
+                        Special Diets
+                      </Form.Label>
+                      <Col sm={9} id="test">
+                        <Form.Check
+                          type="checkbox"
+                          label="Gluten-Free"
+                          name="typeOfDiet"
+                          id="typeOfDiet1">
+                        </Form.Check>
+
+                        <Form.Check
+                          type="checkbox"
+                          label="Halal"
+                          name="typeOfDiet"
+                          id="typeOfDiet2"
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          label={<img
+                            alt="logo"
+                            src={Keto}
+                            width="47"
+                            height="47"
+                            className="d-inline-block align-top"/>}
+                          name="typeOfDiet"
+                          id="typeOfDiet3"
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          label="Kosher"
+                          name="typeOfDiet"
+                          id="typeOfDiet4"
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          label="Paleo"
+                          name="typeOfDiet"
+                          id="typeOfDiet5"
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          label="Pescaterian"
+                          name="typeOfDiet"
+                          id="typeOfDiet6"
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          label="Vegeterian"
+                          name="typeOfDiet"
+                          id="typeOfDiet7"
+                        />
+
+                        <Form.Check
+                          type="checkbox"
+                          label="Vegan"
+                          name="typeOfDiet"
+                          id="typeOfDiet8">
+                        </Form.Check>
+                      </Col>
+                    </Form.Group>
+
+                  </fieldset>
+                </div>
+
+                <div className="culinary-level">
+
+                </div>
+             </div>
+
+          {/* <p>Types of cuisines</p>
+          <TypesOfCuisines /> */}
+
+
 
 
 
