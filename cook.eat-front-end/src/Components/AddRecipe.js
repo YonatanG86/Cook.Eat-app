@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import Ingredient from "./ingredient";
+import Steps from "./Steps";
+import { useAuth } from "../Conteaxts/autoConteaxt";
 import "../styles/AddRecipe.css";
 import { Button, Form, InputGroup, FormControl } from "react-bootstrap";
 
@@ -9,20 +13,26 @@ const formFields = {
   description: "",
   cuisineType: "",
   dietType: "",
-  preparationTime: "",
-  servings: "",
+  preparationTime: 0,
+  servings: 0,
   ingredients: [],
+  steps: [],
+  calories: 0,
+  dishLevel: "",
+  mealType: "",
+  writer: "",
 };
 const AddRecipe = () => {
-
   const types = ["image/png", "image/jpeg", "image/jpg"];
-  const { register, handleSubmit, errors, watch } = useForm();
+  const { addRecipe } = useAuth();
+  const { register, handleSubmit, errors } = useForm();
   const [formInfo, setFormInfo] = useState(formFields);
   const [ingredient, setIngred] = useState();
   const [file, setFile] = useState();
   const [recipeImage, setRecipeImage] = useState();
-  const [ingredients, setIngredient] = useState([]);
-  const [firstingredient, setFirstingredient] = useState(true);
+  const [ingredients, setIngredients] = useState([{}]);
+  const [step, setStep] = useState();
+  const [steps, setSteps] = useState([""]);
 
   const handleChange = (e) => {
     setFormInfo({
@@ -41,19 +51,20 @@ const AddRecipe = () => {
       };
       reader.readAsDataURL(e.target.files[0]);
     } else {
-      alert("Please select an image file (png, jpg,jpeg)!");
+      notifyError("Please select an image file (png, jpg, jpeg)");
     }
   };
 
   const onSubmit = (data, e) => {
     e.preventDefault();
     saveIngredient();
-    // let formData = new FormData();
-    // formData.append("data", JSON.stringify(formInfo));
-    // formData.append("picture", file);
-    console.log(formInfo);
+    let formData = new FormData();
+    formData.append("data", JSON.stringify(formInfo));
+    formData.append("picture", file);
+    addRecipe(FormData);
   };
 
+  // on change in Ingredient input
   const onIngredient = (e) => {
     setIngred({
       ...ingredient,
@@ -61,31 +72,82 @@ const AddRecipe = () => {
     });
   };
 
+  // on change in step input
+  const onStepChange = (e) => {
+    setStep(e.target.value);
+  };
+
+  //save the last ingredient and remove undefineds items
   const saveIngredient = () => {
-    setIngredient((ingredients) => [...ingredients, ingredient]);
-    formInfo.ingredients = ingredients.filter((item) => item !== undefined);
+    if (steps.length === 0 || ingredients.length === 0)
+      notifyError("📋 What about preparation instructions or ingredients?");
+    else {
+      ingredients.push(ingredient);
+      steps.push(step);
+      formInfo.ingredients = ingredients.filter(
+        (item) => Object.keys(item).length !== 0
+      );
+      formInfo.steps = steps.filter((item) => item !== "");
+      setIngredients([]);
+      setSteps([]);
+    }
   };
 
   // add Ingredient to list
   const addIngredient = () => {
-    if (ingredient || firstingredient) {
-      setIngredient((ingredients) => [...ingredients, ingredient]);
-      if (!firstingredient) setIngred("");
-      setFirstingredient(false);
+    if (ingredient || ingredients.length === 0) {
+      setIngredients((ingredients) => [...ingredients, ingredient]);
+      setIngred("");
     }
   };
 
   // remove Ingredient from list
   const removeIngredient = (id) => {
     const newIngredients = ingredients.filter((item, index) => {
-      return index != id;
+      return index !== id;
     });
-    setIngredient(newIngredients);
+    setIngredients(newIngredients);
   };
+
+  const addStep = () => {
+    if (step || steps.length === 0) {
+      setSteps((steps) => [...steps, step]);
+      setStep("");
+    }
+  };
+
+  const removeStep = (id) => {
+    const newsteps = steps.filter((item, index) => {
+      return index !== id;
+    });
+    setSteps(newsteps);
+  };
+
+  const notifyError = (error) =>
+    toast.error(error, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  const notifySuccess = (message) =>
+    toast.success(message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   return (
     <div className="add-recipe-form-container">
-      <Form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
+      <ToastContainer className="notification" />
+      <Form validated className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
         <Form.Group>
           <Form.Label>Title</Form.Label>
           <Form.Control
@@ -114,11 +176,11 @@ const AddRecipe = () => {
             <Form.Control
               name="cuisineType"
               as="select"
-              className="type-cuisine dropdown-link"
+              className="type-diet dropdown-link"
               onChange={handleChange}
               required
             >
-              <option selected disabled>
+              <option value="" selected disabled>
                 your type of cuisine
               </option>
               <option>American</option>
@@ -149,9 +211,14 @@ const AddRecipe = () => {
               <option>Vietnamese</option>
             </Form.Control>
           </div>
-          <div className="rigth-box">
+          <div className="middle-box">
             <Form.Label>Type of Diet</Form.Label>
-            <Form.Control as="select" className="type-diet dropdown-link">
+            <Form.Control
+              name="dietType"
+              as="select"
+              className="type-diet dropdown-link"
+              onChange={handleChange}
+            >
               <option>None</option>
               <option>Gluten-Free</option>
               <option>Halal</option>
@@ -161,6 +228,37 @@ const AddRecipe = () => {
               <option>Pescaterian</option>
               <option>Vegan</option>
               <option>Vegeterian</option>
+            </Form.Control>
+          </div>
+          <div className="rigth-box">
+            <Form.Label>Dish Level</Form.Label>
+            <Form.Control
+              name="dishLevel"
+              as="select"
+              className="type-diet dropdown-link"
+              onChange={handleChange}
+            >
+              <option>None</option>
+              <option>Beginners</option>
+              <option>Amateurs</option>
+              <option>Professional</option>
+            </Form.Control>
+          </div>
+          <div className="last-box">
+            <Form.Label>Meal Type</Form.Label>
+            <Form.Control
+              required
+              name="mealType"
+              as="select"
+              className="type-diet dropdown-link"
+              onChange={handleChange}
+            >
+              <option value="" selected disabled>
+                meal Type
+              </option>
+              <option>Breakfast</option>
+              <option>Lunch</option>
+              <option>Dinner</option>
             </Form.Control>
           </div>
         </Form.Group>
@@ -180,20 +278,38 @@ const AddRecipe = () => {
               </InputGroup.Append>
             </InputGroup>
           </div>
-          <div className="right-box">
-            <Form.Group className="mb-10">
-              <Form.Label>Number of Servings</Form.Label>
-              <Form.Control
+          <div className="middle-box">
+            <Form.Label>Number of Servings</Form.Label>
+            <InputGroup className="mb-3">
+              <FormControl
                 name="servings"
                 type="number"
                 onChange={handleChange}
                 min="1"
                 placeholder="number of servings..."
               />
-            </Form.Group>
+              <InputGroup.Append>
+                <InputGroup.Text>Diners</InputGroup.Text>
+              </InputGroup.Append>
+            </InputGroup>
           </div>
-
+          <div className="right-box">
+            <Form.Label>Calories</Form.Label>
+            <InputGroup className="mb-3">
+              <Form.Control
+                name="calories"
+                type="number"
+                onChange={handleChange}
+                min="1"
+                placeholder="Calories..."
+              />
+              <InputGroup.Append>
+                <InputGroup.Text>cal</InputGroup.Text>
+              </InputGroup.Append>
+            </InputGroup>
+          </div>
         </div>
+
         <Button
           className="add-ingredient-btn"
           type="button"
@@ -208,27 +324,37 @@ const AddRecipe = () => {
               key={index}
               addIngredient={onIngredient}
               removeIngredient={removeIngredient}
-              //   moreIngredient={moreIngredient}
               id={index}
             />
           );
         })}
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text>Step 1</InputGroup.Text>
-          </InputGroup.Prepend>
-          <FormControl as="textarea" />
-          <Button className="plus-btn">
-            <img src="./addRecipe/plus.png" alt="+" />
-          </Button>
-        </InputGroup>
+        <Button
+          className="add-ingredient-btn steps-btn"
+          type="button"
+          onClick={addStep}
+        >
+          Add steps
+          <img src="./addRecipe/plus.png" alt="+" />
+        </Button>
+        {steps.map((item, index) => {
+          return (
+            <Steps
+              key={index}
+              removeStep={removeStep}
+              onStepChange={onStepChange}
+              id={index}
+            />
+          );
+        })}
 
-        <Form.Group className="mt-3">
+        <Form.Group className="upload-img mt-3">
           <Form.File
             name="picture"
-            label="Upload a picture of your recipe."
+            label="Upload a picture"
+            className="file"
             onChange={handleFileUpload}
           />
+          <img src={recipeImage} alt="" />
         </Form.Group>
 
         <Button className="add-recipe-btn" type="submit">
