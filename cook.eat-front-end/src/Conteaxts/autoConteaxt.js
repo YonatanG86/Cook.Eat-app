@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import jwt from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 import { useHistory } from 'react-router-dom';
 const AuthContext = React.createContext();
 
@@ -17,13 +17,15 @@ export const AutoProvider = ({ children }) => {
 	//signUp
 	const signupUser = async (formInfo) => {
 		//Todo: Submitting the form to a server
+		console.log(formInfo);
 		try {
 			const res = await axios.post(`${baseUrl}/auth/signup`, formInfo);
+			console.log(res.data);
 			localStorage.setItem('token', JSON.stringify(res.data));
-			const user = jwt(res.data);
+			const user = jwt_decode(res.data);
 			setCurrentUser(user);
 		} catch (error) {
-			return error.response.data;
+			return error;
 		}
 	};
 	//login
@@ -32,7 +34,7 @@ export const AutoProvider = ({ children }) => {
 			const res = await axios.post(`${baseUrl}/auth/login`, formInfo);
 			if (res.data) {
 				localStorage.setItem('token', JSON.stringify(res.data));
-				const user = jwt(res.data);
+				const user = jwt_decode(res.data);
 				setCurrentUser(user);
 				return user;
 			}

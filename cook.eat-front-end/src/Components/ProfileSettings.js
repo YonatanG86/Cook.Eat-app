@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import TypesOfCuisines from '../Components/TypesOfCuisines';
+import CulinaryLevel from '../Components/CulinaryLevel';
 import '../styles/ProfileSettings.css';
 import { Col, Row, Form, Button, ToggleButtonGroup, ToggleButton, Image } from "react-bootstrap";
 import { CountryDropdown } from "react-country-region-selector";
-import GlutenFree from "../img/gluten-free.png";
-import Keto from "../img/keto.png";
-import Vegan from '../img/vegan.png';
-import Vegeterian from '../img/vegeterian.png';
-import Pescaterian from '../img/pescaterian.png';
-import Halal from '../img/halal.png';
-import Kosher from '../img/kosher.png';
-import Paleo from '../img/paleo.png';
+import GlutenFree from "../img/special-diets/gluten-free.png";
+import Halal from '../img/special-diets/halal.png';
+import Keto from "../img/special-diets/keto.png";
+import Kosher from '../img/special-diets/kosher.png';
+import Paleo from '../img/special-diets/paleo.png';
+import Pescaterian from '../img/special-diets/pescaterian.png';
+import Vegeterian from '../img/special-diets/vegeterian.png';
+import Vegan from '../img/special-diets/vegan.png';
 
 
 const ProfileSettings = () => {
@@ -29,7 +30,6 @@ const ProfileSettings = () => {
           <h4>Profile Settings</h4>
           <Form className="profile-settings-form" onSubmit>
             <h6>Edit Profile Settings</h6>
-
             <Form.Row>
               <Form.Group as={Col} controlId="formGridUsername">
                 <Form.Label>Username</Form.Label>
@@ -209,34 +209,14 @@ const ProfileSettings = () => {
                     </fieldset>
                   </div>
 
-                <div className="culinary-level">
-                  <p>Culinary Level</p>    
-                  <ToggleButtonGroup 
-                    className="cookingskills-buttongroup"
-                    type="checkbox" 
-                    value={cookingSkills}
-                    onChange={handleCookingSkillsSelect}>
-                    <ToggleButton value={1} id="beginner">
-                      <span>Z</span>
-                      <br/>
-                      Beginner
-                      </ToggleButton>
-                    <ToggleButton value={2} id="intermediate">
-                      <span>z</span>
-                      <br/>
-                      Intermediate
-                      </ToggleButton>
-                    <ToggleButton value={3} id="advanced">
-                      <span>M</span>
-                      <br/>
-                      Advanced
-                      </ToggleButton>
-                  </ToggleButtonGroup>
-                </div>
-             </div>
+              <div className="culinary-level-form-container">
+                <p>Culinary Level</p>   
+                <CulinaryLevel />
+              </div>
+            </div>
 
-          <p>Types of cuisines</p>
-          <TypesOfCuisines />
+            <p>Types of cuisines</p>
+            <TypesOfCuisines />
 
             <Form.Group id="formGridCheckbox">
               <Form.Check
