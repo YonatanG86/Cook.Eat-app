@@ -5,7 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const recipes = require('./routes/recipes');
-// const users = require('./routes/users')
+const users = require('./routes/users')
 const auth = require('./routes/auth');
 const port = 5000;
 
@@ -34,7 +34,7 @@ app.use(express.json());
 
 // Routes
 app.use('/recipes', recipes);
-// app.use('/users', users);
+app.use('/users', users);
 app.use('/auth', auth);
 
 app.get('/', (req, res) => {
