@@ -82,9 +82,9 @@ router.put('/likes/:id', async(req, res) => {
     try{
         let user = await UserModel.findById(req.params.id)
         if(!user[0].recipesSaved.includes(recipeId)){
-            user = await UserModel.findByIdAndUpdate(req.params.id, {$push: {recipesSaved: req.body}}, {new:true})
+            user = await UserModel.findByIdAndUpdate(req.params.id, {$push: {recipesSaved: recipeId}}, {new:true})
         } else {
-            user = await UserModel.findByIdAndUpdate(req.params.id, {$pull: {recipesSaved: req.body}}, {new:true})
+            user = await UserModel.findByIdAndUpdate(req.params.id, {$pull: {recipesSaved: recipeId}}, {new:true})
         }
         res.status(200).send(user)
 

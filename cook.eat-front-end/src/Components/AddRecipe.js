@@ -55,13 +55,16 @@ const AddRecipe = () => {
     }
   };
 
-  const onSubmit = (data, e) => {
+  const onSubmit = async (data, e) => {
     e.preventDefault();
-    saveIngredient();
-    let formData = new FormData();
-    formData.append("data", JSON.stringify(formInfo));
-    formData.append("picture", file);
-    addRecipe(FormData);
+    const res = saveIngredient();
+    if (res) {
+      let formData = new FormData();
+      formData.append("data", JSON.stringify(formInfo));
+      formData.append("picture", file);
+      const result = await addRecipe(formData);
+      if (result) notifySuccess("Your recipe🥝has been successfully saved!");
+    }
   };
 
   // on change in Ingredient input
@@ -79,9 +82,10 @@ const AddRecipe = () => {
 
   //save the last ingredient and remove undefineds items
   const saveIngredient = () => {
-    if (steps.length === 0 || ingredients.length === 0)
+    if (steps.length === 0 || ingredients.length === 0) {
       notifyError("📋 What about preparation instructions or ingredients?");
-    else {
+      return false;
+    } else {
       ingredients.push(ingredient);
       steps.push(step);
       formInfo.ingredients = ingredients.filter(
@@ -90,6 +94,7 @@ const AddRecipe = () => {
       formInfo.steps = steps.filter((item) => item !== "");
       setIngredients([]);
       setSteps([]);
+      return true;
     }
   };
 

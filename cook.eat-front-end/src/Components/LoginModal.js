@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import '../styles/LoginModal.css';
 import cookEatLogo from '../img/logo/cookEatLogo.png';
 import { Modal, Form, Button } from 'react-bootstrap';
@@ -10,12 +10,22 @@ const formFields = {
 	email: '',
 	password: '',
 };
-const LoginModal = ({ show, onHide }) => {
+const LoginModal = () => {
+	const [show, setShow] = useState(true);
 	const [loading, setLoading] = useState(false);
 	const { register, handleSubmit, errors } = useForm();
 	const [formInfo, setFormInfo] = useState(formFields);
+
 	const { hendaleLogin } = useAuth();
+
 	const history = useHistory();
+
+	const handleShow = () => setShow(true);
+
+    const handleClose = () => {
+        setShow(false);
+        history.push("/home");
+    };
 
 	const handleChange = (e) => {
 		setFormInfo({
@@ -32,8 +42,8 @@ const LoginModal = ({ show, onHide }) => {
 	return (
 		<>
 			<Modal
-				show={true}
-				onHide={onHide}
+				show={show}
+				onHide={handleClose}
 				size='lg'
 				aria-labelledby='contained-modal-title-vcenter'
 				centered
@@ -89,7 +99,10 @@ const LoginModal = ({ show, onHide }) => {
 							Log in
 						</Button>
 						<p>
-							Don't have a login? <span id='register'>Register now</span>.
+							Don't have a login?
+							<span id="register">
+							<Link to="/sign-up">Register now</Link>
+							</span>
 						</p>
 					</Form>
 				</Modal.Body>
