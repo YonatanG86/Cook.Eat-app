@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import '../styles/LoginModal.css';
-import cookEatLogo from '../img/cookEatLogo.png';
+import cookEatLogo from '../img/logo/cookEatLogo.png';
 import { Modal, Form, Button } from "react-bootstrap";
 import { useAuth } from "../Conteaxts/autoConteaxt";
 import { useForm } from "react-hook-form";
