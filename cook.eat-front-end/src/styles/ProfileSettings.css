@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: "CulinaryArt";
     src: local("CulinaryArt"), url(../fonts//CulinaryArt.ttf) format("truetype");
 }
@@ -11,7 +11,7 @@
 @font-face {
     font-family: "LcrKitchen";
     src: local("LcrKitchen"), url(../fonts//LcrKitchen.ttf) format("truetype");
-}
+} */
 
 .profile-settings-pagewrapper {
     height: 100vh;
@@ -30,12 +30,7 @@
 }
 
 .profile-settings-form {
-    /* border: 2px solid purple; */
     width: 50%;
-}
-
-input#formGridUsername.form-input.form-control {
-    /* border: 1px solid red; */
 }
 
 .country-select-container select {
@@ -80,13 +75,6 @@ input#formGridUsername.form-input.form-control {
     margin-top: 8px;
 }
 
-.culinary-level {
-    display: inline-block;
-    width: 50%;
-    padding-top: 8px;
-    text-align: center;
-}
-
 .diet-images {
     float: left;
     width:  30px;
@@ -96,69 +84,9 @@ input#formGridUsername.form-input.form-control {
     padding: 2px;
 }
 
-#beginner {
-    margin: 0 10px;
-    color: black;
-    text-align: center;
+.culinary-level-form-container {
     display: inline-block;
-    background-color: transparent;
-    border: 1px solid lightgray;
-    border-radius: 50%;
-    padding: 20px 32px 20px 32px;
-}
-
-#beginner:hover {
-    background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
-    border: 1px solid lightgray;
-}
-
-#beginner span {
-    color: #606060;;
-    font-family: "LcrKitchen";
-    font-size: 40px;
-}
-
-#intermediate {
-    margin: 0 10px;
-    color: black;
+    width: 50%;
+    padding-top: 8px;
     text-align: center;
-    display: inline-block;
-    background-color: transparent;
-    border: 1px solid lightgray;
-    border-radius: 50%;
-    padding: 20px 20px 20px 20px;
-}
-
-#intermediate:hover {
-    background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
-    border: 1px solid lightgray;
-}
-
-#intermediate span {
-    color: #606060;;
-    font-family: "DjKitchen";
-    font-size: 40px;
-}
-
-#advanced {
-    margin: 0 10px;
-    color: black;
-    text-align: center;
-    display: inline-block;
-    background-color: transparent;
-
-    border: 1px solid lightgray;
-    border-radius: 50%;
-    padding: 20px 27px 20px 27px;
-}
-
-#advanced:hover {
-    background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
-    border: 1px solid lightgray;
-}
-
-#advanced span {
-    color: #606060;;
-    font-family: "DjKitchen";
-    font-size: 40px;
 }
