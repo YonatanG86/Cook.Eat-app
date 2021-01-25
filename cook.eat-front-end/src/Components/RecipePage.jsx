@@ -85,7 +85,7 @@ function RecipePage(props) {
                         <div key={ing.ingredientName} className='ing'>
                             <span>{ing.ingredientName}</span>
                             <span>{ing.quantity}</span>
-                            <span>{ing.units}</span>
+                            <span>{ing.units}.</span>
                         </div>
                     )}
                 </div>

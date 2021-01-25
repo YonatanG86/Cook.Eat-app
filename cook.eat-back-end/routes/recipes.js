@@ -74,7 +74,7 @@ router.post("/", upload.single("picture"), async (req, res) => {
       calories: recipeData.calories,
       dishLevel: recipeData.dishLevel,
       mealType: recipeData.mealType,
-      writer: "isayas gadalo",
+      writer: recipeData.writer,
       recipeTitle: recipeData.recipeTitle,
       picture: result.secure_url,
       cloudinaryId: result.public_id,
