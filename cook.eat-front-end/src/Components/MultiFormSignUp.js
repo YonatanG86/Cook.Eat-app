@@ -42,17 +42,18 @@ const MultiFormSignUp = () => {
 		}
 	};
 
-	const onSubmit = (data, e) => {
+	const onSubmit = (e) => {
 		e.preventDefault();
+		console.log(formInfo);
 		let formData = new FormData();
 		formData.append('data', JSON.stringify(formInfo));
 		formData.append('petImage', file);
-		signupUser(formData);
+		signupUser(formInfo);
 	};
 
 	return (
 		<>
-			<Form onSubmit={handleSubmit(onSubmit)}>
+			<Form onSubmit={onSubmit}>
 				<Form.Group as={Col} controlId='formGridUsername'>
 					<Form.Label>Username</Form.Label>
 					<Form.Control
@@ -81,9 +82,9 @@ const MultiFormSignUp = () => {
 						placeholder='Enter email'
 						onChange={handleChange}
 						required
-						ref={register({
-							pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
-						})}
+						// ref={register({
+						// 	pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
+						// })}
 					/>
 					<div className='error-box'>
 						{errors.email && errors.email.type === 'pattern' && (
@@ -101,7 +102,7 @@ const MultiFormSignUp = () => {
 						placeholder='Password'
 						onChange={handleChange}
 						required
-						ref={register({ pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm })}
+						// ref={register({ pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm })}
 					/>
 					<Form.Control.Feedback type='invalid'>Password required</Form.Control.Feedback>
 				</Form.Group>
@@ -114,9 +115,9 @@ const MultiFormSignUp = () => {
 						placeholder='Confirm Password'
 						onChange={handleChange}
 						required
-						ref={register({
-							validate: (value) => value === password.current || 'The passwords do not match',
-						})}
+						// ref={register({
+						// 	validate: (value) => value === password.current || 'The passwords do not match',
+						// })}
 					/>
 					{errors.repatePass && <p className='error-field'>{errors.repatePass.message}</p>}
 					<div className='error-box'>
@@ -136,13 +137,7 @@ const MultiFormSignUp = () => {
 
 				<Form.Group>
 					<Form.Label>Profile Image</Form.Label>
-					<Form.Control
-						name='picture'
-						type='file'
-						placeholder='Avater'
-						onChange={handleFileUpload}
-						required
-					/>
+					<Form.Control name='picture' type='file' placeholder='Avater' onChange={handleFileUpload} />
 					<img src={userImage} style={{ maxWidth: '5rem' }} alt='profile-image' />
 				</Form.Group>
 				<div className='button-container'>
