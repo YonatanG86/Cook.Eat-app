@@ -3,14 +3,14 @@ import TypesOfCuisines from '../Components/TypesOfCuisines';
 import '../styles/ProfileSettings.css';
 import { Col, Row, Form, Button, ToggleButtonGroup, ToggleButton, Image } from "react-bootstrap";
 import { CountryDropdown } from "react-country-region-selector";
-import GlutenFree from "../img/gluten-free.png";
-import Keto from "../img/keto.png";
-import Vegan from '../img/vegan.png';
-import Vegeterian from '../img/vegeterian.png';
-import Pescaterian from '../img/pescaterian.png';
-import Halal from '../img/halal.png';
-import Kosher from '../img/kosher.png';
-import Paleo from '../img/paleo.png';
+import GlutenFree from "../img/special-diets/gluten-free.png";
+import Halal from '../img/special-diets/halal.png';
+import Keto from "../img/special-diets/keto.png";
+import Kosher from '../img/special-diets/kosher.png';
+import Paleo from '../img/special-diets/paleo.png';
+import Pescaterian from '../img/special-diets/pescaterian.png';
+import Vegeterian from '../img/special-diets/vegeterian.png';
+import Vegan from '../img/special-diets/vegan.png';
 
 
 const ProfileSettings = () => {

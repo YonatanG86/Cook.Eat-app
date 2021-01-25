@@ -4,7 +4,7 @@ import "../styles/NavigationBar.css";
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
 import { BiSearch } from 'react-icons/bi';
 import { FaHamburger } from 'react-icons/fa';
-import cookEatLogo from '../img/cookEatLogo.png'
+import cookEatLogo from '../img/logo/cookEatLogo.png'
 
 
 const NavigationBar = () => {
