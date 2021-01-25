@@ -13,8 +13,10 @@ import jwt_decode from 'jwt-decode';
 const HomePage = () => {
 	const { currentUser } = useAuth;
 	useEffect(() => {
-		console.log(currentUser);
+		const user = localStorage.getItem('user');
+		console.log(user);
 	}, []);
+
 	return (
 		<div className='homepage-wrapper'>
 			<div className='banner'>
