@@ -27,13 +27,12 @@ const LoginModal = ({ show, onHide }) => {
 	const onSubmit = (data, e) => {
 		e.preventDefault();
 		hendaleLogin(formInfo);
-		window.location.reload();
 	};
 
 	return (
 		<>
 			<Modal
-				show={show}
+				show={true}
 				onHide={onHide}
 				size='lg'
 				aria-labelledby='contained-modal-title-vcenter'

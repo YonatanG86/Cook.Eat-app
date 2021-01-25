@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TypesOfCuisines from '../Components/TypesOfCuisines';
 import CulinaryLevel from '../Components/CulinaryLevel';
 import '../styles/ProfileSettings.css';
-import { Col, Row, Form, Button, ToggleButtonGroup, ToggleButton, Image } from "react-bootstrap";
+import { Col, Row, Form, Button, Image, Carousel } from "react-bootstrap";
 import { CountryDropdown } from "react-country-region-selector";
 import GlutenFree from "../img/special-diets/gluten-free.png";
 import Halal from '../img/special-diets/halal.png';
@@ -20,10 +20,12 @@ const ProfileSettings = () => {
     const [username, setUsername] = useState("");
     const [date, setDate] = useState("");
     const [country, setCountry] = useState("");
-    const [isChecked, setIsChecked] = useState(false);
-    const [cookingSkills, setCookingSkills] = useState([1, 3]);
+    const [carouselIndex, setCarouselIndex] = useState(0);
+    // const [isChecked, setIsChecked] = useState(false);
 
-    const handleCookingSkillsSelect = (value) => setCookingSkills(value);
+    const handleCarouselSelect = (selectedIndex, event) => {
+      setCarouselIndex(selectedIndex);
+  };
     
     return (
         <div className="profile-settings-pagewrapper">
@@ -217,7 +219,7 @@ const ProfileSettings = () => {
 
             <p>Types of cuisines</p>
             <TypesOfCuisines />
-
+{/* 
             <Form.Group id="formGridCheckbox">
               <Form.Check
                 type="checkbox"
@@ -225,16 +227,20 @@ const ProfileSettings = () => {
                 label="Save Profile Changes"
                 checked={isChecked}
                 onChange={(event) => {setIsChecked(event.target.checked)}} />
-            </Form.Group>
+            </Form.Group> */}
             
-            <Button
-              className="save-profile-button"
-              controlId="save-profile-button"
-              variant="primary"
-              type="submit"
-              disabled={isChecked ? false : true}>
-              Ok
-            </Button>
+            <div className="button-container">
+              <Button
+                className="save-profile-button"
+                controlId="save-profile-button"
+                variant="primary"
+                type="submit"
+                // disabled={isChecked ? false : true}
+              >
+                Save Changes
+              </Button>
+            </div>
+
           </Form>
         </div>
     )
