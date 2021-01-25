@@ -1,8 +1,4 @@
-.hola {
-    border: 1px solid red;
-}
-
-.carousel-item {
+/* .carousel-item {
     border: 5px solid red;
     height: 700px;
     background-color: black;
@@ -12,9 +8,10 @@
 span.button-next {
     margin-top: 600px;
     border: 1px solid red;
+    color: black;
 }
 
 span.button-prev {
     margin-top: 600px;
     border: 1px solid red;
-}
+} */

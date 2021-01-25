@@ -14,40 +14,52 @@ export const AutoProvider = ({ children }) => {
   const history = useHistory();
   const baseUrl = "http://localhost:5000";
 
-  //signUp
-  const signupUser = async (formInfo) => {
-    //Todo: Submitting the form to a server
-    console.log(formInfo);
-    try {
-      const res = await axios.post(`${baseUrl}/auth/signup`, formInfo);
-      console.log(res.data);
-      localStorage.setItem("token", JSON.stringify(res.data));
-      const user = jwt_decode(res.data);
-      setCurrentUser(user);
-    } catch (error) {
-      return error;
-    }
-  };
-  //login
-  const hendaleLogin = async (formInfo) => {
-    try {
-      const res = await axios.post(`${baseUrl}/auth/login`, formInfo);
-      if (res.data) {
-        localStorage.setItem("token", JSON.stringify(res.data));
-        const user = jwt_decode(res.data);
-        setCurrentUser(user);
-        return user;
-      }
-    } catch (error) {
-      return false;
-    }
-  };
-  //Logout
-  const logOut = () => {
-    localStorage.removeItem("token");
-    setCurrentUser();
-    history.push("/");
-  };
+
+	//signUp
+	const signupUser = async (formInfo) => {
+		//Todo: Submitting the form to a server
+		console.log(formInfo);
+		try {
+			const res = await axios.post(`${baseUrl}/auth/signup`, formInfo);
+			console.log(res.data);
+			localStorage.setItem('token', res.data);
+			const user = jwt_decode(res.data).user;
+			localStorage.setItem('user', user);
+			setCurrentUser(user);
+			history.push('/');
+		} catch (error) {
+			return error;
+		}
+	};
+	//login
+	const hendaleLogin = async (formInfo) => {
+		try {
+			const res = await axios.post(`${baseUrl}/auth/login`, formInfo);
+			if (res.data) {
+				localStorage.setItem('token', res.data);
+				const user = jwt_decode(res.data).user;
+				localStorage.setItem('user', user._id);
+				console.log('2', user);
+				setCurrentUser(user);
+				history.push('/');
+			}
+		} catch (error) {
+			return error;
+		}
+	};
+	useEffect(() => {
+		// const userst = localStorage.getItem('token');
+		// console.log(jwt_decode(userst));
+		// setCurrentUser(jwt_decode(userst));
+	}, []);
+	//Logout
+	const logOut = () => {
+		localStorage.removeItem('token');
+		localStorage.removeItem('user');
+		setCurrentUser();
+		history.push('/');
+	};
+
 
   //get user info
   const userInfo = async (uId) => {

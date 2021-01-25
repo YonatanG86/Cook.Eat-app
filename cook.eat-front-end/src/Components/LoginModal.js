@@ -27,13 +27,12 @@ const LoginModal = ({ show, onHide }) => {
 	const onSubmit = (data, e) => {
 		e.preventDefault();
 		hendaleLogin(formInfo);
-		window.location.reload();
 	};
 
 	return (
 		<>
 			<Modal
-				show={show}
+				show={true}
 				onHide={onHide}
 				size='lg'
 				aria-labelledby='contained-modal-title-vcenter'
@@ -54,9 +53,9 @@ const LoginModal = ({ show, onHide }) => {
 								name='email'
 								placeholder='Enter email'
 								onChange={handleChange}
-								ref={register({
-									pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
-								})}
+								// ref={register({
+								// 	pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
+								// })}
 								required
 							/>
 							<div className='error-box'>
@@ -74,9 +73,9 @@ const LoginModal = ({ show, onHide }) => {
 								name='password'
 								placeholder='Enter password'
 								onChange={handleChange}
-								ref={register({
-									pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
-								})}
+								// ref={register({
+								// 	pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+								// })}
 								required
 							/>
 							<div className='error-box'>

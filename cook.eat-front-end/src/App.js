@@ -6,6 +6,8 @@ import NavigationBar from '../src/Components/NavigationBar';
 import HomePage from '../src/Components/HomePage';
 import ProfileSettings from '../src/Components/ProfileSettings';
 import AuthenticationPage from '../src/Components/AuthenticationPage';
+import MultiFormSignUp from '../src/Components/MultiFormSignUp';
+import LoginModal from '../src/Components/LoginModal';
 // import Footer from '../src/Components/Footer';
 import AddRecipe from '../src/Components/AddRecipe'; // Don't forget to re-organize
 import Recipe from '../src/Components/Recipe'; // Don't forget to re-organize
@@ -46,6 +48,12 @@ const App = () => {
 							</Route>
 							<Route path='/sign-out'>
 								<AuthenticationPage />
+							</Route>
+							<Route path='/sign-up'>
+								<MultiFormSignUp />
+							</Route>
+							<Route path='/login'>
+								<LoginModal />
 							</Route>
 							<Route exact path='/'>
 								<HomePage />

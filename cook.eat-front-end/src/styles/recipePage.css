@@ -32,7 +32,7 @@
     font-weight: bold;
     padding: .5rem 1rem;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
     border: none
 }
 
@@ -76,7 +76,7 @@
 .imageBox{
     background-color: #F7EDE0;
     width: 400px;
-    height: 400px;
+    height: 500px;
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
     position: relative;
@@ -113,4 +113,25 @@ ol{
 
 .step{
     margin-top: 1rem;
+}
+
+.cuisineImg{
+    border-radius: 100%;    
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+    width:  75px;
+    height: 75px;
+    object-fit: cover;
+}
+
+.cuisineBox{
+    display: inline-flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.cuisineAndLike{
+    margin-top: 1rem;
+    display: inline-flex;
+    flex-flow: column nowrap;
 }
