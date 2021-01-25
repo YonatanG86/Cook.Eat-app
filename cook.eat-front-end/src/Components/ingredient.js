@@ -21,11 +21,14 @@ const Ingredient = ({ addIngredient, removeIngredient, id }) => {
       </InputGroup.Prepend>
       <InputGroup.Append>
         <Form.Control
+          required
           name="measurement"
           as="select"
           onChange={addIngredient}
-          required
         >
+          <option value="" selected disabled>
+            Measurement
+          </option>
           <option>pinch</option>
           <option>tsp</option>
           <option>tbs</option>

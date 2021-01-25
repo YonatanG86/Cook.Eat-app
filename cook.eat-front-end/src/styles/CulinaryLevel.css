@@ -1,0 +1,84 @@
+.culinary-level {
+    display: flex;
+}
+
+.culinary-level-list {
+    list-style-type: none;
+    /* border: 1px solid green; */
+}
+
+.culinary-level li {
+    display: inline-block;
+}
+  
+.culinary-level input[type="radio"][id^="cl"] {
+    display: none;
+}
+
+.culinary-level-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.culinary-level-container span {
+    text-align: center;
+    padding-top: 5px;
+}
+
+.culinary-level label {
+    border: 1px solid #fff;
+    padding: 10px;
+    display: block;
+    position: relative;
+    margin: 10px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.culinary-level label::before {
+    background-color: white;
+    color: white;
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    border: 1px solid grey;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 28px;
+    transition-duration: 0.4s;
+    transform: scale(0);
+}
+
+.culinary-level label img {
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+    width:  90px;
+    height: 90px;
+    object-fit: cover;
+}
+
+.culinary-level :checked+label {
+    border: none;
+}
+
+.culinary-level :checked+label::before {
+    content: "✓";
+    background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
+    transform: scale(1);
+    border: none;
+}
+
+.culinary-level :checked+label img {
+    transform: scale(0.9);
+    box-shadow: 0 0 5px orange;
+    z-index: -1;
+}
