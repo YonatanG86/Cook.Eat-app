@@ -54,9 +54,9 @@ const LoginModal = ({ show, onHide }) => {
 								name='email'
 								placeholder='Enter email'
 								onChange={handleChange}
-								ref={register({
-									pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
-								})}
+								// ref={register({
+								// 	pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
+								// })}
 								required
 							/>
 							<div className='error-box'>
@@ -74,9 +74,9 @@ const LoginModal = ({ show, onHide }) => {
 								name='password'
 								placeholder='Enter password'
 								onChange={handleChange}
-								ref={register({
-									pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
-								})}
+								// ref={register({
+								// 	pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+								// })}
 								required
 							/>
 							<div className='error-box'>

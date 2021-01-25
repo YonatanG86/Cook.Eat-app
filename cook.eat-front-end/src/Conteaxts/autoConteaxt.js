@@ -42,6 +42,11 @@ export const AutoProvider = ({ children }) => {
 			return false;
 		}
 	};
+	useEffect(() => {
+		const userst = localStorage.getItem('token');
+		console.log(jwt_decode(userst));
+		setCurrentUser(jwt_decode(userst));
+	}, []);
 	//Logout
 	const logOut = () => {
 		localStorage.removeItem('token');
