@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../styles/TypesOfCuisines.css';
+import '../styles/CarouselTypesOfCuisines.css';
 import { Image, Carousel } from "react-bootstrap";
 import AmericanCuisine from '../img/types-of-cuisines/american.jpg';
 import BrazilianCuisine from '../img/types-of-cuisines/brazilian.jpg';
@@ -29,7 +29,7 @@ import ThaiCuisine from '../img/types-of-cuisines/thai.jpg';
 import VietnameseCuisine from '../img/types-of-cuisines/vietnamese.jpg';
 
 
-const TypesOfCuisines = () => {
+const CarouselTypesOfCuisines = () => {
     const [carouselIndex, setCarouselIndex] = useState(0);
 
     const handleCarouseItemSelect = (selectedIndex, event) => {
@@ -328,4 +328,4 @@ const TypesOfCuisines = () => {
     );
 };
 
-export default TypesOfCuisines;
+export default CarouselTypesOfCuisines;
