@@ -17,8 +17,10 @@ export const AutoProvider = ({ children }) => {
 	//signUp
 	const signupUser = async (formInfo) => {
 		//Todo: Submitting the form to a server
+		console.log(formInfo);
 		try {
 			const res = await axios.post(`${baseUrl}/auth/signup`, formInfo);
+			console.log(res.data);
 			localStorage.setItem('token', JSON.stringify(res.data));
 			const user = jwt(res.data);
 			setCurrentUser(user);
