@@ -84,12 +84,12 @@ router.delete('/:id', async(req, res) => {
 // update recipe
 router.put('/:id', upload.single('picture'), async(req, res) => {
     try{
+        let updateRecipe;
         let recipe = await RecipesModel.findById(req.params.id)
+        if(req.file){
         //remove old picture from cloudinary
         await cloudinary.uploader.destroy(recipe.cloudinaryId)
-        let updateRecipe;
         //add updated picture to cloudinary
-        if(req.file){
             const result = await cloudinary.uploader.upload(req.file.path)
             updateRecipe = {
                 ...req.body,

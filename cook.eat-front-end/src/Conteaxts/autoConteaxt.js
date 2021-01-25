@@ -21,9 +21,11 @@ export const AutoProvider = ({ children }) => {
 		try {
 			const res = await axios.post(`${baseUrl}/auth/signup`, formInfo);
 			console.log(res.data);
-			localStorage.setItem('token', JSON.stringify(res.data));
-			const user = jwt_decode(res.data);
+			localStorage.setItem('token', res.data);
+			const user = jwt_decode(res.data).user;
+			localStorage.setItem('user', user);
 			setCurrentUser(user);
+			history.push('/');
 		} catch (error) {
 			return error;
 		}
@@ -33,18 +35,26 @@ export const AutoProvider = ({ children }) => {
 		try {
 			const res = await axios.post(`${baseUrl}/auth/login`, formInfo);
 			if (res.data) {
-				localStorage.setItem('token', JSON.stringify(res.data));
-				const user = jwt_decode(res.data);
+				localStorage.setItem('token', res.data);
+				const user = jwt_decode(res.data).user;
+				localStorage.setItem('user', user._id);
+				console.log('2', user);
 				setCurrentUser(user);
-				return user;
+				history.push('/');
 			}
 		} catch (error) {
-			return false;
+			return error;
 		}
 	};
+	useEffect(() => {
+		// const userst = localStorage.getItem('token');
+		// console.log(jwt_decode(userst));
+		// setCurrentUser(jwt_decode(userst));
+	}, []);
 	//Logout
 	const logOut = () => {
 		localStorage.removeItem('token');
+		localStorage.removeItem('user');
 		setCurrentUser();
 		history.push('/');
 	};

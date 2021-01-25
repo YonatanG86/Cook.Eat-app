@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose');
+const User = require('../models/users');
 const UserModel = require('../models/users')
 const cloudinary = require('../util/cloudinary')
 const upload = require('../util/multer')
@@ -46,7 +47,7 @@ router.delete('/:id', async(req, res) => {
     }
 })
 
-// update recipe
+// update user
 router.put('/:id', upload.single('profileImage'), async(req, res) => {
     try{
         let user = await UserModel.findById(req.params.id)
@@ -74,6 +75,25 @@ router.put('/:id', upload.single('profileImage'), async(req, res) => {
         res.status(500).send('user has not been updated')
     }
 })
+
+//update saved recipes for user
+router.put('/likes/:id', async(req, res) => {
+    const { recipeId } = req.body
+    try{
+        let user = await UserModel.findById(req.params.id)
+        if(!user[0].recipesSaved.includes(recipeId)){
+            user = await UserModel.findByIdAndUpdate(req.params.id, {$push: {recipesSaved: req.body}}, {new:true})
+        } else {
+            user = await UserModel.findByIdAndUpdate(req.params.id, {$pull: {recipesSaved: req.body}}, {new:true})
+        }
+        res.status(200).send(user)
+
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+
 
 
 

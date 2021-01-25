@@ -5,7 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const recipes = require('./routes/recipes');
-const users = require('./routes/users');
+const users = require('./routes/users')
 const auth = require('./routes/auth');
 const port = 5000;
 
