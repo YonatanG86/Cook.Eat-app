@@ -49,6 +49,7 @@ const MultiFormSignUp = () => {
 		formData.append('data', JSON.stringify(formInfo));
 		formData.append('petImage', file);
 		signupUser(formInfo);
+		window.location.reload();
 	};
 
 	return (
