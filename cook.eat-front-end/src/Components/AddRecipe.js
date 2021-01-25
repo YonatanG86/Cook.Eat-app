@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import Ingredient from "./ingredient";
 import Steps from "./Steps";
+import { useAuth } from "../Conteaxts/autoConteaxt";
 import "../styles/AddRecipe.css";
-import {
-  Button,
-  validated,
-  Form,
-  InputGroup,
-  FormControl,
-} from "react-bootstrap";
+import { Button, Form, InputGroup, FormControl } from "react-bootstrap";
 
 const formFields = {
   recipeTitle: "",
@@ -27,15 +24,15 @@ const formFields = {
 };
 const AddRecipe = () => {
   const types = ["image/png", "image/jpeg", "image/jpg"];
-  const { register, handleSubmit, errors, watch } = useForm();
+  const { addRecipe } = useAuth();
+  const { register, handleSubmit, errors } = useForm();
   const [formInfo, setFormInfo] = useState(formFields);
   const [ingredient, setIngred] = useState();
   const [file, setFile] = useState();
   const [recipeImage, setRecipeImage] = useState();
-  const [ingredients, setIngredients] = useState([]);
+  const [ingredients, setIngredients] = useState([{}]);
   const [step, setStep] = useState();
-  const [steps, setSteps] = useState([]);
-  const [firstingredient, setFirstingredient] = useState(true);
+  const [steps, setSteps] = useState([""]);
 
   const handleChange = (e) => {
     setFormInfo({
@@ -54,17 +51,17 @@ const AddRecipe = () => {
       };
       reader.readAsDataURL(e.target.files[0]);
     } else {
-      alert("Please select an image file (png, jpg,jpeg)!");
+      notifyError("Please select an image file (png, jpg, jpeg)");
     }
   };
 
   const onSubmit = (data, e) => {
     e.preventDefault();
     saveIngredient();
-    // let formData = new FormData();
-    // formData.append("data", JSON.stringify(formInfo));
-    // formData.append("picture", file);
-    console.log(formInfo);
+    let formData = new FormData();
+    formData.append("data", JSON.stringify(formInfo));
+    formData.append("picture", file);
+    addRecipe(FormData);
   };
 
   // on change in Ingredient input
@@ -82,50 +79,74 @@ const AddRecipe = () => {
 
   //save the last ingredient and remove undefineds items
   const saveIngredient = () => {
-    ingredients.push(ingredient);
-    steps.push(step);
-    formInfo.ingredients = ingredients.filter((item) => item !== undefined);
-    formInfo.steps = steps.filter((item) => item !== undefined);
-    setIngredients([]);
-    setSteps([]);
+    if (steps.length === 0 || ingredients.length === 0)
+      notifyError("📋 What about preparation instructions or ingredients?");
+    else {
+      ingredients.push(ingredient);
+      steps.push(step);
+      formInfo.ingredients = ingredients.filter(
+        (item) => Object.keys(item).length !== 0
+      );
+      formInfo.steps = steps.filter((item) => item !== "");
+      setIngredients([]);
+      setSteps([]);
+    }
   };
 
   // add Ingredient to list
   const addIngredient = () => {
-    if (ingredients.length == 0) setFirstingredient(true);
-    if (ingredient || firstingredient) {
+    if (ingredient || ingredients.length === 0) {
       setIngredients((ingredients) => [...ingredients, ingredient]);
-      if (!firstingredient) setIngred("");
-      setFirstingredient(false);
+      setIngred("");
     }
   };
 
   // remove Ingredient from list
   const removeIngredient = (id) => {
     const newIngredients = ingredients.filter((item, index) => {
-      return index != id;
+      return index !== id;
     });
     setIngredients(newIngredients);
   };
 
   const addStep = () => {
-    if (steps.length == 0) setFirstingredient(true);
-    if (step || firstingredient) {
+    if (step || steps.length === 0) {
       setSteps((steps) => [...steps, step]);
-      if (!firstingredient) setStep("");
-      setFirstingredient(false);
+      setStep("");
     }
   };
 
   const removeStep = (id) => {
     const newsteps = steps.filter((item, index) => {
-      return index != id;
+      return index !== id;
     });
     setSteps(newsteps);
   };
 
+  const notifyError = (error) =>
+    toast.error(error, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  const notifySuccess = (message) =>
+    toast.success(message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   return (
     <div className="add-recipe-form-container">
+      <ToastContainer className="notification" />
       <Form validated className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
         <Form.Group>
           <Form.Label>Title</Form.Label>
@@ -326,12 +347,14 @@ const AddRecipe = () => {
           );
         })}
 
-        <Form.Group className="mt-3">
+        <Form.Group className="upload-img mt-3">
           <Form.File
             name="picture"
-            label="Upload a picture of your recipe."
+            label="Upload a picture"
+            className="file"
             onChange={handleFileUpload}
           />
+          <img src={recipeImage} alt="" />
         </Form.Group>
 
         <Button className="add-recipe-btn" type="submit">

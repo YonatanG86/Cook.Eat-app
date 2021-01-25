@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 .add-recipe-form-container {
+  position: relative;
   border: 2px solid red;
   display: flex;
   align-items: center;
@@ -8,6 +9,8 @@
   min-height: 100vh;
 }
 .add-recipe-img {
+  position: sticky;
+  top: 0;
   width: 40rem;
 }
 .recipe-form {
@@ -38,7 +41,8 @@
 .recipe-form label {
   color: #a40606;
 }
-.ingredient {
+.ingredient,
+.step {
   animation: FadeIn 1.5s ease;
 }
 .plus-btn {
@@ -86,6 +90,34 @@ form-control.is-invalid,
   background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
 
+.upload-img {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.upload-img > img {
+  max-width: 20rem;
+}
+.upload-img input {
+  position: relative;
+  top: -2rem;
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  cursor: pointer;
+}
+.file {
+  padding: 0rem 0.5rem;
+  border-radius: 0.1rem;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  cursor: pointer;
+}
+.file:hover {
+  letter-spacing: 0.1rem;
+}
+
 @keyframes FadeIn {
   0% {
     opacity: 0;
@@ -97,19 +129,6 @@ form-control.is-invalid,
   }
   100% {
     transform: scale(1);
-  }
-}
-@keyframes FadeOut {
-  0% {
-    transform: scale(1);
-  }
-
-  85% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.1);
   }
 }
 @media (max-width: 80rem) {
