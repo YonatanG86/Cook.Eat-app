@@ -22,7 +22,7 @@ const Ingredient = ({ addIngredient, removeIngredient, id }) => {
       <InputGroup.Append>
         <Form.Control
           required
-          name="measurement"
+          name="units"
           as="select"
           onChange={addIngredient}
         >
