@@ -3,12 +3,14 @@ import '../styles/recipePage.css'
 import { FaPen, FaHeart, FaFireAlt, FaClock, FaPizzaSlice } from 'react-icons/fa'
 import { GiCookingPot } from 'react-icons/gi'
 import { loadRecipe, likeRecipe } from '../libs/utils'
+import { useAuth } from '../Conteaxts/autoConteaxt'
 
 function RecipePage(props) {
 
     const [ recipe, setRecipe ] = useState()
     const [ countLikes, setCountLikes ] = useState()
     const [ like, setLike ] = useState() 
+    const  { currentUser } = useAuth
     // const {id} = props
     const id = '600d3dd109c0130810aa4560'
 
@@ -29,11 +31,13 @@ function RecipePage(props) {
     const getRecipe = async() => {
         const result = await loadRecipe(id)
         await setRecipe(result)
-        setCountLikes(recipe.likes)
+        recipe && setCountLikes(recipe.likes)
+        
     }
 
     useEffect(() => {
         getRecipe()
+        console.log(currentUser)
     }, [countLikes])
 
 
