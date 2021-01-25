@@ -103,15 +103,14 @@ export const AutoProvider = ({ children }) => {
 
   //add recipe
   const addRecipe = async (content) => {
-    console.log(content);
-    // try {
-    //   const res = await axios.post(`${baseUrl}/recipes/`, content);
-    //   if (res.data) {
-    //     return res.data;
-    //   }
-    // } catch (err) {
-    //   return err.response.data;
-    // }
+    try {
+      const res = await axios.post(`${baseUrl}/recipes/`, content);
+      if (res.data) {
+        return res.data;
+      }
+    } catch (err) {
+      return err.response.data;
+    }
   };
 
   // remove recipe
