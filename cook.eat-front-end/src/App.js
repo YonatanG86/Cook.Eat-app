@@ -5,9 +5,11 @@ import './App.css';
 import NavigationBar from './Components/NavigationBar';
 import HomePage from './Components/HomePage';
 import ProfileSettings from './Components/ProfileSettings';
-import SignUpModalNew from './Components/SignUpModalNew';
 import LoginModal from './Components/LoginModal';
-import MultiFormSignUp from '../src/Components/MultiFormSignUp';
+
+import SignUpModal from './Components/SignUpModal';
+// import SignUpModalNew from './Components/SignUpModalNew';
+
 import AddRecipe from './Components/AddRecipe';
 import Recipe from './Components/Recipe';
 import MyRecipes from './Components/MyRecipes';
@@ -48,8 +50,7 @@ const App = () => {
 								<HomePage />
 							</Route>
 							<Route path='/sign-up'>
-								<SignUpModalNew />
-								{/* <SignUpModal /> */}
+								<SignUpModal />
 							</Route>
 							<Route path='/login'>
 								<LoginModal />

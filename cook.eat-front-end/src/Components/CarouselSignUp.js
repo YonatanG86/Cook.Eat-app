@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import '../styles/CarouselSignUp.css';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../Conteaxts/autoConteaxt';
 import { Button, Form, Col } from 'react-bootstrap';
@@ -10,7 +11,7 @@ const formFields = {
 	repatePass: '',
 };
 
-const MultiFormSignUp = () => {
+const CarouselSignUp = () => {
 	const { register, handleSubmit, errors, watch } = useForm();
 	const [formInfo, setFormInfo] = useState(formFields);
 	const [file, setFile] = useState();
@@ -154,4 +155,4 @@ const MultiFormSignUp = () => {
 	);
 };
 
-export default MultiFormSignUp;
+export default CarouselSignUp;

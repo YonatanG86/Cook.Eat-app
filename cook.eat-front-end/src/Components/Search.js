@@ -17,7 +17,7 @@ const Search = (props) => {
     <>
       <InputGroup className="mb-3">
         <FormControl
-          placeholder="{fontAwesome}"
+          placeholder=""
           onChange={(e) => setSearch(e.target.value)}
         />
         <InputGroup.Append>

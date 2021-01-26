@@ -1,17 +1,41 @@
-/* .carousel-item {
-    border: 5px solid red;
-    height: 700px;
-    background-color: black;
-    color: white;
+@font-face {
+    font-family: "Trajan";
+    src: local("Trajan"), url(../fonts//Trajan.ttf) format("truetype");
 }
 
-span.button-next {
+.registration-carousel span.button-next {
     margin-top: 600px;
-    border: 1px solid red;
     color: black;
+    font-size: 25px;
+    font-weight: bold;
 }
 
-span.button-prev {
+.registration-carousel span.button-prev {
     margin-top: 600px;
-    border: 1px solid red;
-} */
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.registration-carousel {
+    border: 5px solid black;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+}
+
+.personalized-experience {
+    color: white;
+    font-family: "Trajan";
+    text-align: center;
+    font-size: 20px;
+    
+}
+
+.registration-carousel h3 {
+    color: white;
+    font-family: "Trajan";
+    text-align: center;
+    font-size: 30px;
+}
