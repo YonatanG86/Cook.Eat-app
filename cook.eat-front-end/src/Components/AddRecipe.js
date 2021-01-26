@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import Ingredient from "./ingredient";
 import Steps from "./Steps";
@@ -20,7 +20,7 @@ const formFields = {
   calories: 0,
   dishLevel: "",
   mealType: "",
-  writer: "",
+  writer: "cureent user",
 };
 const AddRecipe = () => {
   const types = ["image/png", "image/jpeg", "image/jpg"];
