@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react'
 import '../styles/recipePage.css'
 import { FaPen, FaHeart, FaFireAlt, FaClock } from 'react-icons/fa'
@@ -38,7 +39,9 @@ function RecipePage(props) {
             const response = cuisinePic(result.cuisineType)
             setCuisines(response)
         } 
+
     }
+
 
     const getUser = () => {
         const userId = localStorage.getItem('user')
@@ -66,6 +69,7 @@ function RecipePage(props) {
                     <div>{recipe.cuisineType}</div>  
                 </div>
                 <button disabled={!user} type='click' onClick={addLike} className='likeBox'><FaHeart style={{marginRight:'1rem'}}/>{recipe.likes}</button>  
+
             </div>
             <div className='desc'>{recipe.description}</div>
             <div className='topic'>
@@ -73,6 +77,7 @@ function RecipePage(props) {
                 <div className='cal'> <GiCookingPot style={{marginRight:'1rem', fontSize: '35px', color:'crimson'}}/>{recipe.dishLevel} </div>
                 <div className='cal '> <FaClock style={{marginRight:'1rem', fontSize: '25px',color:'crimson'}}/> {recipe.preparationTime} Min.</div>
             </div>
+
         </div>
         <div className='imageBox'>
             <img className='recipeImage' src={recipe.picture} alt="pasta" />
@@ -97,10 +102,12 @@ function RecipePage(props) {
                             <span>{ing.units}.</span>
                         </div>
                     )}
+
                 </div>
             </div>
         </div>: null}
         </div>
+
     )
 }
 
