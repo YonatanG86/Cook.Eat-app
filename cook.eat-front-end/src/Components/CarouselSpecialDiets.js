@@ -11,7 +11,7 @@ import Vegeterian from '../img/special-diets-carousel/vegeterian.png';
 import Vegan from '../img/special-diets-carousel/vegan.png';
 
 
-const CarouselSpecialDiets = () => {
+const CarouselSpecialDiets = ({ setCarouselData }) => {
 
     const [specialDiet, setSpecialDiet] = useState({
         glutenFree: false,
@@ -25,7 +25,8 @@ const CarouselSpecialDiets = () => {
     });
 
     const handleChange = (event) => {
-        setSpecialDiet((specialDiet) => ({...specialDiet, [event.target.name]: event.target.value}));
+        setSpecialDiet((specialDiet) => ({...specialDiet, [event.target.name]: !specialDiet[event.target.name]}));
+        setCarouselData((previous) => ({...previous, specialDiet})); 
     }
 
     return (
@@ -37,7 +38,6 @@ const CarouselSpecialDiets = () => {
                             type="checkbox" 
                             id="special-diet1"
                             name='glutenFree'
-                            value={true}
                             onChange={handleChange}
                         />
                         <label for="special-diet1">
@@ -52,7 +52,6 @@ const CarouselSpecialDiets = () => {
                             type="checkbox" 
                             id="special-diet2"
                             name='halal'
-                            value={true}
                             onChange={handleChange}
                         />
                         <label for="special-diet2">
@@ -67,7 +66,6 @@ const CarouselSpecialDiets = () => {
                             type="checkbox" 
                             id="special-diet3"
                             name='keto'
-                            value={true}
                             onChange={handleChange}
                         />
                         <label for="special-diet3">
@@ -82,7 +80,6 @@ const CarouselSpecialDiets = () => {
                             type="checkbox" 
                             id="special-diet4"
                             name='kosher'
-                            value={true}
                             onChange={handleChange}
                         />
                         <label for="special-diet4">
@@ -102,7 +99,6 @@ const CarouselSpecialDiets = () => {
                             type="checkbox" 
                             id="special-diet5"
                             name='paleo'
-                            value={true}
                             onChange={handleChange}
                         />
                         <label for="special-diet5">
@@ -117,7 +113,6 @@ const CarouselSpecialDiets = () => {
                             type="checkbox" 
                             id="special-diet6"
                             name='pescaterian'
-                            value={true}
                             onChange={handleChange}
                         />
                         <label for="special-diet6">
@@ -132,7 +127,6 @@ const CarouselSpecialDiets = () => {
                             type="checkbox" 
                             id="special-diet7"
                             name='vegeterian'
-                            value={true}
                             onChange={handleChange}
                         />
                         <label for="special-diet7">
@@ -147,7 +141,6 @@ const CarouselSpecialDiets = () => {
                             type="checkbox" 
                             id="special-diet8"
                             name='vegan'
-                            value={true}
                             onChange={handleChange}
                         />
                         <label for="special-diet8">

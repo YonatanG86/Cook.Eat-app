@@ -6,11 +6,12 @@ import Intermediate from '../img/culinary-level/intermediate.jpg';
 import Advanced from '../img/culinary-level/advanced.jpg';
 
 
-const CarouselCulinaryLevel = () => {
+const CarouselCulinaryLevel = ({ setCarouselData }) => {
     const [culinaryLevel, setCulinaryLevel] = useState('');
 
     const handleChange = (event) => {
         setCulinaryLevel(event.target.value);
+        setCarouselData((previous) => ({...previous, culinaryLevel})); 
     }
 
     return (
