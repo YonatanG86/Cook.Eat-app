@@ -23,7 +23,6 @@ const CarouselSignUp = ({ carouselData }) => {
 	const types = ['image/png', 'image/jpeg', 'image/jpg'];
 
 	const handleChange = (e) => {
-		console.log(carouselData);
 		setFormInfo({
 			...formInfo,
 			[e.target.name]: e.target.value,
@@ -47,11 +46,11 @@ const CarouselSignUp = ({ carouselData }) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		console.log(formInfo);
+		const allInfoForNewUser = { ...carouselData, ...formInfo };
 		let formData = new FormData();
 		formData.append('data', JSON.stringify(formInfo));
 		formData.append('petImage', file);
-		signupUser(formInfo);
-		window.location.reload();
+		signupUser(allInfoForNewUser);
 	};
 
 	return (

@@ -19,6 +19,7 @@ export const AutoProvider = ({ children }) => {
 		//Todo: Submitting the form to a server
 		// console.log(formInfo);
 		try {
+			console.log('before', formInfo);
 			const res = await axios.post(`${baseUrl}/auth/signup`, formInfo);
 			console.log(res.data.user);
 			if (res.data) {
@@ -70,6 +71,17 @@ export const AutoProvider = ({ children }) => {
 			return data;
 		} catch (err) {
 			console.log(err);
+			return err;
+		}
+	};
+	//update user info
+	const updateUserInfo = async (id, formInfo) => {
+		try {
+			const res = await axios.put(`${baseUrl}/users/${id}`, formInfo);
+			if (res.data) {
+				return res.data;
+			}
+		} catch (err) {
 			return err;
 		}
 	};
@@ -158,6 +170,7 @@ export const AutoProvider = ({ children }) => {
 		hendaleLogin,
 		logOut,
 		userInfo,
+		updateUserInfo,
 		removeUser,
 		UpdateRecipe,
 		getAllRecipes,

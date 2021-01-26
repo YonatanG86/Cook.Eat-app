@@ -14,63 +14,61 @@ import Vegeterian from '../img/special-diets/vegeterian.png';
 import Vegan from '../img/special-diets/vegan.png';
 import { useAuth } from '../Conteaxts/autoConteaxt';
 
+const specialDiets = {
+	glutenFree: false,
+	halal: false,
+	keto: false,
+	kosher: false,
+	paleo: false,
+	pescaterian: false,
+	vegeterian: false,
+	vegan: false,
+};
+const formFields = {
+	userName: '',
+	email: '',
+	password: '',
+	profileImage: '',
+	cloudinaryId: '',
+	country: '',
+	culinaryLevel: '',
+	specialDiet: specialDiets,
+	culinaryType: {
+		american: false,
+		brazilian: false,
+		caribbean: false,
+		chinese: false,
+		english: false,
+		ethiopian: false,
+		french: false,
+		filipino: false,
+		georgian: false,
+		german: false,
+		greek: false,
+		indian: false,
+		indonesian: false,
+		italian: false,
+		jamaican: false,
+		japanese: false,
+		jewish: false,
+		korean: false,
+		mexican: false,
+		polish: false,
+		persian: false,
+		portuguese: false,
+		russian: false,
+		spanish: false,
+		thai: false,
+		vietnamese: false,
+	},
+};
 const ProfileSettings = () => {
 	const [edit, setEdit] = useState(true);
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [username, setUsername] = useState('');
-	const [date, setDate] = useState('');
-	const [country, setCountry] = useState('');
+	const [formInfo, setFormInfo] = useState(formFields);
+	const [specialDietField, setSpecialDietField] = useState(specialDiets);
 	const [carouselIndex, setCarouselIndex] = useState(0);
-	const { userInfo } = useAuth();
+	const { userInfo, updateUserInfo } = useAuth();
 	// const [isChecked, setIsChecked] = useState(false);
-	const [user, setUser] = useState({
-		userName: '',
-		email: '',
-		password: '',
-		profileImage: '',
-		cloudinaryId: '',
-		country: '',
-		culinaryLevel: '',
-		recipe: {
-			glutenFree: false,
-			halal: false,
-			keto: false,
-			kosher: false,
-			paleo: false,
-			pescaterian: false,
-			vegeterian: false,
-			vegan: false,
-		},
-		culinaryType: {
-			american: false,
-			brazilian: false,
-			caribbean: false,
-			chinese: false,
-			english: false,
-			ethiopian: false,
-			french: false,
-			filipino: false,
-			georgian: false,
-			german: false,
-			greek: false,
-			indian: false,
-			indonesian: false,
-			italian: false,
-			jamaican: false,
-			japanese: false,
-			jewish: false,
-			korean: false,
-			mexican: false,
-			polish: false,
-			persian: false,
-			portuguese: false,
-			russian: false,
-			spanish: false,
-			thai: false,
-			vietnamese: false,
-		},
-	});
 
 	const handleCarouselSelect = (selectedIndex, event) => {
 		setCarouselIndex(selectedIndex);
@@ -78,22 +76,47 @@ const ProfileSettings = () => {
 	const editProfile = () => {
 		setEdit(!edit);
 	};
+	const handleChangeSpecialDiet = (e) => {
+		setSpecialDietField({
+			...specialDietField,
+			[e.target.id]: e.target.value,
+		});
+		setFormInfo({
+			...formInfo,
+			specialDietField,
+		});
+		console.log(formInfo);
+	};
+	const handleChange = (e) => {
+		setFormInfo({
+			...formInfo,
+			[e.target.name]: e.target.value,
+		});
+		console.log(formInfo);
+	};
 
 	useEffect(() => {
 		loadUserInfo();
-		console.log(user);
+		console.log(formInfo);
 	}, []);
 
 	const loadUserInfo = async () => {
-		const id = await localStorage.getItem('user');
+		const id = localStorage.getItem('user');
 		const userFromDB = await userInfo(id);
-		await setUser(userFromDB);
+		setFormInfo(userFromDB);
+	};
+	const submitNewUserInfo = (e) => {
+		e.preventDefault();
+		const id = localStorage.getItem('user');
+		console.log(id);
+		updateUserInfo(id, formInfo);
+		setEdit(true);
 	};
 
 	return (
 		<div className='profile-settings-pagewrapper'>
 			<h4>Profile Settings</h4>
-			<Form className='profile-settings-form' onSubmit>
+			<Form className='profile-settings-form' onSubmit={submitNewUserInfo}>
 				<h6>Edit Profile Settings</h6>
 				<div className='button-container'>
 					<Button
@@ -125,9 +148,8 @@ const ProfileSettings = () => {
 							name='username'
 							type='username'
 							placeholder='Username'
-							value={username}
-							placeholder={user.userName}
-							onChange
+							onChange={handleChange}
+							placeholder={formInfo.userName}
 						/>
 					</Form.Group>
 					<Form.Group as={Col} controlId='dob'>
@@ -136,10 +158,9 @@ const ProfileSettings = () => {
 							type='date'
 							name='dob'
 							placeholder='Date of Birth'
-							value={date}
-							onChange
+							onChange={handleChange}
 							disabled={edit}
-							placeholder={user.birthDate}
+							placeholder={formInfo.birthDate}
 						/>
 					</Form.Group>
 				</Form.Row>
@@ -152,29 +173,29 @@ const ProfileSettings = () => {
 							name='email'
 							type='email'
 							placeholder='Enter email'
-							value={email}
+							onChange={handleChange}
 							disabled={edit}
-							placeholder={user.email}
+							placeholder={formInfo.email}
 							onChange
 						/>
 					</Form.Group>
 					<Form.Group as={Col} controlId='formGridPassword'>
-						<Form.Label>Password</Form.Label>
+						{/* <Form.Label>Password</Form.Label>
 						<Form.Control
 							className='form-input'
 							name='password'
 							type='password'
 							placeholder='Password'
-							value={password}
+							onChange={handleChange}
 							disabled={edit}
 							onChange
-						/>
+						/> */}
 					</Form.Group>
 				</Form.Row>
 
-				<div className='country-select-container'>
-					<CountryDropdown disabled={edit} value={country} onChange></CountryDropdown>
-				</div>
+				{/* <div className='country-select-container'>
+					<CountryDropdown disabled={edit} onChange={handleChange} name='country'></CountryDropdown>
+				</div> */}
 
 				<div className='edit-avatar-container'>
 					<div className='avatar'>
@@ -209,7 +230,9 @@ const ProfileSettings = () => {
 										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
-										id='typeOfDiet1'
+										id='glutenFree'
+										onChange={handleChange}
+										checked={formInfo.specialDiet.glutenFree}
 										label={
 											<div>
 												Gluten-Free
@@ -221,7 +244,9 @@ const ProfileSettings = () => {
 										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
-										id='typeOfDiet2'
+										id='halal'
+										onChange={handleChange}
+										checked={formInfo.specialDiet.halal}
 										label={
 											<div>
 												Halal
@@ -233,7 +258,9 @@ const ProfileSettings = () => {
 										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
-										id='typeOfDiet3'
+										id='keto'
+										onChange={handleChange}
+										checked={formInfo.specialDiet.keto}
 										label={
 											<div>
 												Keto
@@ -245,7 +272,9 @@ const ProfileSettings = () => {
 										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
-										id='typeOfDiet4'
+										id='Kosher'
+										onChange={handleChange}
+										checked={formInfo.specialDiet.kosher}
 										label={
 											<div>
 												Kosher
@@ -257,7 +286,9 @@ const ProfileSettings = () => {
 										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
-										id='typeOfDiet5'
+										id='paleo'
+										onChange={handleChange}
+										checked={formInfo.specialDiet.paleo}
 										label={
 											<div>
 												Paleo
@@ -269,7 +300,9 @@ const ProfileSettings = () => {
 										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
-										id='typeOfDiet6'
+										id='pescaterian'
+										onChange={handleChange}
+										checked={formInfo.specialDiet.pescaterian}
 										label={
 											<div>
 												Pescaterian
@@ -281,7 +314,9 @@ const ProfileSettings = () => {
 										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
-										id='typeOfDiet7'
+										id='vegeterian'
+										onChange={handleChange}
+										checked={formInfo.specialDiet.vegeterian}
 										label={
 											<div>
 												Vegeterian
@@ -293,7 +328,9 @@ const ProfileSettings = () => {
 										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
-										id='typeOfDiet8'
+										id='vegan'
+										onChange={handleChange}
+										checked={formInfo.specialDiet.vegan}
 										label={
 											<div>
 												Vegan
@@ -308,12 +345,12 @@ const ProfileSettings = () => {
 
 					<div className='culinary-level-form-container'>
 						<p>Culinary Level</p>
-						<PPCulinaryLevel />
+						<PPCulinaryLevel setFormInfo={setFormInfo} edit={edit} formInfo={formInfo} />
 					</div>
 				</div>
 
 				<p>Types of cuisines</p>
-				<PPTypesOfCuisines />
+				<PPTypesOfCuisines setFormInfo={setFormInfo} edit={edit} formInfo={formInfo} />
 
 				<div className='button-container'>
 					<Button
