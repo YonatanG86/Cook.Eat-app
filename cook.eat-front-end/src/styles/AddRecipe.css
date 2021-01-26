@@ -98,14 +98,14 @@ form-control.is-invalid,
 .upload-img > img {
   max-width: 20rem;
 }
-.upload-img input {
+/* .upload-img input {
   position: relative;
   top: -2rem;
   opacity: 0;
   width: 0.1px;
   height: 0.1px;
   cursor: pointer;
-}
+} */
 .file {
   padding: 0rem 0.5rem;
   border-radius: 0.1rem;
