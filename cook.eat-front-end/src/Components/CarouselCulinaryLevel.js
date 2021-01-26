@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import '../styles/CulinaryLevel.css';
+import '../styles/CarouselCulinaryLevel.css';
 import { Image } from "react-bootstrap";
 import Beginner from '../img/culinary-level/beginner.jpeg';
 import Intermediate from '../img/culinary-level/intermediate.jpg';
 import Advanced from '../img/culinary-level/advanced.jpg';
 
 
-const CulinaryLevel = () => {
+const CarouselCulinaryLevel = () => {
 
     return (
         <div className="culinary-level">
@@ -43,4 +43,4 @@ const CulinaryLevel = () => {
     )
 }
 
-export default CulinaryLevel;
+export default CarouselCulinaryLevel;
