@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/recipePage.css'
-import { FaPen, FaHeart, FaFireAlt, FaClock, FaPizzaSlice } from 'react-icons/fa'
+import { FaPen, FaHeart, FaFireAlt, FaClock } from 'react-icons/fa'
 import { GiCookingPot } from 'react-icons/gi'
-import { loadRecipe, likeRecipe } from '../libs/utils'
+import { loadRecipe, likeRecipe, addRecipeToProfile } from '../libs/utils'
 import { cuisinePic } from '../libs/cuisine'
 
 function RecipePage(props) {
@@ -17,6 +17,7 @@ function RecipePage(props) {
 
     const addLike = async() => {
         let likes = recipe.likes
+        // const like = await addRecipeToProfile(userId, id)
         if(like){
             setCountLikes(countLikes + 1)
             likes = likes - 1
@@ -56,7 +57,7 @@ function RecipePage(props) {
                     <img className='cuisineImg' src={cuisines} alt={recipe.cuisineType}/>
                     <div>{recipe.cuisineType}</div>  
                 </div>
-                <button type='click' onClick={addLike} className='likeBox'><FaHeart style={{marginRight:'1rem'}} />{recipe.likes}</button>  
+                <button disabled={!user} type='click' onClick={addLike} className='likeBox'><FaHeart style={{marginRight:'1rem'}}/>{recipe.likes}</button>  
             </div>
             <div className='desc'>{recipe.description}</div>
             <div className='topic'>

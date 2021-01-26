@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "../styles/RecipeCard.css";
 function RecipeCard(props) {
   return (
-    <Link className="Link" to="/Recipe">
+    <Link className="Link" to="/recipe/:id">
       <div className="main">
         <div className="picture">
           <img src={props.recipe.picture} />

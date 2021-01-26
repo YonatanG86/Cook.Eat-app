@@ -14,8 +14,12 @@ const addRecipeToProfile = async(userId, recipeId) => {
         }, 
         body: JSON.stringify({recipeId})
     })
-    const result = await response.json()
-    return result
+    if(response.status === 200){
+        const result = await response.text()
+        return result
+    } else {
+        return 
+    }
 }
 
 const likeRecipe = async(id, likes) => {
@@ -30,4 +34,35 @@ const likeRecipe = async(id, likes) => {
     return result    
 }
 
-export { addRecipeToProfile, likeRecipe, loadRecipe }
+const getMyRecipes = async(id) => {
+    const response = await fetch(`${BASE_URL}/recipes/myRecipes/${id}`)
+    let data = await response.json()
+    if (data.length < 1){
+        data = null
+    }
+    return data
+}
+
+const getUserById = async(id) => {
+    const response = await fetch(`${BASE_URL}/users/${id}`)
+    const user = await response.json()
+    return user
+}
+
+const getSavedRecipes = async(id) => {
+    let savedRecipes = []
+    const user = await getUserById(id)
+    const recipes = user.recipesSaved
+    if(recipes){
+        for(let recipe in recipes){
+            const response = await fetch(`${BASE_URL}/recipes/${recipe}`)
+            const data = await response.json()
+            savedRecipes.push(data)
+        }
+    }
+    return savedRecipes
+}
+
+
+
+export { addRecipeToProfile, likeRecipe, loadRecipe, getMyRecipes, getSavedRecipes }

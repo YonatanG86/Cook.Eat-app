@@ -139,13 +139,22 @@ router.put("/likes/:id", async (req, res) => {
   try {
     let recipe = await RecipesModel.findById(id);
     let updates = { ...recipe._doc, likes: likes };
-    console.log(updates);
     recipe = await RecipesModel.findByIdAndUpdate(id, updates, { new: true });
     res.status(200).send(recipe);
   } catch (err) {
     res.status(500).send("the recipe did not updated");
   }
 });
+
+//get my recipes
+router.get('/myRecipes/:id', async(req, res) => {
+  try {
+      const myRecipes = await RecipesModel.find({ writer: req.params.id})
+      res.status(201).send(myRecipes)
+  } catch (err){
+      res.status(400).send(err)
+  }
+})
 
 function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
