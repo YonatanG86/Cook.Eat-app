@@ -315,14 +315,6 @@ const AddRecipe = () => {
           </div>
         </div>
 
-        <Button
-          className="add-ingredient-btn"
-          type="button"
-          onClick={addIngredient}
-        >
-          Add ingredient
-          <img src="./addRecipe/plus.png" alt="+" />
-        </Button>
         {ingredients.map((item, index) => {
           return (
             <Ingredient
@@ -334,11 +326,11 @@ const AddRecipe = () => {
           );
         })}
         <Button
-          className="add-ingredient-btn steps-btn"
+          className="add-ingredient-btn"
           type="button"
-          onClick={addStep}
+          onClick={addIngredient}
         >
-          Add steps
+          Add ingredient
           <img src="./addRecipe/plus.png" alt="+" />
         </Button>
         {steps.map((item, index) => {
@@ -351,13 +343,21 @@ const AddRecipe = () => {
             />
           );
         })}
-
+        <Button
+          className="add-ingredient-btn steps-btn"
+          type="button"
+          onClick={addStep}
+        >
+          Add steps
+          <img src="./addRecipe/plus.png" alt="+" />
+        </Button>
         <Form.Group className="upload-img mt-3">
           <Form.File
             name="picture"
             label="Upload a picture"
             className="file"
             onChange={handleFileUpload}
+            required
           />
           <img src={recipeImage} alt="" />
         </Form.Group>
