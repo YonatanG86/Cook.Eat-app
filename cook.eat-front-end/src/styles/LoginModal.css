@@ -75,4 +75,5 @@ img#login-image {
 #register {
     color: black;
     text-decoration: underline;
+    margin-left: 5px;
 }

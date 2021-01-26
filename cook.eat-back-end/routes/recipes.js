@@ -74,7 +74,7 @@ router.post("/", upload.single("picture"), async (req, res) => {
       calories: recipeData.calories,
       dishLevel: recipeData.dishLevel,
       mealType: recipeData.mealType,
-      writer: "isayas gadalo",
+      writer: recipeData.writer,
       recipeTitle: recipeData.recipeTitle,
       picture: result.secure_url,
       cloudinaryId: result.public_id,
@@ -139,7 +139,6 @@ router.put("/likes/:id", async (req, res) => {
   try {
     let recipe = await RecipesModel.findById(id);
     let updates = { ...recipe._doc, likes: likes };
-    console.log(updates);
     recipe = await RecipesModel.findByIdAndUpdate(id, updates, { new: true });
     res.status(200).send(recipe);
   } catch (err) {

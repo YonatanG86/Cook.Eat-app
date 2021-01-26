@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import TypesOfCuisines from '../Components/TypesOfCuisines';
-import CulinaryLevel from '../Components/CulinaryLevel';
+import CarouselTypesOfCuisines from './CarouselTypesOfCuisines';
+import CarouselCulinaryLevel from './CarouselCulinaryLevel';
+import CarouselSpecialDiets from '../Components/CarouselSpecialDiets';
 import '../styles/ProfileSettings.css';
 import { Col, Row, Form, Button, Image, Carousel } from "react-bootstrap";
 import { CountryDropdown } from "react-country-region-selector";
@@ -213,14 +214,15 @@ const ProfileSettings = () => {
 
               <div className="culinary-level-form-container">
                 <p>Culinary Level</p>   
-                <CulinaryLevel />
+                <CarouselCulinaryLevel />
               </div>
             </div>
 
             <p>Types of cuisines</p>
-            <TypesOfCuisines />
-{/* 
-            <Form.Group id="formGridCheckbox">
+            {/* <CarouselSpecialDiets /> */}
+            <CarouselTypesOfCuisines />
+
+            {/* <Form.Group id="formGridCheckbox">
               <Form.Check
                 type="checkbox"
                 name="checkbox"
