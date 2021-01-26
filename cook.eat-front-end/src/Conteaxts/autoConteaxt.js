@@ -18,19 +18,22 @@ export const AutoProvider = ({ children }) => {
 	//signUp
 	const signupUser = async (formInfo) => {
 		//Todo: Submitting the form to a server
-		console.log(formInfo);
+		// console.log(formInfo);
 		try {
 			const res = await axios.post(`${baseUrl}/auth/signup`, formInfo);
-			console.log(res.data);
+      console.log(res.data.user);
+      console.log('hello')
 			localStorage.setItem('token', res.data);
 			const user = jwt_decode(res.data).user;
 			localStorage.setItem('user', user);
 			setCurrentUser(user);
 			history.push('/');
 		} catch (error) {
+      console.log(error)
 			return error;
 		}
-	};
+  };
+  
 	//login
 	const hendaleLogin = async (formInfo) => {
 		try {

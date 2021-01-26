@@ -139,7 +139,6 @@ router.put("/likes/:id", async (req, res) => {
   try {
     let recipe = await RecipesModel.findById(id);
     let updates = { ...recipe._doc, likes: likes };
-    console.log(updates);
     recipe = await RecipesModel.findByIdAndUpdate(id, updates, { new: true });
     res.status(200).send(recipe);
   } catch (err) {
