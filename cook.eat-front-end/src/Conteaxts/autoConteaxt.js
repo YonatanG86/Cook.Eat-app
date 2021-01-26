@@ -9,6 +9,7 @@ export const useAuth = () => {
 };
 
 export const AutoProvider = ({ children }) => {
+
 	const [currentUser, setCurrentUser] = useState();
 	const [loading, setLoading] = useState(true);
 	const history = useHistory();
@@ -74,6 +75,7 @@ export const AutoProvider = ({ children }) => {
 		}
 	};
 
+
 	//remove user
 	const removeUser = async (uId) => {
 		try {
@@ -117,17 +119,25 @@ export const AutoProvider = ({ children }) => {
 		}
 	};
 
-	//add recipe
-	const addRecipe = async (content) => {
-		try {
-			const res = await axios.post(`${baseUrl}/recipes/`, content);
-			if (res.data) {
-				return res.data;
-			}
-		} catch (err) {
-			return err.response.data;
-		}
-	};
+
+  //add recipe
+  const addRecipe = async (content) => {
+    try {
+      const res = await axios.post(`${baseUrl}/recipes/`, content);
+      if (res.data) {
+        const recipeId = res.data._id;
+        await axios.put(
+          `${baseUrl}/users/myRecipes/${currentUser._id}/${recipeId}`,
+          recipeId
+        );
+
+        return res.data;
+      }
+    } catch (err) {
+      return err.response.data;
+    }
+  };
+
 
 	// remove recipe
 	const removeRecipe = async (id) => {

@@ -16,7 +16,6 @@ const NavigationBar = () => {
 					<Link id='main-link' to='/'>
 						{' '}
 						<span id='cook'>Cook</span>
-						{/* <span id="dot">.</span> */}
 						<span id='eat'>Eat</span>
 						<img alt='logo' src={cookEatLogo} width='47' height='47' className='d-inline-block align-top' />
 					</Link>

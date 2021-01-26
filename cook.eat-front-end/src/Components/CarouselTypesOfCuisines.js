@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import '../styles/CarouselTypesOfCuisines.css';
-import { Image, Carousel } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import AmericanCuisine from '../img/types-of-cuisines/american.jpg';
 import BrazilianCuisine from '../img/types-of-cuisines/brazilian.jpg';
 import CaribbeanCuisine from '../img/types-of-cuisines/caribbean.png';
@@ -30,304 +30,471 @@ import VietnameseCuisine from '../img/types-of-cuisines/vietnamese.jpg';
 
 
 const CarouselTypesOfCuisines = () => {
-    const [carouselIndex, setCarouselIndex] = useState(0);
 
-    const handleCarouseItemSelect = (selectedIndex, event) => {
-        setCarouselIndex(selectedIndex);
-    };
+    const [culinaryType, setCulinaryType] = useState({
+        american: false,
+        brazilian: false,
+        caribbean: false,
+        chinese: false,
+        english: false,
+        ethiopian: false,
+        french: false,
+        filipino: false,
+        georgian: false,
+        german: false,
+        greek: false,
+        indian: false,
+        indonesian: false,
+        italian: false,
+        jamaican: false,
+        japanese: false,
+        jewish: false,
+        korean: false,
+        mexican: false,
+        polish: false,
+        persian: false,
+        portuguese: false,
+        russian: false,
+        spanish: false,
+        thai: false,
+        vietnamese: false
+    });
+
+    const handleChange = (event) => {
+        setCulinaryType((culinaryType) => ({...culinaryType, [event.target.name]: event.target.value}));
+    }
+
+    // onSubmit (from the signup -> send as props) sends to backend to change the object
 
     return (
-        <>
-        <h1>Hello for types of cuisines</h1>
-        </>
-        // <Carousel
-        //     className="cuisines-types-carousel"
-        //     interval={null} 
-        //     activeIndex={carouselIndex} 
-        //     onSelect={handleCarouseItemSelect}>
-        //         <Carousel.Item>
-        //             <div className="types-of-cuisines">
-        //                 <ul className="types-of-cuisines-list">
-        //                     <li>
-        //                         <input type="checkbox" id="cb1" />
-        //                         <label for="cb1">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={AmericanCuisine} roundedCircle/>
-        //                                 <span>American</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb2" />
-        //                         <label for="cb2">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={BrazilianCuisine} roundedCircle/>
-        //                                 <span>Brazilian</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb3" />
-        //                         <label for="cb3">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={CaribbeanCuisine} roundedCircle/>
-        //                                 <span>Caribbean</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb4" />
-        //                         <label for="cb4">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={ChineseCuisine} roundedCircle/>
-        //                                 <span>Chinese</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                 </ul>
-        //             </div>
-        //         </Carousel.Item>
+        <div className="types-of-cuisines-wrapper">
+            <div className="types-of-cuisines-main-container">
+                <div className="types-of-cuisines-modal">
+                    <ul className="types-of-cuisines-list">
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb1" 
+                                name='american'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb1">
+                                <div className="cuisine-types-container">
+                                    <Image src={AmericanCuisine} roundedCircle/>
+                                    <span>American</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb2"
+                                name='brazilian'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb2">
+                                <div className="cuisine-types-container">
+                                    <Image src={BrazilianCuisine} roundedCircle/>
+                                    <span>Brazilian</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb3"
+                                name='caribbean'
+                                value={true}
+                                onChange={handleChange}
+                            />
 
-        //         <Carousel.Item>
-        //             <div className="types-of-cuisines">
-        //                 <ul className="types-of-cuisines-list">
-        //                     <li>
-        //                         <input type="checkbox" id="cb5" />
-        //                         <label for="cb5">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={EnglishCuisine} roundedCircle/>
-        //                                 <span>English</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb6" />
-        //                         <label for="cb6">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={EthiopianCuisine} roundedCircle/>
-        //                                 <span>Ethiopian</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb7" />
-        //                         <label for="cb7">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={FrenchCuisine} roundedCircle/>
-        //                                 <span>French</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb8" />
-        //                         <label for="cb8">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={FilipinoCuisine} roundedCircle/>
-        //                                 <span>Filipino</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                 </ul>
-        //             </div>
-        //         </Carousel.Item>
+                            <label for="cb3">
+                                <div className="cuisine-types-container">
+                                    <Image src={CaribbeanCuisine} roundedCircle/>
+                                    <span>Caribbean</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb4"
+                                name='chinese'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb4">
+                                <div className="cuisine-types-container">
+                                    <Image src={ChineseCuisine} roundedCircle/>
+                                    <span>Chinese</span>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
 
-        //         <Carousel.Item>
-        //             <div className="types-of-cuisines">
-        //                 <ul className="types-of-cuisines-list">
-        //                     <li>
-        //                         <input type="checkbox" id="cb9" />
-        //                         <label for="cb9">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={GeorgianCuisine} roundedCircle/>
-        //                                 <span>Georgian</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb10" />
-        //                         <label for="cb10">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={GermanCuisine} roundedCircle/>
-        //                                 <span>German</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb11" />
-        //                         <label for="cb11">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={GreekCuisine} roundedCircle/>
-        //                                 <span>Greek</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb12" />
-        //                         <label for="cb12">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={IndianCuisine} roundedCircle/>
-        //                                 <span>Indian</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                 </ul>
-        //             </div>
-        //         </Carousel.Item>
+                <div className="types-of-cuisines-modal">
+                    <ul className="types-of-cuisines-list">
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb5"
+                                name='english'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb5">
+                                <div className="cuisine-types-container">
+                                    <Image src={EnglishCuisine} roundedCircle/>
+                                    <span>English</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb6"
+                                name='ethiopian'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb6">
+                                <div className="cuisine-types-container">
+                                    <Image src={EthiopianCuisine} roundedCircle/>
+                                    <span>Ethiopian</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb7"
+                                name='french'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb7">
+                                <div className="cuisine-types-container">
+                                    <Image src={FrenchCuisine} roundedCircle/>
+                                    <span>French</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb8"
+                                name='filipino'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb8">
+                                <div className="cuisine-types-container">
+                                    <Image src={FilipinoCuisine} roundedCircle/>
+                                    <span>Filipino</span>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
 
-        //         <Carousel.Item>
-        //             <div className="types-of-cuisines">
-        //                 <ul className="types-of-cuisines-list">
-        //                     <li>
-        //                         <input type="checkbox" id="cb13" />
-        //                         <label for="cb13">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={IndonesianCuisine} roundedCircle/>
-        //                                 <span>Indonesian</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb14" />
-        //                         <label for="cb14">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={ItalianCuisine} roundedCircle/>
-        //                                 <span>Italian</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb15" />
-        //                         <label for="cb15">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={JamaicanCuisine} roundedCircle/>
-        //                                 <span>Jamaican</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb16" />
-        //                         <label for="cb16">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={JapaneseCuisine} roundedCircle/>
-        //                                 <span>Japanese</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                 </ul>
-        //             </div>
-        //         </Carousel.Item>
+                <div className="types-of-cuisines-modal">
+                    <ul className="types-of-cuisines-list">
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb9"
+                                name='georgian'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb9">
+                                <div className="cuisine-types-container">
+                                    <Image src={GeorgianCuisine} roundedCircle/>
+                                    <span>Georgian</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb10"
+                                name='german'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb10">
+                                <div className="cuisine-types-container">
+                                    <Image src={GermanCuisine} roundedCircle/>
+                                    <span>German</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb11"
+                                name='greek'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb11">
+                                <div className="cuisine-types-container">
+                                    <Image src={GreekCuisine} roundedCircle/>
+                                    <span>Greek</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb12"
+                                name='indian'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb12">
+                                <div className="cuisine-types-container">
+                                    <Image src={IndianCuisine} roundedCircle/>
+                                    <span>Indian</span>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
 
-        //         <Carousel.Item>
-        //             <div className="types-of-cuisines">
-        //                 <ul className="types-of-cuisines-list">
-        //                     <li>
-        //                         <input type="checkbox" id="cb17" />
-        //                         <label for="cb17">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={JewishCuisine} roundedCircle/>
-        //                                 <span>Jewish</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb18" />
-        //                         <label for="cb18">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={KoreanCuisine} roundedCircle/>
-        //                                 <span>Korean</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb19" />
-        //                         <label for="cb19">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={MexicanCuisine} roundedCircle/>
-        //                                 <span>Mexican</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb20" />
-        //                         <label for="cb20">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={PolishCuisine} roundedCircle/>
-        //                                 <span>Polish</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                 </ul>
-        //             </div>
-        //         </Carousel.Item>
+                <div className="types-of-cuisines-modal">
+                    <ul className="types-of-cuisines-list">
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb13"
+                                name='indonesian'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb13">
+                                <div className="cuisine-types-container">
+                                    <Image src={IndonesianCuisine} roundedCircle/>
+                                    <span>Indonesian</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb14"
+                                name='italian'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb14">
+                                <div className="cuisine-types-container">
+                                    <Image src={ItalianCuisine} roundedCircle/>
+                                    <span>Italian</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb15"
+                                name='jamaican'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb15">
+                                <div className="cuisine-types-container">
+                                    <Image src={JamaicanCuisine} roundedCircle/>
+                                    <span>Jamaican</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb16"
+                                name='japanese'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb16">
+                                <div className="cuisine-types-container">
+                                    <Image src={JapaneseCuisine} roundedCircle/>
+                                    <span>Japanese</span>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
 
-        //         <Carousel.Item>
-        //             <div className="types-of-cuisines">
-        //                 <ul className="types-of-cuisines-list">
-        //                     <li>
-        //                         <input type="checkbox" id="cb21" />
-        //                         <label for="cb21">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={PersianCuisine} roundedCircle/>
-        //                                 <span>Persian</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb22" />
-        //                         <label for="cb22">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={PortugueseCuisine} roundedCircle/>
-        //                                 <span>Portuguese</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb23" />
-        //                         <label for="cb23">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={RussianCuisine} roundedCircle/>
-        //                                 <span>Russian</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb24" />
-        //                         <label for="cb24">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={SpanishCuisine} roundedCircle/>
-        //                                 <span>Spanish</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                 </ul>
-        //             </div>
-        //         </Carousel.Item>
+                <div className="types-of-cuisines-modal">
+                    <ul className="types-of-cuisines-list">
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb17"
+                                name='jewish'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb17">
+                                <div className="cuisine-types-container">
+                                    <Image src={JewishCuisine} roundedCircle/>
+                                    <span>Jewish</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb18"
+                                name='korean'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb18">
+                                <div className="cuisine-types-container">
+                                    <Image src={KoreanCuisine} roundedCircle/>
+                                    <span>Korean</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb19"
+                                name='mexican'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb19">
+                                <div className="cuisine-types-container">
+                                    <Image src={MexicanCuisine} roundedCircle/>
+                                    <span>Mexican</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb20"
+                                name='polish'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb20">
+                                <div className="cuisine-types-container">
+                                    <Image src={PolishCuisine} roundedCircle/>
+                                    <span>Polish</span>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
 
-        //         <Carousel.Item>
-        //             <div className="types-of-cuisines">
-        //                 <ul className="types-of-cuisines-list">
-        //                     <li>
-        //                         <input type="checkbox" id="cb25" />
-        //                         <label for="cb25">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={ThaiCuisine} roundedCircle/>
-        //                                 <span>Thai</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                     <li>
-        //                         <input type="checkbox" id="cb26" />
-        //                         <label for="cb26">
-        //                             <div className="cuisine-types-container">
-        //                                 <Image src={VietnameseCuisine} roundedCircle/>
-        //                                 <span>Vietnamese</span>
-        //                             </div>
-        //                         </label>
-        //                     </li>
-        //                 </ul>
-        //             </div>
-        //         </Carousel.Item>
-        // </Carousel>
+                <div className="types-of-cuisines-modal">
+                    <ul className="types-of-cuisines-list">
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb21"
+                                name='persian'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb21">
+                                <div className="cuisine-types-container">
+                                    <Image src={PersianCuisine} roundedCircle/>
+                                    <span>Persian</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb22"
+                                name='portuguese'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb22">
+                                <div className="cuisine-types-container">
+                                    <Image src={PortugueseCuisine} roundedCircle/>
+                                    <span>Portuguese</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox"
+                                id="cb23"
+                                name='russian'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb23">
+                                <div className="cuisine-types-container">
+                                    <Image src={RussianCuisine} roundedCircle/>
+                                    <span>Russian</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb24"
+                                name='spanish'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb24">
+                                <div className="cuisine-types-container">
+                                    <Image src={SpanishCuisine} roundedCircle/>
+                                    <span>Spanish</span>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div className="types-of-cuisines-modal">
+                    <ul className="types-of-cuisines-list">
+                        <li>
+                            <input 
+                                type="checkbox" id="cb25"
+                                name='thai'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb25">
+                                <div className="cuisine-types-container">
+                                    <Image src={ThaiCuisine} roundedCircle/>
+                                    <span>Thai</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input 
+                                type="checkbox" 
+                                id="cb26"
+                                name='vietnamese'
+                                value={true}
+                                onChange={handleChange}
+                            />
+                            <label for="cb26">
+                                <div className="cuisine-types-container">
+                                    <Image src={VietnameseCuisine} roundedCircle/>
+                                    <span>Vietnamese</span>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     );
 };
 

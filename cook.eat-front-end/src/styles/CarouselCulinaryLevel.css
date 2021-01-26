@@ -1,4 +1,9 @@
-/* .culinary-level {
+.culinary-level-carousel-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.culinary-level-carousel {
     display: flex;
 }
 
@@ -6,11 +11,11 @@
     list-style-type: none;
 }
 
-.culinary-level li {
+.culinary-level-carousel li {
     display: inline-block;
 }
   
-.culinary-level input[type="radio"][id^="cl"] {
+.culinary-level-carousel input[type="radio"][id^="cl"] {
     display: none;
 }
 
@@ -24,8 +29,7 @@
     padding-top: 5px;
 }
 
-.culinary-level label {
-    border: 1px solid #fff;
+.culinary-level-carousel label {
     padding: 10px;
     display: block;
     position: relative;
@@ -37,15 +41,15 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    z-index: 1;
 }
 
-.culinary-level label::before {
+.culinary-level-carousel label::before {
     background-color: white;
     color: white;
     content: " ";
     display: block;
     border-radius: 50%;
-    border: 1px solid grey;
     position: absolute;
     top: -5px;
     left: -5px;
@@ -57,27 +61,27 @@
     transform: scale(0);
 }
 
-.culinary-level label img {
+.culinary-level-carousel label img {
     transition-duration: 0.2s;
     transform-origin: 50% 50%;
-    width:  90px;
-    height: 90px;
+    width:  150px;
+    height: 150px;
     object-fit: cover;
 }
 
-.culinary-level :checked+label {
+.culinary-level-carousel :checked+label {
     border: none;
 }
 
-.culinary-level :checked+label::before {
+.culinary-level-carousel :checked+label::before {
     content: "✓";
     background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
     transform: scale(1);
     border: none;
 }
 
-.culinary-level :checked+label img {
+.culinary-level-carousel :checked+label img {
     transform: scale(0.9);
     box-shadow: 0 0 5px orange;
     z-index: -1;
-} */
+}

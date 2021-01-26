@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
-// import { BiSearch } from "react-icons/bi";
+
 
 const Search = (props) => {
   const [search, setSearch] = useState("");
