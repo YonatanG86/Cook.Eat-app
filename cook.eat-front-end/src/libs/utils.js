@@ -65,4 +65,4 @@ const getSavedRecipes = async(id) => {
 
 
 
-export { addRecipeToProfile, likeRecipe, loadRecipe, getMyRecipes, getSavedRecipes }
+export { addRecipeToProfile, likeRecipe, loadRecipe, getMyRecipes, getSavedRecipes, getUserById }
