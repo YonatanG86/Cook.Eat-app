@@ -5,14 +5,10 @@ import './App.css';
 import NavigationBar from './Components/NavigationBar';
 import HomePage from './Components/HomePage';
 import ProfileSettings from './Components/ProfileSettings';
-<<<<<<< HEAD
-=======
-import SignUpModalNew from './Components/SignUpModalNew';
->>>>>>> 25ca1a9634eabcf93d71146d385fc8f557f7fd95
 import LoginModal from './Components/LoginModal';
 
 import SignUpModal from './Components/SignUpModal';
-// import CarouselSignUp from './Components/CarouselSignUp';
+// import SignUpModalNew from './Components/SignUpModalNew';
 
 import AddRecipe from './Components/AddRecipe';
 import Recipe from './Components/Recipe';
@@ -54,13 +50,7 @@ const App = () => {
 								<HomePage />
 							</Route>
 							<Route path='/sign-up'>
-<<<<<<< HEAD
-								{/* <CarouselSignUp /> */}
 								<SignUpModal />
-=======
-								<SignUpModalNew />
-								{/* <SignUpModal /> */}
->>>>>>> 25ca1a9634eabcf93d71146d385fc8f557f7fd95
 							</Route>
 							<Route path='/login'>
 								<LoginModal />

@@ -42,7 +42,7 @@ const NavigationBar = () => {
 						<Nav.Link as={Link} to='/profile-settings' id='links'>
 							My Account
 						</Nav.Link>
-						<FaHamburger id='links' />
+						{/* <FaHamburger id='links' /> */}
 						<Nav.Link as={Link} to='/my-recipes' id='links'>
 							My Recipes
 						</Nav.Link>
