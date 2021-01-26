@@ -2,11 +2,22 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/MyRecipes.css";
 import { Button, Card } from "react-bootstrap";
-import { FaHeart, FaEllipsisH, FaRecycle } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import "../styles/MyRecipesCard.css";
 
 const MyRecipesCard = (props) => {
+  const [user, setUser] = useState();
   const { recipe } = props;
+  const getUser = () => {
+    const userId = localStorage.getItem("user");
+    if (userId) {
+      setUser(userId);
+    }
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <Card className="myrecipe-card">
       <Card.Img
@@ -16,27 +27,44 @@ const MyRecipesCard = (props) => {
       />
       <Card.Body>
         <div className="top-card">
-          <Card.Title style={{ fontWeight: "600", color: "black" }}>
-            {recipe.title}
+          <Card.Title classNmae="card-title">
+            {recipe.recipeTitle}
+            <p className="info-cuisine">
+              <span>{recipe.cuisineType}</span>
+            </p>
           </Card.Title>
-          <span className="likes-totel">12</span>
+          <span className="likes-totel">{recipe.likes}</span>
           <FaHeart className="my-likes" />
         </div>
         <div className="main-card">
-          <Card.Text className="card-description"></Card.Text>
+          <Card.Text className="description">
+            <div className="preparation-time">
+              <p className="info-card">
+                Totel Time:
+                <span>{recipe.preparationTime}min</span>
+              </p>
+            </div>
+            <div className="calories">
+              <p className="info-card">
+                Calories:<span>{recipe.calories}</span>
+              </p>
+            </div>
+          </Card.Text>
+        </div>
+
+        <div className="card-btns">
           <NavLink
             exact
             to={`/recipe/${recipe._id}`}
             className="show-more-card"
           >
-            Show More...
+            Show More
           </NavLink>
-        </div>
-
-        <div className="card-btns">
-          <Button className="my-update" variant="primary">
-            Updtae <FaRecycle />
-          </Button>
+          {user && (
+            <Button className="my-update" variant="primary">
+              Add more
+            </Button>
+          )}
         </div>
       </Card.Body>
     </Card>
