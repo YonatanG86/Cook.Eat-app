@@ -24,7 +24,53 @@ const ProfileSettings = () => {
 	const [carouselIndex, setCarouselIndex] = useState(0);
 	const { userInfo } = useAuth();
 	// const [isChecked, setIsChecked] = useState(false);
-	const [user, setUser] = useState({ userName: '', email: '', password: '', profileImage: '', cloudinaryId: '' });
+	const [user, setUser] = useState({
+		userName: '',
+		email: '',
+		password: '',
+		profileImage: '',
+		cloudinaryId: '',
+		country: '',
+		culinaryLevel: '',
+		recipe: {
+			glutenFree: false,
+			halal: false,
+			keto: false,
+			kosher: false,
+			paleo: false,
+			pescaterian: false,
+			vegeterian: false,
+			vegan: false,
+		},
+		culinaryType: {
+			american: false,
+			brazilian: false,
+			caribbean: false,
+			chinese: false,
+			english: false,
+			ethiopian: false,
+			french: false,
+			filipino: false,
+			georgian: false,
+			german: false,
+			greek: false,
+			indian: false,
+			indonesian: false,
+			italian: false,
+			jamaican: false,
+			japanese: false,
+			jewish: false,
+			korean: false,
+			mexican: false,
+			polish: false,
+			persian: false,
+			portuguese: false,
+			russian: false,
+			spanish: false,
+			thai: false,
+			vietnamese: false,
+		},
+	});
 
 	const handleCarouselSelect = (selectedIndex, event) => {
 		setCarouselIndex(selectedIndex);
@@ -92,6 +138,7 @@ const ProfileSettings = () => {
 							placeholder='Date of Birth'
 							value={date}
 							onChange
+							disabled={edit}
 							placeholder={user.birthDate}
 						/>
 					</Form.Group>
@@ -106,6 +153,7 @@ const ProfileSettings = () => {
 							type='email'
 							placeholder='Enter email'
 							value={email}
+							disabled={edit}
 							placeholder={user.email}
 							onChange
 						/>
@@ -118,14 +166,14 @@ const ProfileSettings = () => {
 							type='password'
 							placeholder='Password'
 							value={password}
-							placeholder={user.password}
+							disabled={edit}
 							onChange
 						/>
 					</Form.Group>
 				</Form.Row>
 
 				<div className='country-select-container'>
-					<CountryDropdown value={country} onChange></CountryDropdown>
+					<CountryDropdown disabled={edit} value={country} onChange></CountryDropdown>
 				</div>
 
 				<div className='edit-avatar-container'>
@@ -139,10 +187,12 @@ const ProfileSettings = () => {
 						/>
 					</div>
 					<div className='file-input-edit-avatar'>
-						<Form.File id='formcheck-api-regular'>
-							<Form.File.Label>Edit Avatar</Form.File.Label>
-							<Form.File.Input />
-						</Form.File>
+						{!edit && (
+							<Form.File id='formcheck-api-regular'>
+								<Form.File.Label>Edit Avatar</Form.File.Label>
+								<Form.File.Input />
+							</Form.File>
+						)}
 					</div>
 				</div>
 
@@ -156,6 +206,7 @@ const ProfileSettings = () => {
 								</Form.Label>
 								<Col sm={7} id='diets-checkbox-column'>
 									<Form.Check
+										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
 										id='typeOfDiet1'
@@ -167,6 +218,7 @@ const ProfileSettings = () => {
 										}
 									/>
 									<Form.Check
+										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
 										id='typeOfDiet2'
@@ -178,6 +230,7 @@ const ProfileSettings = () => {
 										}
 									/>
 									<Form.Check
+										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
 										id='typeOfDiet3'
@@ -189,6 +242,7 @@ const ProfileSettings = () => {
 										}
 									/>
 									<Form.Check
+										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
 										id='typeOfDiet4'
@@ -200,6 +254,7 @@ const ProfileSettings = () => {
 										}
 									/>
 									<Form.Check
+										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
 										id='typeOfDiet5'
@@ -211,6 +266,7 @@ const ProfileSettings = () => {
 										}
 									/>
 									<Form.Check
+										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
 										id='typeOfDiet6'
@@ -222,6 +278,7 @@ const ProfileSettings = () => {
 										}
 									/>
 									<Form.Check
+										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
 										id='typeOfDiet7'
@@ -233,6 +290,7 @@ const ProfileSettings = () => {
 										}
 									/>
 									<Form.Check
+										disabled={edit}
 										type='checkbox'
 										name='typeOfDiet'
 										id='typeOfDiet8'

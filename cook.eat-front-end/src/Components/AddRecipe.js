@@ -20,7 +20,7 @@ const formFields = {
   calories: 0,
   dishLevel: "",
   mealType: "",
-  writer: "",
+  writer: "cureent user",
 };
 const AddRecipe = () => {
   const types = ["image/png", "image/jpeg", "image/jpg"];

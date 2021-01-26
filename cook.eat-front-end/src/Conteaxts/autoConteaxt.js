@@ -69,8 +69,8 @@ export const AutoProvider = ({ children }) => {
 			const data = res.data;
 			return data;
 		} catch (err) {
-			console.log('error');
-			return err.response.data;
+			console.log(err);
+			return err;
 		}
 	};
 
@@ -122,6 +122,9 @@ export const AutoProvider = ({ children }) => {
 		try {
 			const res = await axios.post(`${baseUrl}/recipes/`, content);
 			if (res.data) {
+				const recipeId = res.data._id;
+				await axios.put(`${baseUrl}/users/myRecipes/${currentUser._id}/${recipeId}`, recipeId);
+
 				return res.data;
 			}
 		} catch (err) {
