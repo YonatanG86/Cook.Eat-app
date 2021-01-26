@@ -112,3 +112,8 @@
     background-color: red;
     border: none;
 }
+
+[disabled]{
+    background-color: none;
+    border: none;
+}

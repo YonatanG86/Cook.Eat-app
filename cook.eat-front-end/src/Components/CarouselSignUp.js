@@ -11,7 +11,7 @@ const formFields = {
 	repatePass: '',
 };
 
-const CarouselSignUp = () => {
+const CarouselSignUp = ({ carouselData }) => {
 	const { register, handleSubmit, errors, watch } = useForm();
 	const [formInfo, setFormInfo] = useState(formFields);
 	const [file, setFile] = useState();
@@ -23,6 +23,7 @@ const CarouselSignUp = () => {
 	const types = ['image/png', 'image/jpeg', 'image/jpg'];
 
 	const handleChange = (e) => {
+		console.log(carouselData);
 		setFormInfo({
 			...formInfo,
 			[e.target.name]: e.target.value,
@@ -54,9 +55,9 @@ const CarouselSignUp = () => {
 	};
 
 	return (
-		<div className="signup-form-wrapper">
-			<div className="signup-form-container">
-				<Form onSubmit={onSubmit} className="signup-form">
+		<div className='signup-form-wrapper'>
+			<div className='signup-form-container'>
+				<Form onSubmit={onSubmit} className='signup-form'>
 					<Form.Group as={Col} controlId='formGridUsername'>
 						<Form.Label>Username</Form.Label>
 						<Form.Control
@@ -135,7 +136,9 @@ const CarouselSignUp = () => {
 								</p>
 							)}
 						</div>
-						<Form.Control.Feedback type='invalid'>The password is empty or doesn't match</Form.Control.Feedback>
+						<Form.Control.Feedback type='invalid'>
+							The password is empty or doesn't match
+						</Form.Control.Feedback>
 					</Form.Group>
 
 					<Form.Group>

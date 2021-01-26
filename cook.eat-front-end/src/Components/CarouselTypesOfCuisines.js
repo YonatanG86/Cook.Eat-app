@@ -29,7 +29,7 @@ import ThaiCuisine from '../img/types-of-cuisines/thai.jpg';
 import VietnameseCuisine from '../img/types-of-cuisines/vietnamese.jpg';
 
 
-const CarouselTypesOfCuisines = () => {
+const CarouselTypesOfCuisines = ({ setCarouselData }) => {
 
     const [culinaryType, setCulinaryType] = useState({
         american: false,
@@ -61,10 +61,12 @@ const CarouselTypesOfCuisines = () => {
     });
 
     const handleChange = (event) => {
-        setCulinaryType((culinaryType) => ({...culinaryType, [event.target.name]: event.target.value}));
+        setCulinaryType((culinaryType) => ({...culinaryType, [event.target.name]: !culinaryType[event.target.name]})); // previous state of the culinary type
+        setCarouselData((previous) => ({...previous, culinaryType})); // current state (next) of culinary
     }
 
-    // onSubmit (from the signup -> send as props) sends to backend to change the object
+
+
 
     return (
         <div className="types-of-cuisines-wrapper">
@@ -76,7 +78,7 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb1" 
                                 name='american'
-                                value={true}
+                                // defaultChecked={culinaryType.american}
                                 onChange={handleChange}
                             />
                             <label for="cb1">
@@ -91,7 +93,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb2"
                                 name='brazilian'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb2">
@@ -106,7 +107,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb3"
                                 name='caribbean'
-                                value={true}
                                 onChange={handleChange}
                             />
 
@@ -122,7 +122,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb4"
                                 name='chinese'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb4">
@@ -142,7 +141,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb5"
                                 name='english'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb5">
@@ -157,7 +155,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb6"
                                 name='ethiopian'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb6">
@@ -172,7 +169,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb7"
                                 name='french'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb7">
@@ -187,7 +183,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb8"
                                 name='filipino'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb8">
@@ -207,7 +202,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb9"
                                 name='georgian'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb9">
@@ -222,7 +216,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb10"
                                 name='german'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb10">
@@ -237,7 +230,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb11"
                                 name='greek'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb11">
@@ -252,7 +244,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb12"
                                 name='indian'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb12">
@@ -272,7 +263,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb13"
                                 name='indonesian'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb13">
@@ -302,7 +292,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb15"
                                 name='jamaican'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb15">
@@ -317,7 +306,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb16"
                                 name='japanese'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb16">
@@ -337,7 +325,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb17"
                                 name='jewish'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb17">
@@ -352,7 +339,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb18"
                                 name='korean'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb18">
@@ -367,7 +353,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb19"
                                 name='mexican'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb19">
@@ -382,7 +367,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb20"
                                 name='polish'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb20">
@@ -402,7 +386,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb21"
                                 name='persian'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb21">
@@ -417,7 +400,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb22"
                                 name='portuguese'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb22">
@@ -432,7 +414,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox"
                                 id="cb23"
                                 name='russian'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb23">
@@ -447,7 +428,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb24"
                                 name='spanish'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb24">
@@ -466,7 +446,6 @@ const CarouselTypesOfCuisines = () => {
                             <input 
                                 type="checkbox" id="cb25"
                                 name='thai'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb25">
@@ -481,7 +460,6 @@ const CarouselTypesOfCuisines = () => {
                                 type="checkbox" 
                                 id="cb26"
                                 name='vietnamese'
-                                value={true}
                                 onChange={handleChange}
                             />
                             <label for="cb26">
