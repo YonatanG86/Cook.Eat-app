@@ -146,6 +146,16 @@ router.put("/likes/:id", async (req, res) => {
   }
 });
 
+//get my recipes
+router.get('/myRecipes/:id', async(req, res) => {
+  try {
+      const myRecipes = await RecipesModel.find({ writer: req.params.id})
+      res.status(201).send(myRecipes)
+  } catch (err){
+      res.status(400).send(err)
+  }
+})
+
 function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 }
