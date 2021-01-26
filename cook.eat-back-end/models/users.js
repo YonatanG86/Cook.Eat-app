@@ -1,3 +1,4 @@
+const { date } = require('@hapi/joi');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -38,6 +39,9 @@ const userSchema = new Schema({
 		type: Array,
 		required: true,
 		default: 0,
+	},
+	birthDate: {
+		type: Date,
 	},
 });
 

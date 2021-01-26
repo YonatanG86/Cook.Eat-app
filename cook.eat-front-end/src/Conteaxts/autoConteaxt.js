@@ -42,7 +42,6 @@ export const AutoProvider = ({ children }) => {
 				localStorage.setItem('token', res.data);
 				const user = jwt_decode(res.data).user;
 				localStorage.setItem('user', user._id);
-				console.log('2', user);
 				setCurrentUser(user);
 				history.push('/');
 			}
@@ -64,12 +63,13 @@ export const AutoProvider = ({ children }) => {
 	};
 
 	//get user info
-	const userInfo = async (uId) => {
+	const userInfo = async (id) => {
 		try {
-			const res = await axios.get(`${baseUrl}/user/${uId}`);
+			const res = await axios.get(`${baseUrl}/users/${id}`);
 			const data = res.data;
 			return data;
 		} catch (err) {
+			console.log('error');
 			return err.response.data;
 		}
 	};
