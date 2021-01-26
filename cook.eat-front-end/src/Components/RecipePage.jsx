@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import '../styles/recipePage.css'
 import { FaPen, FaHeart, FaFireAlt, FaClock } from 'react-icons/fa'
 import { GiCookingPot } from 'react-icons/gi'
-import { loadRecipe, likeRecipe, addRecipeToProfile } from '../libs/utils'
+import { loadRecipe, likeRecipe, addRecipeToProfile, getUserById } from '../libs/utils'
 import { cuisinePic } from '../libs/cuisine'
 
 function RecipePage(props) {
@@ -13,6 +13,7 @@ function RecipePage(props) {
     const [ like, setLike ] = useState() 
     const [ user, setUser ] = useState()
     const [ cuisines, setCuisines ] = useState()
+    const [ writerName, setWriterName ] = useState()
     // const {id} = props
     const id = '600d3dd109c0130810aa4560'
 
@@ -31,6 +32,11 @@ function RecipePage(props) {
         likeRecipe(id, likes)
     }
 
+    const getWriter = async(writeId) => {
+        const author = await getUserById(writeId)
+        setWriterName(author.userName)
+    }
+
     const getRecipe = async() => {
         const result = await loadRecipe(id)
         setRecipe(result)
@@ -38,6 +44,7 @@ function RecipePage(props) {
             setCountLikes(result.likes)
             const response = cuisinePic(result.cuisineType)
             setCuisines(response)
+            getWriter(result.writer)
         } 
 
     }
@@ -62,7 +69,7 @@ function RecipePage(props) {
         <div className='titleBox'>
         <div>
             <h1 className='recipeTitle'>{recipe.recipeTitle}</h1>
-            <h4 style={{fontSize: '14px'}}><FaPen style={{marginRight:'1rem'}}/>{recipe.writer}</h4> 
+            <h4 style={{fontSize: '14px'}}><FaPen style={{marginRight:'1rem'}}/>{writerName}</h4> 
             <div className='cuisineAndLike'>
                 <div className='cuisineBox'>
                     <img className='cuisineImg' src={cuisines} alt={recipe.cuisineType}/>
