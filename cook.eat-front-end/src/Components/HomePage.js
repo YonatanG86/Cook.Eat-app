@@ -3,6 +3,7 @@ import Search from "../Components/Search";
 import RegistrationCarousel from "../Components/RegistrationCarousel";
 import RecipeCard from "./RecipeCard";
 import mockRecipes from "../mockdata/mockRecipes";
+import MyRecipesCard from "./MyRecipesCard";
 import "../styles/HomePage.css";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import { BiSearch } from "react-icons/bi";
@@ -14,14 +15,14 @@ const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     const user = localStorage.getItem("user");
-	console.log(user);
-	async function searchRecipes() {
-		const res = await fetch(`http://localhost:5000/recipes`);
-		const data = await res.json();
-		console.log('data',data);
-		setRecipes(data);
-	  }
-	  searchRecipes()
+    console.log(user);
+    async function searchRecipes() {
+      const res = await fetch(`http://localhost:5000/recipes`);
+      const data = await res.json();
+      console.log("data", data);
+      setRecipes(data);
+    }
+    searchRecipes();
   }, []);
 
   return (
@@ -34,11 +35,9 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-
-      <div className="recipes">
-        {recipes.map(function (recipe, i) {
-          console.log("recipe", recipe);
-          return <RecipeCard key={i} recipe={recipe} />;
+      <div className="conteiner-cards-recipe">
+        {recipes.map((recipe, i) => {
+          return <MyRecipesCard key={i} recipe={recipe} />;
         })}
       </div>
     </div>
