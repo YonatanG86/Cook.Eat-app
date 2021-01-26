@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react'
 import '../styles/recipePage.css'
 import { FaPen, FaHeart, FaFireAlt, FaClock } from 'react-icons/fa'
@@ -6,16 +5,7 @@ import { GiCookingPot } from 'react-icons/gi'
 import { loadRecipe, likeRecipe, addRecipeToProfile } from '../libs/utils'
 import { cuisinePic } from '../libs/cuisine'
 
-
 function RecipePage(props) {
-  const [recipe, setRecipe] = useState();
-  const [countLikes, setCountLikes] = useState();
-  const [like, setLike] = useState();
-  const [user, setUser] = useState();
-  const [cuisines, setCuisines] = useState();
-  // const {id} = props
-  const id = "600d3dd109c0130810aa4560";
-
 
     const [ recipe, setRecipe ] = useState()
     const [ countLikes, setCountLikes ] = useState()
@@ -38,11 +28,7 @@ function RecipePage(props) {
             setLike(1)
         }
         likeRecipe(id, likes)
-
     }
-    likeRecipe(id, likes);
-  };
-
 
     const getRecipe = async() => {
         const result = await loadRecipe(id)
@@ -52,63 +38,33 @@ function RecipePage(props) {
             const response = cuisinePic(result.cuisineType)
             setCuisines(response)
         } 
-
     }
-  };
-
 
     useEffect(() => {
         getRecipe()   
     }, [countLikes])
 
 
-
-  return (
-    <div>
-      {recipe ? (
-        <div className="recipePage">
-          <div className="titleBox">
-            <div>
-              <h1 className="recipeTitle">{recipe.recipeTitle}</h1>
-              <h4 style={{ fontSize: "14px" }}>
-                <FaPen style={{ marginRight: "1rem" }} />
-                {recipe.writer}
-              </h4>
-              <div className="cuisineAndLike">
-                <div className="cuisineBox">
-                  <img
-                    className="cuisineImg"
-                    src={cuisines}
-                    alt={recipe.cuisineType}
-                  />
-                  <div>{recipe.cuisineType}</div>
+    return (
+        <div>
+        {recipe ? <div className='recipePage'>
+        <div className='titleBox'>
+        <div>
+            <h1 className='recipeTitle'>{recipe.recipeTitle}</h1>
+            <h4 style={{fontSize: '14px'}}><FaPen style={{marginRight:'1rem'}}/>{recipe.writer}</h4> 
+            <div className='cuisineAndLike'>
+                <div className='cuisineBox'>
+                    <img className='cuisineImg' src={cuisines} alt={recipe.cuisineType}/>
+                    <div>{recipe.cuisineType}</div>  
                 </div>
-                <button type="click" onClick={addLike} className="likeBox">
-                  <FaHeart style={{ marginRight: "1rem" }} />
-                  {recipe.likes}
-                </button>
-              </div>
-              <div className="desc">{recipe.description}</div>
-              <div className="topic">
-                <div className="cal clock">
-                  {" "}
-                  <FaFireAlt
-                    style={{
-                      marginRight: "1rem",
-                      fontSize: "25px",
-                      color: "crimson",
-                    }}
-                  />
-                  {recipe.calories} Cal.
-                </div>
-
                 <button disabled={!user} type='click' onClick={addLike} className='likeBox'><FaHeart style={{marginRight:'1rem'}}/>{recipe.likes}</button>  
-
             </div>
-            <div className="imageBox">
-              <img className="recipeImage" src={recipe.picture} alt="pasta" />
+            <div className='desc'>{recipe.description}</div>
+            <div className='topic'>
+                <div className='cal clock'> <FaFireAlt style={{marginRight:'1rem', fontSize: '25px',color:'crimson'}}/>{recipe.calories} Cal.</div>
+                <div className='cal'> <GiCookingPot style={{marginRight:'1rem', fontSize: '35px', color:'crimson'}}/>{recipe.dishLevel} </div>
+                <div className='cal '> <FaClock style={{marginRight:'1rem', fontSize: '25px',color:'crimson'}}/> {recipe.preparationTime} Min.</div>
             </div>
-
         </div>
         <div className='imageBox'>
             <img className='recipeImage' src={recipe.picture} alt="pasta" />
@@ -133,15 +89,11 @@ function RecipePage(props) {
                             <span>{ing.units}.</span>
                         </div>
                     )}
-
                 </div>
-              ))}
             </div>
-          </div>
+        </div>: null}
         </div>
-
     )
-
 }
 
-export default RecipePage;
+export default RecipePage
