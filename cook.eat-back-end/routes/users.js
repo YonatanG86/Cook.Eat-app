@@ -83,7 +83,7 @@ router.put("/likes/:id", async (req, res) => {
   const { recipeId } = req.body;
   try {
     let user = await UserModel.findById(req.params.id);
-    if (!user[0].recipesSaved.includes(recipeId)) {
+    if (!user.recipesSaved.includes(recipeId)) {
       user = await UserModel.findByIdAndUpdate(
         req.params.id,
         { $push: { recipesSaved: recipeId } },
@@ -99,6 +99,7 @@ router.put("/likes/:id", async (req, res) => {
       res.status(201).send("The recipe deleted from your list");
     }
   } catch (err) {
+    console.log(err)
     res.status(500).send(err);
   }
 });

@@ -14,7 +14,6 @@ const SavedRecipes = () => {
         const userId = await localStorage.getItem('user')
         if (userId){
             setUser(userId)
-            console.log(userId)
             recipes(userId)
         }
     }
