@@ -9,9 +9,9 @@ import Advanced from '../img/culinary-level/advanced.jpg';
 const CarouselCulinaryLevel = () => {
 
     return (
+        <div className="culinary-level-carousel-wrapper">
         <div className="culinary-level-carousel">
-            <h1>Hello</h1>
-            {/* <ul className="culinary-level-list">
+            <ul className="culinary-level-list">
                 <li>
                     <input type="radio" name="radio" id="cl1" />
                     <label for="cl1">
@@ -39,7 +39,8 @@ const CarouselCulinaryLevel = () => {
                         </div>
                     </label>
                 </li>
-            </ul> */}
+            </ul>
+        </div>
         </div>
     )
 }

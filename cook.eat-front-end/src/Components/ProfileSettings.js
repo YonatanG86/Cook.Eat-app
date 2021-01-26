@@ -21,7 +21,6 @@ const ProfileSettings = () => {
     const [date, setDate] = useState("");
     const [country, setCountry] = useState("");
     const [carouselIndex, setCarouselIndex] = useState(0);
-    // const [isChecked, setIsChecked] = useState(false);
 
     const handleCarouselSelect = (selectedIndex, event) => {
       setCarouselIndex(selectedIndex);

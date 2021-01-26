@@ -17,6 +17,7 @@ import SavedRecipes from './Components/SavedRecipes';
 import RecipePage from './Components/RecipePage';
 // import Footer from './Components/Footer'; // Need to implement
 
+
 const App = () => {
 	return (
 		<Router>

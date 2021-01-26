@@ -79,6 +79,11 @@ span.carousel-control-prev-icon {
     object-fit: cover;
 }
 
+#kosher {
+    width:  100px;
+    height: 100px;
+}
+
 .special-diets :checked+label {
     border: none;
 }
