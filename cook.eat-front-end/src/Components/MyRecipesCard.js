@@ -4,6 +4,7 @@ import "../styles/MyRecipes.css";
 import { Button, Card } from "react-bootstrap";
 import { FaHeart, FaEllipsisH, FaRecycle } from "react-icons/fa";
 import "../styles/MyRecipesCard.css";
+
 const MyRecipesCard = (props) => {
   const { recipe } = props;
   return (
@@ -15,16 +16,14 @@ const MyRecipesCard = (props) => {
       />
       <Card.Body>
         <div className="top-card">
-          <Card.Title style={{ fontWeight: "600", color: "white" }}>
+          <Card.Title style={{ fontWeight: "600", color: "black" }}>
             {recipe.title}
           </Card.Title>
           <span className="likes-totel">12</span>
           <FaHeart className="my-likes" />
         </div>
         <div className="main-card">
-          <Card.Text className="card-description">
-            {recipe.description}{" "}
-          </Card.Text>
+          <Card.Text className="card-description"></Card.Text>
           <NavLink
             exact
             to={`/recipe/${recipe._id}`}
