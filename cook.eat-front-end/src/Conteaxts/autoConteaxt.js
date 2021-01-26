@@ -120,11 +120,12 @@ export const AutoProvider = ({ children }) => {
   //add recipe
   const addRecipe = async (content) => {
     try {
+      const userId = localStorage.getItem("user");
       const res = await axios.post(`${baseUrl}/recipes/`, content);
       if (res.data) {
         const recipeId = res.data._id;
         await axios.put(
-          `${baseUrl}/users/myRecipes/${currentUser._id}/${recipeId}`,
+          `${baseUrl}/users/myRecipes/${userId}/${recipeId}`,
           recipeId
         );
 
