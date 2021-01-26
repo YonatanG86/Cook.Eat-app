@@ -5,7 +5,7 @@ import './App.css';
 import NavigationBar from './Components/NavigationBar';
 import HomePage from './Components/HomePage';
 import ProfileSettings from './Components/ProfileSettings';
-import SignUpModal from './Components/SignUpModal';
+import SignUpModalNew from './Components/SignUpModalNew';
 import LoginModal from './Components/LoginModal';
 import MultiFormSignUp from '../src/Components/MultiFormSignUp';
 import AddRecipe from './Components/AddRecipe';
@@ -16,7 +16,6 @@ import RecipePage from './Components/RecipePage';
 // import Footer from './Components/Footer'; // Need to implement
 
 const App = () => {
-
 	return (
 		<Router>
 			<AutoProvider>
@@ -49,7 +48,7 @@ const App = () => {
 								<HomePage />
 							</Route>
 							<Route path='/sign-up'>
-								<MultiFormSignUp />
+								<SignUpModalNew />
 								{/* <SignUpModal /> */}
 							</Route>
 							<Route path='/login'>
