@@ -11,7 +11,7 @@ const formFields = {
 	repatePass: '',
 };
 
-const CarouselSignUp = () => {
+const CarouselSignUp = ({ carouselData }) => {
 	const { register, handleSubmit, errors, watch } = useForm();
 	const [formInfo, setFormInfo] = useState(formFields);
 	const [file, setFile] = useState();

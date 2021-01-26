@@ -7,6 +7,7 @@ import CarouselSignUp from '../Components/CarouselSignUp';
 import { Carousel } from "react-bootstrap";
 
 const RegistrationCarousel = () => {
+  const [carouselData, setCarouselData] = useState();
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, event) => {
@@ -38,19 +39,19 @@ const RegistrationCarousel = () => {
             <Carousel.Item>
               <p className="personalized-experience">PERSONALIZE YOUR EXPERIENCE</p>
               <h3>What are your favorite cuisines?</h3>
-              <CarouselTypesOfCuisines />
+              <CarouselTypesOfCuisines setCarouselData={setCarouselData} />
             </Carousel.Item>
 
             <Carousel.Item>
               <p className="personalized-experience">PERSONALIZE YOUR EXPERIENCE</p>
               <h3>Do you follow any of these diets?</h3>
-              <CarouselSpecialDiets />
+              <CarouselSpecialDiets setCarouselData={setCarouselData}  />
             </Carousel.Item>
 
             <Carousel.Item>
               <p className="personalized-experience">PERSONALIZE YOUR EXPERIENCE</p>
               <h3>How would you describe your cooking skills?</h3>
-              <CarouselCulinaryLevel />
+              <CarouselCulinaryLevel setCarouselData={setCarouselData}  />
             </Carousel.Item>
             
             <Carousel.Item>
