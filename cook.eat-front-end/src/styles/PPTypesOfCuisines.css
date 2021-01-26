@@ -1,45 +1,46 @@
-.special-diets-carousel {
+.cuisines-types-carousel {
     background-color: none;
     padding: 35px;
-}
+  }
   
-span.carousel-control-next-icon {
+  span.carousel-control-next-icon {
     background-image: url(../img/carousel/next-arrow.jpg);
-}
-
-span.carousel-control-prev-icon {
+  }
+  
+  span.carousel-control-prev-icon {
     background-image: url(../img/carousel/previous-arrow.png);
-}
-
-.special-diets {
+  }
+  
+  
+  .types-of-cuisines {
     display: flex;
     justify-content: center;
     margin-right: 33px;
-}
-
-.special-diets-list {
+  }
+  
+  .types-of-cuisines-list {
     list-style-type: none;
-}
-
-.special-diets li {
+  }
+  
+  .types-of-cuisines li {
     display: inline-block;
-}
-
-.special-diets input[type="checkbox"][id^="special-diet"] {
+  }
+  
+  .types-of-cuisines input[type="checkbox"][id^="cb"] {
     display: none;
-}
-
-.special-diets-container {
+  }
+  
+  .cuisine-types-container {
     display: flex;
     flex-direction: column;
-}
-
-.special-diets-container span {
+  }
+  
+  .cuisine-types-container span {
     text-align: center;
     padding-top: 5px;
-}
-
-.special-diets label {
+  }
+    
+  .types-of-cuisines label {
     padding: 10px;
     display: block;
     position: relative;
@@ -51,9 +52,9 @@ span.carousel-control-prev-icon {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-.special-diets label::before {
+  }
+    
+  .types-of-cuisines label::before {
     background-color: white;
     color: white;
     content: " ";
@@ -69,33 +70,28 @@ span.carousel-control-prev-icon {
     line-height: 28px;
     transition-duration: 0.4s;
     transform: scale(0);
-}
-
-.special-diets label img {
+  }
+    
+  .types-of-cuisines label img {
     transition-duration: 0.2s;
     transform-origin: 50% 50%;
     width:  120px;
     height: 120px;
     object-fit: cover;
-}
-
-#kosher {
-    width:  100px;
-    height: 100px;
-}
-
-.special-diets :checked+label {
+  }
+    
+  .types-of-cuisines :checked+label {
     border: none;
-}
-
-.special-diets :checked+label::before {
+  }
+  
+  .types-of-cuisines :checked+label::before {
     content: "✓";
     background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
     transform: scale(1);
     border: none;
-}
-
-.special-diets :checked+label img {
+  }
+  
+  .types-of-cuisines :checked+label img {
     transform: scale(0.9);
     box-shadow: 0 0 5px orange;
-}
+  }

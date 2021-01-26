@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import MultiFormSignUp from '../Components/MultiFormSignUp';
 import '../styles/RegistrationCarousel.css';
+import CarouselTypesOfCuisines from '../Components/CarouselTypesOfCuisines';
+import CarouselSpecialDiets from '../Components/CarouselSpecialDiets';
+import CarouselCulinaryLevel from '../Components/CarouselCulinaryLevel';
+import CarouselSignUp from '../Components/CarouselSignUp';
 import { Carousel } from "react-bootstrap";
 
 const RegistrationCarousel = () => {
@@ -23,6 +26,7 @@ const RegistrationCarousel = () => {
     return (
         <>
           <Carousel
+            className="registration-carousel"
             interval={null} 
             activeIndex={index} 
             nextIcon={directionButtons("Next")}
@@ -30,37 +34,26 @@ const RegistrationCarousel = () => {
             onSelect={handleSelect}>
         
             <Carousel.Item>
-              <p>PERSONALIZE YOUR EXPERIENCE</p>
+              <p className="personalized-experience">PERSONALIZE YOUR EXPERIENCE</p>
               <h3>What are your favorite cuisines?</h3>
-              <Carousel.Caption>
-                {/* <h3></h3>
-                <p></p> */}
-              </Carousel.Caption>
+              <CarouselTypesOfCuisines />
             </Carousel.Item>
 
             <Carousel.Item>
-              <p>PERSONALIZE YOUR EXPERIENCE</p>
+              <p className="personalized-experience">PERSONALIZE YOUR EXPERIENCE</p>
               <h3>Do you follow any of these diets?</h3>
-              <Carousel.Caption>
-                {/* <h3></h3>
-                <p></p> */}
-              </Carousel.Caption>
+              <CarouselSpecialDiets />
             </Carousel.Item>
 
             <Carousel.Item>
-              <p>PERSONALIZE YOUR EXPERIENCE</p>
+              <p className="personalized-experience">PERSONALIZE YOUR EXPERIENCE</p>
               <h3>How would you describe your cooking skills?</h3>
-              <Carousel.Caption>
-                {/* <h3></h3>
-                <p></p> */}
-              </Carousel.Caption>
+              <CarouselCulinaryLevel />
             </Carousel.Item>
             
             <Carousel.Item>
               <h3>Create your account by filling out the information below</h3>
-            <Carousel.Caption>
-              <MultiFormSignUp />
-            </Carousel.Caption>
+              <CarouselSignUp />
             </Carousel.Item>
           </Carousel>
         </>

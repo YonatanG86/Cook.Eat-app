@@ -1,46 +1,44 @@
-.cuisines-types-carousel {
-  background-color: none;
-  padding: 35px;
-}
-
-span.carousel-control-next-icon {
-  background-image: url(../img/carousel/next-arrow.jpg);
-}
-
-span.carousel-control-prev-icon {
-  background-image: url(../img/carousel/previous-arrow.png);
-}
-
-
-.types-of-cuisines {
+.types-of-cuisines-wrapper {
   display: flex;
   justify-content: center;
-  margin-right: 33px;
 }
+
+.types-of-cuisines-main-container {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+}
+
+/* .types-of-cuisines-modal {
+  display: flex;
+  justify-content: center;
+  display: inline-block;
+  border: 5px solid green;
+} */
 
 .types-of-cuisines-list {
   list-style-type: none;
 }
 
-.types-of-cuisines li {
+.types-of-cuisines-modal li {
   display: inline-block;
 }
 
-.types-of-cuisines input[type="checkbox"][id^="cb"] {
+.types-of-cuisines-modal input[type="checkbox"][id^="cb"] {
   display: none;
 }
 
-.cuisine-types-container {
+/* .cuisine-types-container {
   display: flex;
   flex-direction: column;
-}
+} */
 
 .cuisine-types-container span {
   text-align: center;
   padding-top: 5px;
 }
   
-.types-of-cuisines label {
+.types-of-cuisines-modal label {
   padding: 10px;
   display: block;
   position: relative;
@@ -54,7 +52,7 @@ span.carousel-control-prev-icon {
   user-select: none;
 }
   
-.types-of-cuisines label::before {
+.types-of-cuisines-modal label::before {
   background-color: white;
   color: white;
   content: " ";
@@ -72,26 +70,26 @@ span.carousel-control-prev-icon {
   transform: scale(0);
 }
   
-.types-of-cuisines label img {
+.types-of-cuisines-modal label img {
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
-  width:  120px;
-  height: 120px;
+  width:  80px;
+  height: 80px;
   object-fit: cover;
 }
   
-.types-of-cuisines :checked+label {
+.types-of-cuisines-modal :checked+label {
   border: none;
 }
 
-.types-of-cuisines :checked+label::before {
+.types-of-cuisines-modal :checked+label::before {
   content: "✓";
   background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
   transform: scale(1);
   border: none;
 }
 
-.types-of-cuisines :checked+label img {
+.types-of-cuisines-modal :checked+label img {
   transform: scale(0.9);
   box-shadow: 0 0 5px orange;
 }

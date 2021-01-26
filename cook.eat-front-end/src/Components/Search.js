@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
-// import { BiSearch } from "react-icons/bi";
+
 
 const Search = (props) => {
   const [search, setSearch] = useState("");
@@ -17,7 +17,7 @@ const Search = (props) => {
     <>
       <InputGroup className="mb-3">
         <FormControl
-          placeholder="{fontAwesome}"
+          placeholder=""
           onChange={(e) => setSearch(e.target.value)}
         />
         <InputGroup.Append>

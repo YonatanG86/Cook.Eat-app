@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import CarouselTypesOfCuisines from './CarouselTypesOfCuisines';
-import CarouselCulinaryLevel from './CarouselCulinaryLevel';
-import CarouselSpecialDiets from '../Components/CarouselSpecialDiets';
+import PPTypesOfCuisines from './PPTypesOfCuisines';
+import PPCulinaryLevel from './PPCulinaryLevel';
 import '../styles/ProfileSettings.css';
 import { Col, Row, Form, Button, Image, Carousel } from "react-bootstrap";
 import { CountryDropdown } from "react-country-region-selector";
@@ -22,7 +21,6 @@ const ProfileSettings = () => {
     const [date, setDate] = useState("");
     const [country, setCountry] = useState("");
     const [carouselIndex, setCarouselIndex] = useState(0);
-    // const [isChecked, setIsChecked] = useState(false);
 
     const handleCarouselSelect = (selectedIndex, event) => {
       setCarouselIndex(selectedIndex);
@@ -214,22 +212,12 @@ const ProfileSettings = () => {
 
               <div className="culinary-level-form-container">
                 <p>Culinary Level</p>   
-                <CarouselCulinaryLevel />
+                <PPCulinaryLevel />
               </div>
             </div>
 
             <p>Types of cuisines</p>
-            {/* <CarouselSpecialDiets /> */}
-            <CarouselTypesOfCuisines />
-
-            {/* <Form.Group id="formGridCheckbox">
-              <Form.Check
-                type="checkbox"
-                name="checkbox"
-                label="Save Profile Changes"
-                checked={isChecked}
-                onChange={(event) => {setIsChecked(event.target.checked)}} />
-            </Form.Group> */}
+            <PPTypesOfCuisines />
             
             <div className="button-container">
               <Button
@@ -237,7 +225,6 @@ const ProfileSettings = () => {
                 controlId="save-profile-button"
                 variant="primary"
                 type="submit"
-                // disabled={isChecked ? false : true}
               >
                 Save Changes
               </Button>

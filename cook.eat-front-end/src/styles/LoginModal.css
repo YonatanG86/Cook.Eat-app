@@ -3,10 +3,6 @@
     src: local("Trajan"), url(../fonts//Trajan.ttf) format("truetype");
 }
 
-/* .login {
-    background-color: black;
-} */
-
 .login .modal-dialog {
     width: 600px;
     height: 500px !important;

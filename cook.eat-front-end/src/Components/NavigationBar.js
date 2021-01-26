@@ -6,7 +6,6 @@ import { BiSearch } from 'react-icons/bi';
 import { FaHamburger } from 'react-icons/fa';
 import cookEatLogo from '../img/logo/cookEatLogo.png';
 import { useAuth } from '../Conteaxts/autoConteaxt';
-import SignUpModal from './SignUpModal';
 
 const NavigationBar = () => {
 	const { currentUser, logOut } = useAuth();
@@ -17,14 +16,13 @@ const NavigationBar = () => {
 					<Link id='main-link' to='/'>
 						{' '}
 						<span id='cook'>Cook</span>
-						{/* <span id="dot">.</span> */}
 						<span id='eat'>Eat</span>
 						<img alt='logo' src={cookEatLogo} width='47' height='47' className='d-inline-block align-top' />
 					</Link>
 				</Navbar.Brand>
 				<Navbar.Collapse id='basic-navbar-nav'>
 					<Nav className='mr-auto'>
-						<Nav.Link as={Link} to='/home' id='links'>
+						{/* <Nav.Link as={Link} to='/home' id='links'>
 							Home
 						</Nav.Link>
 						<NavDropdown title={<FaHamburger />} id='basic-nav-dropdown'>
@@ -39,9 +37,19 @@ const NavigationBar = () => {
 								{' '}
 								Add Recipe
 							</NavDropdown.Item>
-						</NavDropdown>
+						</NavDropdown> */}
 						<Nav.Link as={Link} to='/profile-settings' id='links'>
 							My Account
+						</Nav.Link>
+						{/* <FaHamburger id='links' /> */}
+						<Nav.Link as={Link} to='/my-recipes' id='links'>
+							My Recipes
+						</Nav.Link>
+						<Nav.Link as={Link} to='/saved-recipes' id='links'>
+							Saved Recipes
+						</Nav.Link>
+						<Nav.Link as={Link} to='/add-recipe' id='links'>
+							Add Recipe
 						</Nav.Link>
 					</Nav>
 					<Form inline className='nav-search-bar'>

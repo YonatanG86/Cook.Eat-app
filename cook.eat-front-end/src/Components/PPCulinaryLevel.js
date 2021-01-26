@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import '../styles/CarouselCulinaryLevel.css';
+import '../styles/PPCulinaryLevel.css';
 import { Image } from "react-bootstrap";
 import Beginner from '../img/culinary-level/beginner.jpeg';
 import Intermediate from '../img/culinary-level/intermediate.jpg';
 import Advanced from '../img/culinary-level/advanced.jpg';
 
 
-const CarouselCulinaryLevel = () => {
+const PPCulinaryLevel = () => {
 
     return (
-        <div className="culinary-level-carousel-wrapper">
-        <div className="culinary-level-carousel">
+        <div className="culinary-level">
             <ul className="culinary-level-list">
                 <li>
                     <input type="radio" name="radio" id="cl1" />
@@ -41,8 +40,7 @@ const CarouselCulinaryLevel = () => {
                 </li>
             </ul>
         </div>
-        </div>
     )
 }
 
-export default CarouselCulinaryLevel;
+export default PPCulinaryLevel;

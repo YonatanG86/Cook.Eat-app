@@ -43,7 +43,26 @@ const getMyRecipes = async(id) => {
     return data
 }
 
-const getSavedRecipes = async(id) => {}
+const getUserById = async(id) => {
+    const response = await fetch(`${BASE_URL}/users/${id}`)
+    const user = await response.json()
+    return user
+}
+
+const getSavedRecipes = async(id) => {
+    let savedRecipes = []
+    const user = await getUserById(id)
+    const recipes = user.recipesSaved
+    if(recipes){
+        for(let recipe of recipes){
+            const response = await fetch(`${BASE_URL}/recipes/${recipe}`)
+            const data = await response.json()
+            savedRecipes.push(data)
+        }
+    }
+    return savedRecipes
+}
 
 
-export { addRecipeToProfile, likeRecipe, loadRecipe, getMyRecipes }
+
+export { addRecipeToProfile, likeRecipe, loadRecipe, getMyRecipes, getSavedRecipes }

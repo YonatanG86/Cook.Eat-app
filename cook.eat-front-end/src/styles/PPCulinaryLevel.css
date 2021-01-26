@@ -1,45 +1,32 @@
-.special-diets-carousel {
-    background-color: none;
-    padding: 35px;
-}
-  
-span.carousel-control-next-icon {
-    background-image: url(../img/carousel/next-arrow.jpg);
-}
-
-span.carousel-control-prev-icon {
-    background-image: url(../img/carousel/previous-arrow.png);
-}
-
-.special-diets {
+.culinary-level {
     display: flex;
-    justify-content: center;
-    margin-right: 33px;
 }
 
-.special-diets-list {
+.culinary-level-list {
     list-style-type: none;
+    /* border: 1px solid green; */
 }
 
-.special-diets li {
+.culinary-level li {
     display: inline-block;
 }
-
-.special-diets input[type="checkbox"][id^="special-diet"] {
+  
+.culinary-level input[type="radio"][id^="cl"] {
     display: none;
 }
 
-.special-diets-container {
+.culinary-level-container {
     display: flex;
     flex-direction: column;
 }
 
-.special-diets-container span {
+.culinary-level-container span {
     text-align: center;
     padding-top: 5px;
 }
 
-.special-diets label {
+.culinary-level label {
+    border: 1px solid #fff;
     padding: 10px;
     display: block;
     position: relative;
@@ -53,7 +40,7 @@ span.carousel-control-prev-icon {
     user-select: none;
 }
 
-.special-diets label::before {
+.culinary-level label::before {
     background-color: white;
     color: white;
     content: " ";
@@ -71,31 +58,27 @@ span.carousel-control-prev-icon {
     transform: scale(0);
 }
 
-.special-diets label img {
+.culinary-level label img {
     transition-duration: 0.2s;
     transform-origin: 50% 50%;
-    width:  120px;
-    height: 120px;
+    width:  90px;
+    height: 90px;
     object-fit: cover;
 }
 
-#kosher {
-    width:  100px;
-    height: 100px;
-}
-
-.special-diets :checked+label {
+.culinary-level :checked+label {
     border: none;
 }
 
-.special-diets :checked+label::before {
+.culinary-level :checked+label::before {
     content: "✓";
     background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
     transform: scale(1);
     border: none;
 }
 
-.special-diets :checked+label img {
+.culinary-level :checked+label img {
     transform: scale(0.9);
     box-shadow: 0 0 5px orange;
+    z-index: -1;
 }
