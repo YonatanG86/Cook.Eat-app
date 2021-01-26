@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import '../styles/SavedRecipes.css';
 import {  } from "react-bootstrap";
 import { getSavedRecipes } from '../libs/utils'
+import MyRecipesCard from "./MyRecipesCard";
 
 
 const SavedRecipes = () => {
@@ -30,6 +31,11 @@ const SavedRecipes = () => {
     return (
         <div className="saved-recipes-pagewrapper">
             <h4>Saved Recipes</h4>
+            {recipesSaved ? <div className="conteiner-cards-recipe">
+                {recipesSaved.map(function (recipe, i) {
+                return <MyRecipesCard key={i} recipe={recipe} />;
+            })}
+    </div>:<h3>no recipes</h3>}
         </div>
     )
 }

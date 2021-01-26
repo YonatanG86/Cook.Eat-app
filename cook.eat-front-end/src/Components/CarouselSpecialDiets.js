@@ -13,12 +13,33 @@ import Vegan from '../img/special-diets-carousel/vegan.png';
 
 const CarouselSpecialDiets = () => {
 
+    const [specialDiet, setSpecialDiet] = useState({
+        glutenFree: false,
+        halal: false,
+        keto: false,
+        kosher: false,
+        paleo: false,
+        pescaterian: false,
+        vegeterian: false,
+        vegan: false,
+    });
+
+    const handleChange = (event) => {
+        setSpecialDiet((specialDiet) => ({...specialDiet, [event.target.name]: event.target.value}));
+    }
+
     return (
         <>
             <div className="special-diets">
                 <ul className="special-diets-list">
                     <li>
-                        <input type="checkbox" id="special-diet1" />
+                        <input 
+                            type="checkbox" 
+                            id="special-diet1"
+                            name='glutenFree'
+                            value={true}
+                            onChange={handleChange}
+                        />
                         <label for="special-diet1">
                             <div className="special-diets-container">
                                 <Image src={GlutenFree} roundedCircle/>
@@ -27,7 +48,13 @@ const CarouselSpecialDiets = () => {
                         </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="special-diet2" />
+                        <input 
+                            type="checkbox" 
+                            id="special-diet2"
+                            name='halal'
+                            value={true}
+                            onChange={handleChange}
+                        />
                         <label for="special-diet2">
                             <div className="special-diets-container">
                                 <Image src={Halal} roundedCircle/>
@@ -36,7 +63,13 @@ const CarouselSpecialDiets = () => {
                         </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="special-diet3" />
+                        <input 
+                            type="checkbox" 
+                            id="special-diet3"
+                            name='keto'
+                            value={true}
+                            onChange={handleChange}
+                        />
                         <label for="special-diet3">
                             <div className="special-diets-container">
                                 <Image src={Keto} roundedCircle/>
@@ -45,7 +78,13 @@ const CarouselSpecialDiets = () => {
                         </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="special-diet4" />
+                        <input 
+                            type="checkbox" 
+                            id="special-diet4"
+                            name='kosher'
+                            value={true}
+                            onChange={handleChange}
+                        />
                         <label for="special-diet4">
                             <div className="special-diets-container">
                                 <Image id="kosher" src={Kosher} roundedCircle/>
@@ -59,7 +98,13 @@ const CarouselSpecialDiets = () => {
             <div className="special-diets">
                 <ul className="special-diets-list">
                     <li>
-                        <input type="checkbox" id="special-diet5" />
+                        <input 
+                            type="checkbox" 
+                            id="special-diet5"
+                            name='paleo'
+                            value={true}
+                            onChange={handleChange}
+                        />
                         <label for="special-diet5">
                             <div className="special-diets-container">
                                 <Image src={Paleo} roundedCircle/>
@@ -68,7 +113,13 @@ const CarouselSpecialDiets = () => {
                         </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="special-diet6" />
+                        <input 
+                            type="checkbox" 
+                            id="special-diet6"
+                            name='pescaterian'
+                            value={true}
+                            onChange={handleChange}
+                        />
                         <label for="special-diet6">
                             <div className="special-diets-container">
                                 <Image src={Pescaterian} roundedCircle/>
@@ -77,7 +128,13 @@ const CarouselSpecialDiets = () => {
                         </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="special-diet7" />
+                        <input 
+                            type="checkbox" 
+                            id="special-diet7"
+                            name='vegeterian'
+                            value={true}
+                            onChange={handleChange}
+                        />
                         <label for="special-diet7">
                             <div className="special-diets-container">
                                 <Image src={Vegeterian} roundedCircle/>
@@ -86,7 +143,13 @@ const CarouselSpecialDiets = () => {
                         </label>
                     </li>
                     <li>
-                        <input type="checkbox" id="special-diet8" />
+                        <input 
+                            type="checkbox" 
+                            id="special-diet8"
+                            name='vegan'
+                            value={true}
+                            onChange={handleChange}
+                        />
                         <label for="special-diet8">
                             <div className="special-diets-container">
                                 <Image src={Vegan} roundedCircle/>
