@@ -1,4 +1,37 @@
-.signup .modal-dialog {
-    width: 800px;
-    height: 800px !important;
+.signup-modal {
+    padding: 0 !important;
+}
+
+.signup-modal .modal-dialog {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+}
+
+.signup-modal .modal-content {
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+}
+
+.signup-modal .modal-body {
+    overflow-y: auto;
+}
+
+.signup-modal .modal-header {
+    background-color: black;
+    color: white;
+}
+
+.signup-modal .modal-header span {
+    color: white;
+}
+
+.signup-modal .modal-header p {
+    padding-top: 25px;
+}
+
+.signup-modal .modal-body {
+    background-color: red;
 }
