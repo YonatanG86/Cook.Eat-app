@@ -40,8 +40,16 @@ function RecipePage(props) {
         } 
     }
 
+    const getUser = () => {
+        const userId = localStorage.getItem('user')
+        if (userId){
+            setUser(userId)
+        }
+    }
+
     useEffect(() => {
-        getRecipe()   
+        getRecipe()
+        getUser()   
     }, [countLikes])
 
 

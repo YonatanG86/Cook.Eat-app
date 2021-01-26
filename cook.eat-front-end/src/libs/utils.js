@@ -54,7 +54,7 @@ const getSavedRecipes = async(id) => {
     const user = await getUserById(id)
     const recipes = user.recipesSaved
     if(recipes){
-        for(let recipe in recipes){
+        for(let recipe of recipes){
             const response = await fetch(`${BASE_URL}/recipes/${recipe}`)
             const data = await response.json()
             savedRecipes.push(data)
