@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/PPCulinaryLevel.css';
 import { Image } from 'react-bootstrap';
 import Beginner from '../img/culinary-level/beginner.jpeg';
@@ -6,9 +6,11 @@ import Intermediate from '../img/culinary-level/intermediate.jpg';
 import Advanced from '../img/culinary-level/advanced.jpg';
 
 const PPCulinaryLevel = ({ setFormInfo, edit, formInfo }) => {
-	const onChange = (e) => {
-		setFormInfo((previous, current) => ({ ...current, culinaryLevel: e.target.value }));
-	};
+	const [culinaryLevel, setCulinaryLevel] = useState({ culinaryLevel: '' });
+
+	useEffect(() => {
+		setFormInfo((pre) => ({ ...pre, culinaryLevel }));
+	}, [culinaryLevel]);
 
 	return (
 		<div className='culinary-level'>
@@ -18,7 +20,7 @@ const PPCulinaryLevel = ({ setFormInfo, edit, formInfo }) => {
 						type='radio'
 						name='radio'
 						id='cl1'
-						onClick={onChange}
+						onChange={() => setCulinaryLevel('Beginner')}
 						disabled={edit}
 						checked={formInfo.culinaryLevel == 'Beginner' ? true : false}
 					/>
@@ -34,6 +36,7 @@ const PPCulinaryLevel = ({ setFormInfo, edit, formInfo }) => {
 						type='radio'
 						name='radio'
 						id='cl2'
+						onChange={() => setCulinaryLevel('Intermediate')}
 						disabled={edit}
 						checked={formInfo.culinaryLevel == 'Intermediate' ? true : false}
 					/>
@@ -49,6 +52,7 @@ const PPCulinaryLevel = ({ setFormInfo, edit, formInfo }) => {
 						type='radio'
 						name='radio'
 						id='cl3'
+						onChange={() => setCulinaryLevel('Advanced')}
 						disabled={edit}
 						checked={formInfo.culinaryLevel == 'Advanced' ? true : false}
 					/>

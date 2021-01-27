@@ -81,6 +81,8 @@
     margin-top: 8px;
 }
 
+
+
 .diet-images {
     float: left;
     width:  30px;
@@ -89,6 +91,84 @@
     margin: 0 5px;
     padding: 2px;
 }
+.diet-images :checked::before {
+    content: "✓";
+    background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
+    transform: scale(1);
+    border: none;
+}
+.diet-images :checked+label img {
+    transform: scale(0.9);
+    box-shadow: 0 0 5px orange;
+}
+
+
+.special-diets-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.special-diets-container span {
+    text-align: center;
+    padding-top: 5px;
+}
+
+.special-diets label {
+    padding: 10px;
+    display: block;
+    position: relative;
+    margin: 10px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.special-diets label::before {
+    background-color: white;
+    color: white;
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    border: 1px solid grey;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 28px;
+    transition-duration: 0.4s;
+    transform: scale(0);
+}
+
+.special-diets-img {
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+    width:  30px ;
+    height: 30px ;
+    object-fit: cover;
+}
+.special-diets :checked+label {
+    border: none;
+}
+
+.special-diets :checked+label::before {
+    content: "✓";
+    background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
+    transform: scale(1);
+    border: none;
+}
+
+.special-diets :checked+label img {
+    transform: scale(0.9);
+    box-shadow: 0 0 5px orange;
+}
+
+
 
 .culinary-level-form-container {
     display: inline-block;
