@@ -105,3 +105,12 @@ a.show-more-card {
   padding-top: 15px;
   color: lightgray;
 }
+.show-more-card {
+  color: lightgray;
+  border: none;
+  background: transparent;
+  padding-top: 15px;
+}
+.show-more-card:focus {
+  outline: none;
+}
