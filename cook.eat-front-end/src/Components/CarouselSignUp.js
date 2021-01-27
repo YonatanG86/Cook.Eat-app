@@ -165,25 +165,25 @@ const CarouselSignUp = ({ carouselData }) => {
 					</Form.Group>
 
 
-          <Form.Group>
-            <Form.Label>Profile Image</Form.Label>
+          <Form.Group id="profile-image-signup">
+            <Form.Label>Upload your avatar</Form.Label>
             <Form.Control
               name="picture"
               type="file"
               placeholder="Avater"
               onChange={handleFileUpload}
             />
-            <img
+            {/* <img
               src={userImage}
               style={{ maxWidth: "5rem" }}
               alt="profile-image"
-            />
+            /> */}
           </Form.Group>
-          <div className="button-container">
+          <div className="button-container-signup">
             <Button className="signup-btn btn-primary btn-block" type="submit">
               Sign up
             </Button>
-            <p className="disclaimer">
+            <p id="disclaimer">
               By continuing you agree to Cook.Eat's Terms of Service &amp;
               Privacy Policy.
             </p>

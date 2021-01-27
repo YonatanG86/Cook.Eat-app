@@ -13,15 +13,23 @@ import { useAuth } from "../Conteaxts/autoConteaxt";
 const HomePage = () => {
   const { currentUser } = useAuth;
   const [recipes, setRecipes] = useState([]);
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    console.log(user);
-    async function searchRecipes() {
-      const res = await fetch(`http://localhost:5000/recipes`);
-      const data = await res.json();
-      console.log("data", data);
-      setRecipes(data);
+  const [ userId, setUserId ] = useState()
+
+const searchRecipes = async() => {
+  const user = await localStorage.getItem("user");
+  let res
+  console.log(user)
+    if(user){
+      console.log('hello')
+      res = await fetch(`http://localhost:5000/recipes/filter/${user}`);  
+    } else {
+      res = await fetch(`http://localhost:5000/recipes`);
     }
+    const data = await res.json();
+    setRecipes(data);
+  }
+
+  useEffect(() => {
     searchRecipes();
   }, []);
 

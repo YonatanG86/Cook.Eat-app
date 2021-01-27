@@ -21,7 +21,8 @@
 
 .signup-modal .modal-header {
     background-color: black;
-    color: white;
+    color: lightgray;
+    border-bottom: 1px solid black;
 }
 
 .signup-modal .modal-header span {
@@ -33,5 +34,6 @@
 }
 
 .signup-modal .modal-body {
-    background-color: lightgray;
+    background-image: url("../img/backgrounds/bg7.jpg");
+    background-position: 0% 50%;
 }

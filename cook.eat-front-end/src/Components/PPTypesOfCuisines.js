@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/PPTypesOfCuisines.css';
 import { Image, Carousel } from 'react-bootstrap';
 import AmericanCuisine from '../img/types-of-cuisines/american.jpg';
@@ -30,11 +30,40 @@ import VietnameseCuisine from '../img/types-of-cuisines/vietnamese.jpg';
 
 const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 	const [carouselIndex, setCarouselIndex] = useState(0);
-
+	const [culinaryType, setCulinaryType] = useState({
+		american: false,
+		brazilian: false,
+		caribbean: false,
+		chinese: false,
+		english: false,
+		ethiopian: false,
+		french: false,
+		filipino: false,
+		georgian: false,
+		german: false,
+		greek: false,
+		indian: false,
+		indonesian: false,
+		italian: false,
+		jamaican: false,
+		japanese: false,
+		jewish: false,
+		korean: false,
+		mexican: false,
+		polish: false,
+		persian: false,
+		portuguese: false,
+		russian: false,
+		spanish: false,
+		thai: false,
+		vietnamese: false,
+	});
 	const handleCarouseItemSelect = (selectedIndex, event) => {
 		setCarouselIndex(selectedIndex);
 	};
-	console.log('CarouselTypesOfCuisines american', formInfo.culinaryType.american);
+	useEffect(() => {
+		setFormInfo((pre) => ({ ...pre, culinaryType }));
+	}, [culinaryType]);
 	return (
 		<Carousel
 			className='cuisines-types-carousel'
@@ -46,7 +75,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 				<div className='types-of-cuisines'>
 					<ul className='types-of-cuisines-list'>
 						<li>
-							<input type='checkbox' id='cb1' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb1'
+								name='american'
+								checked={formInfo.culinaryType.american}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb1'>
 								<div className='cuisine-types-container'>
 									<Image src={AmericanCuisine} roundedCircle />
@@ -55,7 +96,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb2' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb2'
+								name='brazilian'
+								checked={formInfo.culinaryType.brazilian}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb2'>
 								<div className='cuisine-types-container'>
 									<Image src={BrazilianCuisine} roundedCircle />
@@ -64,7 +117,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb3' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb3'
+								name='caribbean'
+								checked={formInfo.culinaryType.caribbean}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb3'>
 								<div className='cuisine-types-container'>
 									<Image src={CaribbeanCuisine} roundedCircle />
@@ -73,7 +138,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb4' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb4'
+								name='chinese'
+								checked={formInfo.culinaryType.chinese}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb4'>
 								<div className='cuisine-types-container'>
 									<Image src={ChineseCuisine} roundedCircle />
@@ -89,7 +166,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 				<div className='types-of-cuisines'>
 					<ul className='types-of-cuisines-list'>
 						<li>
-							<input type='checkbox' id='cb5' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb5'
+								name='english'
+								checked={formInfo.culinaryType.english}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb5'>
 								<div className='cuisine-types-container'>
 									<Image src={EnglishCuisine} roundedCircle />
@@ -98,7 +187,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb6' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb6'
+								name='ethiopian'
+								checked={formInfo.culinaryType.ethiopian}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb6'>
 								<div className='cuisine-types-container'>
 									<Image src={EthiopianCuisine} roundedCircle />
@@ -107,7 +208,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb7' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb7'
+								name='french'
+								checked={formInfo.culinaryType.french}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb7'>
 								<div className='cuisine-types-container'>
 									<Image src={FrenchCuisine} roundedCircle />
@@ -116,7 +229,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb8' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb8'
+								name='filipino'
+								checked={formInfo.culinaryType.filipino}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb8'>
 								<div className='cuisine-types-container'>
 									<Image src={FilipinoCuisine} roundedCircle />
@@ -132,7 +257,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 				<div className='types-of-cuisines'>
 					<ul className='types-of-cuisines-list'>
 						<li>
-							<input type='checkbox' id='cb9' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb9'
+								name='georgian'
+								checked={formInfo.culinaryType.georgian}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb9'>
 								<div className='cuisine-types-container'>
 									<Image src={GeorgianCuisine} roundedCircle />
@@ -141,7 +278,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb10' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb10'
+								name='german'
+								checked={formInfo.culinaryType.german}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb10'>
 								<div className='cuisine-types-container'>
 									<Image src={GermanCuisine} roundedCircle />
@@ -150,7 +299,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb11' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb11'
+								name='greek'
+								checked={formInfo.culinaryType.greek}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb11'>
 								<div className='cuisine-types-container'>
 									<Image src={GreekCuisine} roundedCircle />
@@ -159,7 +320,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb12' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb12'
+								name='indian'
+								checked={formInfo.culinaryType.indian}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb12'>
 								<div className='cuisine-types-container'>
 									<Image src={IndianCuisine} roundedCircle />
@@ -175,7 +348,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 				<div className='types-of-cuisines'>
 					<ul className='types-of-cuisines-list'>
 						<li>
-							<input type='checkbox' id='cb13' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb13'
+								name='indonesian'
+								checked={formInfo.culinaryType.indonesian}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb13'>
 								<div className='cuisine-types-container'>
 									<Image src={IndonesianCuisine} roundedCircle />
@@ -184,7 +369,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb14' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb14'
+								name='italian'
+								checked={formInfo.culinaryType.italian}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb14'>
 								<div className='cuisine-types-container'>
 									<Image src={ItalianCuisine} roundedCircle />
@@ -193,7 +390,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb15' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb15'
+								name='jamaican'
+								checked={formInfo.culinaryType.jamaican}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb15'>
 								<div className='cuisine-types-container'>
 									<Image src={JamaicanCuisine} roundedCircle />
@@ -202,7 +411,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb16' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb16'
+								name='japanese'
+								checked={formInfo.culinaryType.japanese}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb16'>
 								<div className='cuisine-types-container'>
 									<Image src={JapaneseCuisine} roundedCircle />
@@ -218,7 +439,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 				<div className='types-of-cuisines'>
 					<ul className='types-of-cuisines-list'>
 						<li>
-							<input type='checkbox' id='cb17' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb17'
+								name='jewish'
+								checked={formInfo.culinaryType.jewish}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb17'>
 								<div className='cuisine-types-container'>
 									<Image src={JewishCuisine} roundedCircle />
@@ -227,7 +460,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb18' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb18'
+								name='korean'
+								checked={formInfo.culinaryType.korean}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb18'>
 								<div className='cuisine-types-container'>
 									<Image src={KoreanCuisine} roundedCircle />
@@ -236,7 +481,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb19' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb19'
+								name='mexican'
+								checked={formInfo.culinaryType.mexican}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb19'>
 								<div className='cuisine-types-container'>
 									<Image src={MexicanCuisine} roundedCircle />
@@ -245,7 +502,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb20' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb20'
+								name='polish'
+								checked={formInfo.culinaryType.polish}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb20'>
 								<div className='cuisine-types-container'>
 									<Image src={PolishCuisine} roundedCircle />
@@ -261,7 +530,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 				<div className='types-of-cuisines'>
 					<ul className='types-of-cuisines-list'>
 						<li>
-							<input type='checkbox' id='cb21' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb21'
+								name='persian'
+								checked={formInfo.culinaryType.persian}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb21'>
 								<div className='cuisine-types-container'>
 									<Image src={PersianCuisine} roundedCircle />
@@ -270,7 +551,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb22' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb22'
+								name='portuguese'
+								checked={formInfo.culinaryType.portuguese}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb22'>
 								<div className='cuisine-types-container'>
 									<Image src={PortugueseCuisine} roundedCircle />
@@ -279,7 +572,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb23' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb23'
+								name='russian'
+								checked={formInfo.culinaryType.russian}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb23'>
 								<div className='cuisine-types-container'>
 									<Image src={RussianCuisine} roundedCircle />
@@ -288,7 +593,19 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb24' />
+							<input
+								disabled={edit}
+								type='checkbox'
+								id='cb24'
+								name='spanish'
+								checked={formInfo.culinaryType.spanish}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb24'>
 								<div className='cuisine-types-container'>
 									<Image src={SpanishCuisine} roundedCircle />
@@ -304,7 +621,18 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 				<div className='types-of-cuisines'>
 					<ul className='types-of-cuisines-list'>
 						<li>
-							<input type='checkbox' id='cb25' />
+							<input
+								type='checkbox'
+								id='cb25'
+								name='thai'
+								checked={formInfo.culinaryType.thai}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb25'>
 								<div className='cuisine-types-container'>
 									<Image src={ThaiCuisine} roundedCircle />
@@ -313,7 +641,18 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 							</label>
 						</li>
 						<li>
-							<input type='checkbox' id='cb26' />
+							<input
+								type='checkbox'
+								id='cb26'
+								name='vietnamese'
+								checked={formInfo.culinaryType.vietnamese}
+								onChange={(e) =>
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
+									}))
+								}
+							/>
 							<label for='cb26'>
 								<div className='cuisine-types-container'>
 									<Image src={VietnameseCuisine} roundedCircle />
