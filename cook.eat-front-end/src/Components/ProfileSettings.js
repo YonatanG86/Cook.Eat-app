@@ -119,7 +119,7 @@ const ProfileSettings = () => {
 					{!edit && (
 						<Button
 							style={{ display: { edit } ? 'block' : null }}
-							className='save-profile-button'
+							className='save-profile-button ml-2'
 							controlId='save-profile-button'
 							variant='primary'
 							type='submit'
@@ -228,7 +228,7 @@ const ProfileSettings = () => {
 					{!edit && (
 						<Button
 							style={{ display: { edit } ? 'block' : null }}
-							className='save-profile-button'
+							className='save-profile-button '
 							controlId='save-profile-button'
 							variant='primary'
 							type='submit'

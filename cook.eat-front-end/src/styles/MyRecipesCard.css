@@ -102,7 +102,7 @@
   align-items: baseline;
 }
 
-#show-more-button {
+#show-more-card button {
   background: none;
   border: none;
   color: #A4420B;
@@ -113,4 +113,40 @@ a.show-more-card {
   padding-top: 15px;
   color: lightgray;
   align-items: baseline;
+}
+
+button.show-more-card.btn.btn-primary {
+  background-color: #A4420B;
+  border: none;
+}
+
+button.show-more-card.btn.btn-primary:hover {
+  background-color: #585300;
+  border: none;
+}
+
+.delete-recipe-modal .modal-dialog  {
+  transform: translate(0, -50%);
+  top: 50%;
+  margin: 0 auto;
+}
+
+.delete-recipe-modal .modal-header {
+  background-color: lightgray;
+  border-bottom: none;
+}
+
+.delete-recipe-modal .modal-body {
+  background-color: lightgray;
+  border-bottom: none;
+}
+
+.delete-recipe-modal .modal-footer {
+  background-color: lightgray;
+  border-top: none;
+}
+
+#remove-recipe {
+  background-color: black;
+  color: lightgray;
 }
