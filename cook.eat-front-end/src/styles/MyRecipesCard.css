@@ -59,7 +59,6 @@
   border: none;
   background-color: #C7B653;
   /* background-color: #8A2604; */
-  
 }
 
 .card-dish-type {
@@ -75,7 +74,7 @@
 
 .card-dish-time {
   border-right: 2px solid #903403;
-  width: 33%;
+  width: 30%;
   text-align: center;
 }
 
@@ -86,7 +85,7 @@
 }
 
 .card-dish-level {
-  width: 33%;
+  width: 37%;
   text-align: center;
 }
 
