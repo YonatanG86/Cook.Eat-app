@@ -58,10 +58,6 @@ const CarouselTypesOfCuisines = ({ setCarouselData }) => {
 		vietnamese: false,
 	});
 
-	const handleChange = (event) => {
-		setCulinaryType((culinaryType) => ({ ...culinaryType, [event.target.name]: !culinaryType[event.target.name] })); // previous state of the culinary type
-		setCarouselData((previous) => ({ ...previous, culinaryType })); // current state (next) of culinary
-	};
 	useEffect(() => {
 		setCarouselData((previous) => ({ ...previous, culinaryType }));
 	}, [culinaryType]);
