@@ -46,17 +46,17 @@ const CarouselSignUp = ({ carouselData }) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		console.log(formInfo);
+		const allInfoForNewUser = { ...carouselData, ...formInfo };
 		let formData = new FormData();
 		formData.append('data', JSON.stringify(formInfo));
 		formData.append('petImage', file);
-		signupUser(formInfo);
-		window.location.reload();
+		signupUser(allInfoForNewUser);
 	};
 
 	return (
-		<div className="signup-form-wrapper">
-			<div className="signup-form-container">
-				<Form onSubmit={onSubmit} className="signup-form">
+		<div className='signup-form-wrapper'>
+			<div className='signup-form-container'>
+				<Form onSubmit={onSubmit} className='signup-form'>
 					<Form.Group as={Col} controlId='formGridUsername'>
 						<Form.Label>Username</Form.Label>
 						<Form.Control
@@ -135,7 +135,9 @@ const CarouselSignUp = ({ carouselData }) => {
 								</p>
 							)}
 						</div>
-						<Form.Control.Feedback type='invalid'>The password is empty or doesn't match</Form.Control.Feedback>
+						<Form.Control.Feedback type='invalid'>
+							The password is empty or doesn't match
+						</Form.Control.Feedback>
 					</Form.Group>
 
 					<Form.Group>

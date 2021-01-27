@@ -5,8 +5,18 @@ import { useForm } from "react-hook-form";
 import Ingredient from "./ingredient";
 import Steps from "./Steps";
 import { useAuth } from "../Conteaxts/autoConteaxt";
+import { useHistory } from "react-router-dom";
 import "../styles/AddRecipe.css";
+import { BounceLoader } from "react-spinners";
+import { css } from "@emotion/react";
 import { Button, Form, InputGroup, FormControl } from "react-bootstrap";
+
+const override = css`
+  position: fixed;
+  top: 40%;
+  left: 30%;
+  border-color: red;
+`;
 
 const formFields = {
   recipeTitle: "",
@@ -20,10 +30,13 @@ const formFields = {
   calories: 0,
   dishLevel: "",
   mealType: "",
-  writer: "cureent user",
+  writer: localStorage.getItem("user"),
 };
 const AddRecipe = () => {
   const types = ["image/png", "image/jpeg", "image/jpg"];
+  const history = useHistory();
+  const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { addRecipe } = useAuth();
   const { register, handleSubmit, errors } = useForm();
   const [formInfo, setFormInfo] = useState(formFields);
@@ -57,13 +70,20 @@ const AddRecipe = () => {
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
+    setLoading(true);
+    setDisabled(true);
     const res = saveIngredient();
     if (res) {
       let formData = new FormData();
       formData.append("data", JSON.stringify(formInfo));
       formData.append("picture", file);
       const result = await addRecipe(formData);
-      if (result) notifySuccess("Your recipe🥝has been successfully saved!");
+      if (result) {
+        notifySuccess("Your recipe🥝has been successfully saved!");
+        history.push("/my-recipes");
+      }
+      setLoading(false);
+      setDisabled(false);
     }
   };
 
@@ -362,7 +382,7 @@ const AddRecipe = () => {
           <img src={recipeImage} alt="" />
         </Form.Group>
 
-        <Button className="add-recipe-btn" type="submit">
+        <Button className="add-recipe-btn" type="submit" disabled={disabled}>
           Submit your Recipe
         </Button>
       </Form>
@@ -370,6 +390,12 @@ const AddRecipe = () => {
         className="add-recipe-img"
         src="./addRecipe/add_recipe.jpg"
         alt="add-recipe"
+      />
+      <BounceLoader
+        css={override}
+        size={80}
+        color={"#B73032"}
+        loading={loading}
       />
     </div>
   );

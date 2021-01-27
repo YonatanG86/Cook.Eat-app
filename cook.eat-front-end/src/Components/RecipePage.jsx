@@ -5,6 +5,7 @@ import { FaPen, FaHeart, FaFireAlt, FaClock } from 'react-icons/fa'
 import { GiCookingPot } from 'react-icons/gi'
 import { loadRecipe, likeRecipe, addRecipeToProfile, getUserById } from '../libs/utils'
 import { cuisinePic } from '../libs/cuisine'
+import { withRouter } from 'react-router-dom'
 
 function RecipePage(props) {
 
@@ -14,13 +15,16 @@ function RecipePage(props) {
     const [ user, setUser ] = useState()
     const [ cuisines, setCuisines ] = useState()
     const [ writerName, setWriterName ] = useState()
-    // const {id} = props
-    const id = '600d3dd109c0130810aa4560'
+    const {id} = props.match.params
+    // const id = '600d3dd109c0130810aa4560'
+ 
 
+    //add or remove likes
     const addLike = async() => {
         let likes = recipe.likes
-        // const like = await addRecipeToProfile(userId, id)
-        if(like){
+        const like = await addRecipeToProfile(user, id)
+        console.log(like)
+        if(!like){
             setCountLikes(countLikes + 1)
             likes = likes - 1
             setLike(0)
@@ -46,9 +50,7 @@ function RecipePage(props) {
             setCuisines(response)
             getWriter(result.writer)
         } 
-
     }
-
 
     const getUser = () => {
         const userId = localStorage.getItem('user')
@@ -118,4 +120,4 @@ function RecipePage(props) {
     )
 }
 
-export default RecipePage
+export default withRouter(RecipePage)
