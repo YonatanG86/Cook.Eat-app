@@ -34,10 +34,6 @@ const MyRecipesCard = (props) => {
     }
   };
 
-  useEffect(() => {
-    getUser();
-  }, []);
-
   const deleteRecipe = async () => {
     setLoading(true);
     // setDisabled(false);
@@ -46,9 +42,13 @@ const MyRecipesCard = (props) => {
     if (res) window.location.reload();
   };
 
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <div className="my-recipe-cards-container">
-      <Card style={{ width: "30rem" }}>
+      <Card style={{ width: "25rem" }}>
         <Card.Img
           variant="top"
           src={recipe.picture || "./addRecipe/no-imag.png"}
@@ -96,15 +96,6 @@ const MyRecipesCard = (props) => {
                 <b>Delete</b>
               </button>
             )}
-            {/* {user === recipe.writer && (
-              <NavLink
-                exact
-                to={`/add-recipe/${recipe._id}`}
-                className="show-more-card"
-              >
-                <b>update</b>
-              </NavLink>
-            )} */}
           </div>
         </Card.Body>
       </Card>
