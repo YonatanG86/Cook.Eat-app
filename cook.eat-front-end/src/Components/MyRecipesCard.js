@@ -60,10 +60,14 @@ const MyRecipesCard = (props) => {
           >
             Show More
           </NavLink>
-          {user && (
-            <Button className="my-update" variant="primary">
-              Add more
-            </Button>
+          {user === recipe.writer && (
+            <NavLink
+              exact
+              to={`/add-recipe/${recipe._id}`}
+              className="my-update"
+            >
+              update
+            </NavLink>
           )}
         </div>
       </Card.Body>

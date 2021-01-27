@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import '../styles/CarouselCulinaryLevel.css';
 import { Image } from 'react-bootstrap';
@@ -64,6 +65,7 @@ const CarouselCulinaryLevel = ({ setCarouselData }) => {
 			</div>
 		</div>
 	);
+
 };
 
 export default CarouselCulinaryLevel;

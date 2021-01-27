@@ -1,11 +1,12 @@
 import React from "react";
 import { Button, Form, InputGroup, FormControl } from "react-bootstrap";
 import "../styles/AddRecipe.css";
-const Ingredient = ({ addIngredient, removeIngredient, id }) => {
+const Ingredient = ({ addIngredient, removeIngredient, id, dealtas }) => {
   return (
     <InputGroup className="ingredient mb-3">
       <FormControl
         name="ingredientName"
+        value={dealtas.ingredientName}
         placeholder="Ingredient name"
         onChange={addIngredient}
         required
@@ -13,6 +14,7 @@ const Ingredient = ({ addIngredient, removeIngredient, id }) => {
       <InputGroup.Prepend>
         <FormControl
           name="quantity"
+          value={dealtas.quantity}
           type="number"
           placeholder="Quantity"
           onChange={addIngredient}
@@ -23,6 +25,7 @@ const Ingredient = ({ addIngredient, removeIngredient, id }) => {
         <Form.Control
           required
           name="units"
+          value={dealtas.units}
           as="select"
           onChange={addIngredient}
         >
@@ -46,7 +49,7 @@ const Ingredient = ({ addIngredient, removeIngredient, id }) => {
         className="plus-btn"
         onClick={() => removeIngredient(id)}
       >
-        <img src="./addRecipe/delete.png" alt="garbage-icon" />
+        <img src="../addRecipe/delete.png" alt="garbage-icon" />
       </Button>
     </InputGroup>
   );
