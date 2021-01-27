@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/RegistrationCarousel.css';
 import CarouselTypesOfCuisines from '../Components/CarouselTypesOfCuisines';
 import CarouselSpecialDiets from '../Components/CarouselSpecialDiets';
@@ -14,6 +14,10 @@ const RegistrationCarousel = () => {
 		setIndex(selectedIndex);
 	};
 
+	useEffect(() => {
+		console.log('carouselData', carouselData);
+	}, [carouselData]);
+
 	const directionButtons = (direction) => {
 		return (
 			<span aria-hidden='true' className={direction === 'Next' ? 'button-next' : 'button-prev'}>
@@ -28,11 +32,10 @@ const RegistrationCarousel = () => {
 				className='registration-carousel'
 				interval={null}
 				activeIndex={index}
-				nextIcon={directionButtons('Next')}
-				prevIcon={directionButtons('Previous')}
+				nextIcon={index === 3 ? null : directionButtons('Next')}
+				prevIcon={index === 0 ? null : directionButtons('Previous')}
+				controls={true}
 				onSelect={handleSelect}
-				prevLabel={index === 0 ? null : 'Previous'}
-				nextLabel={index === 3 ? null : 'Next'}
 			>
 				<Carousel.Item>
 					<p className='personalized-experience'>PERSONALIZE YOUR EXPERIENCE</p>

@@ -35,7 +35,8 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="conteiner-cards-recipe">
+      
+      <div className="my-recipe-cards-wrapper">
         {recipes.map((recipe, i) => {
           return <MyRecipesCard key={i} recipe={recipe} />;
         })}

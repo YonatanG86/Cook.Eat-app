@@ -106,6 +106,7 @@ router.delete("/:id", async (req, res) => {
 
 // update recipe
 router.put("/:id", upload.single("picture"), async (req, res) => {
+  const data = JSON.parse(req.body.data);
   try {
     let updateRecipe;
     let recipe = await RecipesModel.findById(req.params.id);
@@ -120,7 +121,7 @@ router.put("/:id", upload.single("picture"), async (req, res) => {
         cloudinaryId: result.public_id || recipe.cloudinaryId,
       };
     } else {
-      updateRecipe = { ...req.body };
+      updateRecipe = { ...data };
     }
     //update recipe in database
     recipe = await RecipesModel.findByIdAndUpdate(req.params.id, updateRecipe, {

@@ -10,6 +10,49 @@ import Pescaterian from '../img/special-diets-carousel/pescaterian.png';
 import Vegeterian from '../img/special-diets-carousel/vegeterian.png';
 import Vegan from '../img/special-diets-carousel/vegan.png';
 
+const specialDietData = [
+	{
+		name: 'glutenFree',
+		src: GlutenFree,
+		span: 'Gluten-Free',
+	},
+	{
+		name: 'halal',
+		src: Halal,
+		span: 'Halal',
+	},
+	{
+		name: 'keto',
+		src: Keto,
+		span: 'Keto',
+	},
+	{
+		name: 'aleo',
+		src: Paleo,
+		span: 'Paleo',
+	},
+	{
+		name: 'kosher',
+		src: Kosher,
+		span: 'Kosher',
+	},
+	{
+		name: 'pescaterian',
+		src: Pescaterian,
+		span: 'Pescaterian',
+	},
+	{
+		name: 'vegeterian',
+		src: Vegeterian,
+		span: 'Vegeterian',
+	},
+	{
+		name: 'vegan',
+		src: Vegan,
+		span: 'Vegan',
+	},
+];
+
 const CarouselSpecialDiets = ({ setCarouselData }) => {
 	const [specialDiet, setSpecialDiet] = useState({
 		glutenFree: false,
@@ -22,100 +65,38 @@ const CarouselSpecialDiets = ({ setCarouselData }) => {
 		vegan: false,
 	});
 
-	const handleChange = (event) => {
-		setSpecialDiet((specialDiet, current) => ({
-			...current,
-			[event.target.name]: !specialDiet[event.target.name],
-		}));
-		setCarouselData((previous) => ({ ...previous, specialDiet }));
-		console.log(specialDiet);
-	};
 	useEffect(() => {
-		console.log('useeffect', specialDiet);
+		setCarouselData((previous) => ({ ...previous, specialDiet }));
 	}, [specialDiet]);
 
 	return (
 		<>
 			<div className='special-diets'>
-				<ul className='special-diets-list'>
-					<li>
-						<input type='checkbox' id='special-diet1' name='glutenFree' onChange={handleChange} />
-						<label for='special-diet1'>
-							<div className='special-diets-container'>
-								<Image src={GlutenFree} roundedCircle />
-								<span>Gluten-Free</span>
+				<div className='special-diets-list row p-5 w-75 justify-content-center'>
+					{specialDietData.map((diet) => {
+						return (
+							<div>
+								<input
+									type='checkbox'
+									id={diet.name}
+									name={diet.name}
+									onChange={(e) =>
+										setSpecialDiet((pre) => ({
+											...pre,
+											[e.target.name]: !specialDiet[e.target.name],
+										}))
+									}
+								/>
+								<label for={diet.name}>
+									<div className='special-diets-container'>
+										<Image src={diet.src} roundedCircle />
+										<span>{diet.span}</span>
+									</div>
+								</label>
 							</div>
-						</label>
-					</li>
-					<li>
-						<input type='checkbox' id='special-diet2' name='halal' onChange={handleChange} />
-						<label for='special-diet2'>
-							<div className='special-diets-container'>
-								<Image src={Halal} roundedCircle />
-								<span>Halal</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input type='checkbox' id='special-diet3' name='keto' onChange={handleChange} />
-						<label for='special-diet3'>
-							<div className='special-diets-container'>
-								<Image src={Keto} roundedCircle />
-								<span>Keto</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input type='checkbox' id='special-diet4' name='kosher' onChange={handleChange} />
-						<label for='special-diet4'>
-							<div className='special-diets-container'>
-								<Image id='kosher' src={Kosher} roundedCircle />
-								<span>Kosher</span>
-							</div>
-						</label>
-					</li>
-				</ul>
-			</div>
-
-			<div className='special-diets'>
-				<ul className='special-diets-list'>
-					<li>
-						<input type='checkbox' id='special-diet5' name='paleo' onChange={handleChange} />
-						<label for='special-diet5'>
-							<div className='special-diets-container'>
-								<Image src={Paleo} roundedCircle />
-								<span>Paleo</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input type='checkbox' id='special-diet6' name='pescaterian' onChange={handleChange} />
-						<label for='special-diet6'>
-							<div className='special-diets-container'>
-								<Image src={Pescaterian} roundedCircle />
-								<span>Pescaterian</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input type='checkbox' id='special-diet7' name='vegeterian' onChange={handleChange} />
-						<label for='special-diet7'>
-							<div className='special-diets-container'>
-								<Image src={Vegeterian} roundedCircle />
-								<span>Vegeterian</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input type='checkbox' id='special-diet8' name='vegan' onChange={handleChange} />
-						<label for='special-diet8'>
-							<div className='special-diets-container'>
-								<Image src={Vegan} roundedCircle />
-								<span>Vegan</span>
-							</div>
-						</label>
-					</li>
-				</ul>
+						);
+					})}
+				</div>
 			</div>
 		</>
 	);
