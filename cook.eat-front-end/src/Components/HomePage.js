@@ -16,7 +16,7 @@ const HomePage = () => {
   const [ userId, setUserId ] = useState()
 
 const searchRecipes = async() => {
-  const user = localStorage.getItem("user");
+  const user = await localStorage.getItem("user");
   let res
   console.log(user)
     if(user){
