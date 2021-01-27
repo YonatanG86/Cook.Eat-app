@@ -6,7 +6,7 @@ const Ingredient = ({ addIngredient, removeIngredient, id, dealtas }) => {
     <InputGroup className="ingredient mb-3">
       <FormControl
         name="ingredientName"
-        value={dealtas.ingredientName}
+        // value={dealtas.ingredientName}
         placeholder="Ingredient name"
         onChange={addIngredient}
         required
@@ -14,7 +14,7 @@ const Ingredient = ({ addIngredient, removeIngredient, id, dealtas }) => {
       <InputGroup.Prepend>
         <FormControl
           name="quantity"
-          value={dealtas.quantity}
+          // value={dealtas.quantity}
           type="number"
           placeholder="Quantity"
           onChange={addIngredient}
@@ -25,7 +25,7 @@ const Ingredient = ({ addIngredient, removeIngredient, id, dealtas }) => {
         <Form.Control
           required
           name="units"
-          value={dealtas.units}
+          // value={dealtas.units}
           as="select"
           onChange={addIngredient}
         >
