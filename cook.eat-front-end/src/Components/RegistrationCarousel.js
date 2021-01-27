@@ -56,7 +56,7 @@ const RegistrationCarousel = () => {
             
             <Carousel.Item>
               <h3>Create your account by filling out the information below</h3>
-              <CarouselSignUp />
+              <CarouselSignUp carouselData={carouselData} />
             </Carousel.Item>
           </Carousel>
         </>
