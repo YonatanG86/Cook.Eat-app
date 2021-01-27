@@ -216,6 +216,9 @@ router.get("/filter/:userId", async (req, res) => {
         }}})
     results = final
   }
+  if(results.length < 2){
+    results = await RecipesModel.find({})
+  }
   res.status(200).send(results)
   }
 } catch (err) {
@@ -228,3 +231,52 @@ function escapeRegex(text) {
 }
 
 module.exports = router;
+
+// } else {
+//   const user = await UserModel.findById(req.params.userId)
+//   const culinaryType = user.culinaryType;
+//   const specialDiet = user.specialDiet
+//   let cuisine = []
+//   let diet = []
+//   let dishLevel
+//   let results
+//   if(user.culinaryLevel){
+//     dishLevel = user.culinaryLevel
+//     results = await RecipesModel.find({dishLevel: dishLevel})
+//   } else {
+//     results = await RecipesModel.find({})
+//   }
+//   for(let item in culinaryType){
+//     if(culinaryType[item] === true){
+//       cuisine.push(item)
+//     }
+//   }
+//   cuisine.shift()
+//   if(cuisine.length > 0){
+//     const newRes = results.filter(
+//       item => {for(let x of cuisine){
+//         if(item.cuisineType == x){
+//         return true
+//         }}})
+//     results = newRes
+//   }
+//   for(let item in specialDiet){
+//     if(specialDiet[item] === true){
+//       diet.push(item)
+//     }
+//   }
+//   diet.shift()
+//   if(diet.length > 0){
+//     const final = results.filter(item => {
+//       for(let i of diet){
+//         if(item.dietType == i){
+//           return true
+//         }}})
+//     results = final
+//   }
+//   res.status(200).send(results)
+//   }
+// } catch (err) {
+//     res.status(500).send(err)
+//   }
+// });
