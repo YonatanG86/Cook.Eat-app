@@ -64,8 +64,7 @@ const CarouselTypesOfCuisines = ({ setCarouselData }) => {
 	};
 	useEffect(() => {
 		setCarouselData((previous) => ({ ...previous, culinaryType }));
-		console.log(culinaryType);
-	}, [setCulinaryType]);
+	}, [culinaryType]);
 
 	return (
 		<div className='types-of-cuisines-wrapper'>
@@ -77,11 +76,10 @@ const CarouselTypesOfCuisines = ({ setCarouselData }) => {
 								type='checkbox'
 								id='cb1'
 								name='american'
-								// defaultChecked={culinaryType.american}
 								onChange={(e) =>
-									setCulinaryType((culinaryType) => ({
-										...culinaryType,
-										[e.target.name]: ![e.target.value],
+									setCulinaryType((pre) => ({
+										...pre,
+										[e.target.name]: !culinaryType[e.target.name],
 									}))
 								}
 							/>

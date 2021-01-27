@@ -17,7 +17,7 @@ export const AutoProvider = ({ children }) => {
 	//signUp
 	const signupUser = async (formInfo) => {
 		//Todo: Submitting the form to a server
-		// console.log(formInfo);
+		console.log(formInfo);
 		try {
 			console.log('before', formInfo);
 			const res = await axios.post(`${baseUrl}/auth/signup`, formInfo);
@@ -79,6 +79,7 @@ export const AutoProvider = ({ children }) => {
 		try {
 			const res = await axios.put(`${baseUrl}/users/${id}`, formInfo);
 			if (res.data) {
+				console.log(res.data);
 				return res.data;
 			}
 		} catch (err) {
@@ -89,7 +90,7 @@ export const AutoProvider = ({ children }) => {
 	//remove user
 	const removeUser = async (uId) => {
 		try {
-			const res = await axios.delete(`${baseUrl}/user/${uId}`);
+			const res = await axios.delete(`${baseUrl}/users/${uId}`);
 			return res.data;
 		} catch (err) {
 			return err.response.data;
@@ -99,7 +100,7 @@ export const AutoProvider = ({ children }) => {
 	//get all the recipes
 	const getAllRecipes = async (id) => {
 		try {
-			const res = await axios.get(`${baseUrl}/user/${id}`);
+			const res = await axios.get(`${baseUrl}/users/${id}`);
 			return res.data;
 		} catch (err) {
 			return err.response.data;
@@ -109,7 +110,7 @@ export const AutoProvider = ({ children }) => {
 	// update recipe
 	const UpdateRecipe = async (id, formInfo) => {
 		try {
-			const res = await axios.put(`${baseUrl}/user/${id}`, formInfo);
+			const res = await axios.put(`${baseUrl}/users/${id}`, formInfo);
 			if (res.data) {
 				return res.data;
 			}
@@ -129,19 +130,14 @@ export const AutoProvider = ({ children }) => {
 		}
 	};
 
-
-  //add recipe
-  const addRecipe = async (content) => {
-    try {
-      const userId = localStorage.getItem("user");
-      const res = await axios.post(`${baseUrl}/recipes/`, content);
-      if (res.data) {
-        const recipeId = res.data._id;
-        await axios.put(
-          `${baseUrl}/users/myRecipes/${userId}/${recipeId}`,
-          recipeId
-        );
-
+	//add recipe
+	const addRecipe = async (content) => {
+		try {
+			const userId = localStorage.getItem('user');
+			const res = await axios.post(`${baseUrl}/recipes/`, content);
+			if (res.data) {
+				const recipeId = res.data._id;
+				await axios.put(`${baseUrl}/users/myRecipes/${userId}/${recipeId}`, recipeId);
 
 				return res.data;
 			}

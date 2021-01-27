@@ -6,17 +6,11 @@ import Intermediate from '../img/culinary-level/intermediate.jpg';
 import Advanced from '../img/culinary-level/advanced.jpg';
 
 const CarouselCulinaryLevel = ({ setCarouselData }) => {
-	const [culinaryLevel, setCulinaryLevel] = useState('');
+	const [culinaryLevel, setCulinaryLevel] = useState({ culinaryLevel: '' });
 
-	const handleChange = (event) => {
-		setCulinaryLevel(event.target.value);
-		setCarouselData((previous, current) => ({ ...current, culinaryLevel }));
-		console.log(culinaryLevel);
-	};
 	useEffect(() => {
-		setCarouselData((previous, current) => ({ ...current, culinaryLevel }));
-		console.log(culinaryLevel);
-	}, [setCarouselData]);
+		setCarouselData((pre) => ({ ...pre, culinaryLevel }));
+	}, [culinaryLevel]);
 	return (
 		<div className='culinary-level-carousel-wrapper'>
 			<div className='culinary-level-carousel'>

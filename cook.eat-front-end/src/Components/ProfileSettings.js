@@ -68,6 +68,7 @@ const ProfileSettings = () => {
 	const [specialDietField, setSpecialDietField] = useState(specialDiets);
 	const [carouselIndex, setCarouselIndex] = useState(0);
 	const { userInfo, updateUserInfo } = useAuth();
+	let id
 	// const [isChecked, setIsChecked] = useState(false);
 
 	const handleCarouselSelect = (selectedIndex, event) => {
@@ -92,26 +93,24 @@ const ProfileSettings = () => {
 			...formInfo,
 			[e.target.name]: e.target.value,
 		});
-		console.log(formInfo);
 	};
 
-	useEffect(() => {
-		loadUserInfo();
-		console.log(formInfo);
-	}, []);
-
 	const loadUserInfo = async () => {
-		const id = localStorage.getItem('user');
+		id = localStorage.getItem('user');
 		const userFromDB = await userInfo(id);
 		setFormInfo(userFromDB);
 	};
+
 	const submitNewUserInfo = (e) => {
 		e.preventDefault();
-		const id = localStorage.getItem('user');
-		console.log(id);
+		id = localStorage.getItem('user');
 		updateUserInfo(id, formInfo);
 		setEdit(true);
 	};
+
+	useEffect(() => {
+		loadUserInfo();	
+	}, []);
 
 	return (
 		<div className='profile-settings-pagewrapper'>
@@ -145,9 +144,8 @@ const ProfileSettings = () => {
 						<Form.Control
 							disabled={edit}
 							className='form-input disabled_fs'
-							name='username'
-							type='username'
-							placeholder='Username'
+							name='userName'
+							type='name'
 							onChange={handleChange}
 							placeholder={formInfo.userName}
 						/>
@@ -157,7 +155,6 @@ const ProfileSettings = () => {
 						<Form.Control
 							type='date'
 							name='dob'
-							placeholder='Date of Birth'
 							onChange={handleChange}
 							disabled={edit}
 							placeholder={formInfo.birthDate}
@@ -172,11 +169,9 @@ const ProfileSettings = () => {
 							className='form-input'
 							name='email'
 							type='email'
-							placeholder='Enter email'
+							placeholder={formInfo.email}
 							onChange={handleChange}
 							disabled={edit}
-							placeholder={formInfo.email}
-							onChange
 						/>
 					</Form.Group>
 					<Form.Group as={Col} controlId='formGridPassword'>
