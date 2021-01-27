@@ -1,20 +1,6 @@
-.special-diets-carousel {
-    background-color: none;
-    padding: 35px;
-}
-  
-span.carousel-control-next-icon {
-    background-image: url(../img/carousel/next-arrow.jpg);
-}
-
-span.carousel-control-prev-icon {
-    background-image: url(../img/carousel/previous-arrow.png);
-}
-
 .special-diets {
     display: flex;
     justify-content: center;
-    margin-right: 33px;
 }
 
 .special-diets-list {
@@ -51,6 +37,7 @@ input[type="checkbox"] {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    color: lightgray;
 }
 
 .special-diets label::before {
@@ -79,23 +66,18 @@ input[type="checkbox"] {
     object-fit: cover;
 }
 
-/* #kosher {
-    width:  100px;
-    height: 100px;
-} */
-
 .special-diets :checked+label {
     border: none;
 }
 
 .special-diets :checked+label::before {
     content: "✓";
-    background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
+    background-image: linear-gradient(315deg, #e8c99b 0%, #E96156 74%);
     transform: scale(1);
     border: none;
 }
 
 .special-diets :checked+label img {
     transform: scale(0.9);
-    box-shadow: 0 0 5px orange;
+    box-shadow: 0 0 5px #E96156;
 }
