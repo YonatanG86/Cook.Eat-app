@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PPTypesOfCuisines from './PPTypesOfCuisines';
 import PPCulinaryLevel from './PPCulinaryLevel';
+import PPTypesOfDiets from './PPTypesOfDiets';
 import '../styles/ProfileSettings.css';
 import { Col, Row, Form, Button, Image, Carousel } from 'react-bootstrap';
 import { CountryDropdown } from 'react-country-region-selector';
@@ -14,48 +15,6 @@ import Vegeterian from '../img/special-diets/vegeterian.png';
 import Vegan from '../img/special-diets/vegan.png';
 import { useAuth } from '../Conteaxts/autoConteaxt';
 
-const specialDietData = [
-	{
-		name: 'glutenFree',
-		src: GlutenFree,
-		span: 'Gluten-Free',
-	},
-	{
-		name: 'halal',
-		src: Halal,
-		span: 'Halal',
-	},
-	{
-		name: 'keto',
-		src: Keto,
-		span: 'Keto',
-	},
-	{
-		name: 'aleo',
-		src: Paleo,
-		span: 'Paleo',
-	},
-	{
-		name: 'kosher',
-		src: Kosher,
-		span: 'Kosher',
-	},
-	{
-		name: 'pescaterian',
-		src: Pescaterian,
-		span: 'Pescaterian',
-	},
-	{
-		name: 'vegeterian',
-		src: Vegeterian,
-		span: 'Vegeterian',
-	},
-	{
-		name: 'vegan',
-		src: Vegan,
-		span: 'Vegan',
-	},
-];
 const specialDiets = {
 	glutenFree: false,
 	halal: false,
@@ -114,24 +73,10 @@ const ProfileSettings = () => {
 	let id;
 	// const [isChecked, setIsChecked] = useState(false);
 
-	const handleCarouselSelect = (selectedIndex, event) => {
-		setCarouselIndex(selectedIndex);
-	};
 	const editProfile = () => {
 		setEdit(!edit);
 	};
-	const handleChangeSpecialDiet = (e) => {
-		console.log();
-		setSpecialDietField({
-			...specialDietField,
-			[e.target.id]: e.target.value,
-		});
-		setFormInfo({
-			...formInfo,
-			specialDietField,
-		});
-		console.log('formInfo', formInfo);
-	};
+
 	const handleChange = (e) => {
 		console.log([e.target.name], ':', e.target.value);
 		setFormInfo({
@@ -174,7 +119,7 @@ const ProfileSettings = () => {
 					{!edit && (
 						<Button
 							style={{ display: { edit } ? 'block' : null }}
-							className='save-profile-button'
+							className='save-profile-button ml-2'
 							controlId='save-profile-button'
 							variant='primary'
 							type='submit'
@@ -264,122 +209,8 @@ const ProfileSettings = () => {
 							<Form.Group as={Row}>
 								<Form.Label as='legend' column sm={5}>
 									Special Diets
+									<PPTypesOfDiets setFormInfo={setFormInfo} edit={edit} formInfo={formInfo} />
 								</Form.Label>
-								<Form.Check type='checkbox' label={<div>test</div>} />
-								<Col sm={7} id='diets-checkbox-column'>
-									<Form.Check
-										disabled={edit}
-										type='checkbox'
-										name='typeOfDiet'
-										id='glutenFree'
-										onChange={handleChange}
-										// checked={formInfo.specialDiet.glutenFree}
-										label={
-											<div>
-												Gluten-Free
-												<img alt='logo' src={GlutenFree} className='diet-images' />
-											</div>
-										}
-									/>
-									<Form.Check
-										disabled={edit}
-										type='checkbox'
-										name='typeOfDiet'
-										id='halal'
-										onChange={handleChange}
-										checked={formInfo.specialDiet.halal}
-										label={
-											<div>
-												Halal
-												<img alt='logo' src={Halal} className='diet-images' />
-											</div>
-										}
-									/>
-									<Form.Check
-										disabled={edit}
-										type='checkbox'
-										name='typeOfDiet'
-										id='keto'
-										onChange={handleChange}
-										checked={formInfo.specialDiet.keto}
-										label={
-											<div>
-												Keto
-												<img alt='logo' src={Keto} className='diet-images' />
-											</div>
-										}
-									/>
-									<Form.Check
-										disabled={edit}
-										type='checkbox'
-										name='typeOfDiet'
-										id='Kosher'
-										onChange={handleChange}
-										checked={formInfo.specialDiet.kosher}
-										label={
-											<div>
-												Kosher
-												<img alt='logo' src={Kosher} className='diet-images' />
-											</div>
-										}
-									/>
-									<Form.Check
-										disabled={edit}
-										type='checkbox'
-										name='typeOfDiet'
-										id='paleo'
-										onChange={handleChange}
-										checked={formInfo.specialDiet.paleo}
-										label={
-											<div>
-												Paleo
-												<img alt='logo' src={Paleo} className='diet-images' />
-											</div>
-										}
-									/>
-									<Form.Check
-										disabled={edit}
-										type='checkbox'
-										name='typeOfDiet'
-										id='pescaterian'
-										onChange={handleChange}
-										checked={formInfo.specialDiet.pescaterian}
-										label={
-											<div>
-												Pescaterian
-												<img alt='logo' src={Pescaterian} className='diet-images' />
-											</div>
-										}
-									/>
-									<Form.Check
-										disabled={edit}
-										type='checkbox'
-										name='typeOfDiet'
-										id='vegeterian'
-										onChange={handleChange}
-										checked={formInfo.specialDiet.vegeterian}
-										label={
-											<div>
-												Vegeterian
-												<img alt='logo' src={Vegeterian} className='diet-images' />
-											</div>
-										}
-									/>
-									<Form.Check
-										disabled={edit}
-										type='checkbox'
-										name='typeOfDiet'
-										id='vegan'
-										onChange={handleChange}
-										checked={formInfo.specialDiet.vegan}
-										label={
-											<div>
-												Vegan
-												<img alt='logo' src={Vegan} className='diet-images' />
-											</div>
-										}
-									/>
-								</Col>
 							</Form.Group>
 						</fieldset>
 					</div>
@@ -397,7 +228,7 @@ const ProfileSettings = () => {
 					{!edit && (
 						<Button
 							style={{ display: { edit } ? 'block' : null }}
-							className='save-profile-button'
+							className='save-profile-button '
 							controlId='save-profile-button'
 							variant='primary'
 							type='submit'

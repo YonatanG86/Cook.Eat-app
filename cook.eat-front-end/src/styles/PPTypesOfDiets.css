@@ -1,0 +1,98 @@
+.diets-types-carousel {
+    background-color: none;
+    padding: 35px;
+  }
+  
+  span.carousel-control-next-icon {
+    background-image: url(../img/carousel/next-arrow.jpg);
+  }
+  
+  span.carousel-control-prev-icon {
+    background-image: url(../img/carousel/previous-arrow.png);
+  }
+  
+  
+  .types-of-diets {
+    display: flex;
+    justify-content: center;
+    margin-right: 33px;
+  }
+  
+  .types-of-diets-list {
+    list-style-type: none;
+  }
+  
+  /* .types-of-diets li {
+    display: inline-block;
+  } */
+  
+  .types-of-diets input[type="checkbox"][id^="cb"] {
+    display: none;
+  }
+  
+  .diet-types-container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .diet-types-container span {
+    text-align: center;
+    padding-top: 5px;
+    color: black;
+  }
+    
+  .types-of-diets label {
+    padding-left: 10px;
+    display: block;
+    position: relative;
+    margin: 10px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+    
+  .types-of-diets label::before {
+    background-color: white;
+    color: white;
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    border: 1px solid grey;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 28px;
+    transition-duration: 0.4s;
+    transform: scale(0);
+  }
+    
+  .types-of-diets label img {
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+    width:  40px;
+    height: 40px;
+    object-fit: cover;
+  }
+    
+  .types-of-diets :checked+label {
+    border: none;
+  }
+  
+  .types-of-diets :checked+label::before {
+    content: "✓";
+    background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
+    transform: scale(1);
+    border: none;
+  }
+  
+  .types-of-diets :checked+label img {
+    transform: scale(0.9);
+    box-shadow: 0 0 5px orange;
+  }
