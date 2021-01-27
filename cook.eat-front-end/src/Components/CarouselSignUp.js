@@ -1,27 +1,26 @@
-import React, { useState, useRef } from "react";
-import "../styles/CarouselSignUp.css";
-import { useForm } from "react-hook-form";
-import { useAuth } from "../Conteaxts/autoConteaxt";
-import { Button, Form, Col } from "react-bootstrap";
+import React, { useState, useRef } from 'react';
+import '../styles/CarouselSignUp.css';
+import { useForm } from 'react-hook-form';
+import { useAuth } from '../Conteaxts/autoConteaxt';
+import { Button, Form, Col } from 'react-bootstrap';
 
 const formFields = {
-  userName: "",
-  email: "",
-  password: "",
-  repatePass: "",
+	userName: '',
+	email: '',
+	password: '',
+	repatePass: '',
 };
 
 const CarouselSignUp = ({ carouselData }) => {
-  const { register, handleSubmit, errors, watch } = useForm();
-  const [formInfo, setFormInfo] = useState(formFields);
-  const [file, setFile] = useState();
-  const [userImage, setUserImage] = useState();
-  const { signupUser } = useAuth();
-  const password = useRef({});
-  password.current = watch("password");
+	const { register, handleSubmit, errors, watch } = useForm();
+	const [formInfo, setFormInfo] = useState(formFields);
+	const [file, setFile] = useState();
+	const [userImage, setUserImage] = useState();
+	const { signupUser } = useAuth();
+	const password = useRef({});
+	password.current = watch('password');
 
-  const types = ["image/png", "image/jpeg", "image/jpg"];
-
+	const types = ['image/png', 'image/jpeg', 'image/jpg'];
 
 	const handleChange = (e) => {
 		setFormInfo({
@@ -29,24 +28,21 @@ const CarouselSignUp = ({ carouselData }) => {
 			[e.target.name]: e.target.value,
 		});
 		const allInfoForNewUser = { ...carouselData, ...formInfo };
-		console.log(allInfoForNewUser);
 	};
 
-
-  const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (file && types.includes(file.type)) {
-      setFile(file);
-      let reader = new FileReader();
-      reader.onload = (e) => {
-        setUserImage(e.target.result);
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    } else {
-      alert("Please select an image file (png, jpg,jpeg)!");
-    }
-  };
-
+	const handleFileUpload = (e) => {
+		const file = e.target.files[0];
+		if (file && types.includes(file.type)) {
+			setFile(file);
+			let reader = new FileReader();
+			reader.onload = (e) => {
+				setUserImage(e.target.result);
+			};
+			reader.readAsDataURL(e.target.files[0]);
+		} else {
+			alert('Please select an image file (png, jpg,jpeg)!');
+		}
+	};
 
 	const onSubmit = (e) => {
 		e.preventDefault();
@@ -164,34 +160,27 @@ const CarouselSignUp = ({ carouselData }) => {
 						</Form.Control.Feedback>
 					</Form.Group>
 
-
-          <Form.Group id="profile-image-signup">
-            <Form.Label>Upload your avatar</Form.Label>
-            <Form.Control
-              name="picture"
-              type="file"
-              placeholder="Avater"
-              onChange={handleFileUpload}
-            />
-            {/* <img
+					<Form.Group id='profile-image-signup'>
+						<Form.Label>Upload your avatar</Form.Label>
+						<Form.Control name='picture' type='file' placeholder='Avater' onChange={handleFileUpload} />
+						{/* <img
               src={userImage}
               style={{ maxWidth: "5rem" }}
               alt="profile-image"
             /> */}
-          </Form.Group>
-          <div className="button-container-signup">
-            <Button className="signup-btn btn-primary btn-block" type="submit">
-              Sign up
-            </Button>
-            <p id="disclaimer">
-              By continuing you agree to Cook.Eat's Terms of Service &amp;
-              Privacy Policy.
-            </p>
-          </div>
-        </Form>
-      </div>
-    </div>
-  );
+					</Form.Group>
+					<div className='button-container-signup'>
+						<Button className='signup-btn btn-primary btn-block' type='submit'>
+							Sign up
+						</Button>
+						<p id='disclaimer'>
+							By continuing you agree to Cook.Eat's Terms of Service &amp; Privacy Policy.
+						</p>
+					</div>
+				</Form>
+			</div>
+		</div>
+	);
 };
 
 export default CarouselSignUp;

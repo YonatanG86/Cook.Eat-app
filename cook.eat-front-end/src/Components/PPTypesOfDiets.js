@@ -24,7 +24,6 @@ const PPTypesOfDiets = ({ setFormInfo, edit, formInfo }) => {
 
 	useEffect(() => {
 		setFormInfo((pre) => ({ ...pre, specialDiet }));
-		console.log(formInfo.specialDiet);
 	}, [specialDiet]);
 	return (
 		<>

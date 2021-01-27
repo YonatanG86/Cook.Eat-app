@@ -51,7 +51,6 @@ const SignUpModalNew = () => {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		console.log(formInfo);
 		let formData = new FormData();
 		formData.append('data', JSON.stringify(formInfo));
 		formData.append('petImage', file);

@@ -79,7 +79,6 @@ const ProfileSettings = () => {
 	};
 
 	const handleChange = (e) => {
-		console.log([e.target.name], ':', e.target.value);
 		setFormInfo({
 			...formInfo,
 			[e.target.name]: e.target.value,
