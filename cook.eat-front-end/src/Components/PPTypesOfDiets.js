@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/PPTypesOfCuisines.css';
+import '../styles/PPTypesOfDiets.css';
 import { Image, Carousel } from 'react-bootstrap';
 import GlutenFree from '../img/special-diets/gluten-free.png';
 import Halal from '../img/special-diets/halal.png';
@@ -11,574 +11,191 @@ import Vegeterian from '../img/special-diets/vegeterian.png';
 import Vegan from '../img/special-diets/vegan.png';
 
 const PPTypesOfDiets = ({ setFormInfo, edit, formInfo }) => {
-	const [carouselIndex, setCarouselIndex] = useState(0);
-	const [specialDiets, setSpecialDiets] = useState({
-		glutenFree: false,
-		halal: false,
-		keto: false,
-		kosher: false,
-		paleo: false,
-		pescaterian: false,
-		vegeterian: false,
-		vegan: false,
+	const [specialDiet, setSpecialDiets] = useState({
+		glutenFree: formInfo.specialDiet.glutenFree,
+		halal: formInfo.specialDiet.halal,
+		keto: formInfo.specialDiet.keto,
+		kosher: formInfo.specialDiet.kosher,
+		paleo: formInfo.specialDiet.paleo,
+		pescaterian: formInfo.specialDiet.pescaterian,
+		vegeterian: formInfo.specialDiet.vegeterian,
+		vegan: formInfo.specialDiet.vegan,
 	});
-	const handleCarouseItemSelect = (selectedIndex, event) => {
-		setCarouselIndex(selectedIndex);
-	};
+
 	useEffect(() => {
-		setFormInfo((pre) => ({ ...pre, culinaryType }));
-	}, [culinaryType]);
+		setFormInfo((pre) => ({ ...pre, specialDiet }));
+		console.log(formInfo.specialDiet);
+	}, [specialDiet]);
 	return (
 		<>
-			<div className='types-of-cuisines'>
-				<ul className='types-of-cuisines-list'>
+			<div className='types-of-diets pl-5'>
+				<ul className='types-of-diets-list pl-5'>
 					<li>
 						<input
+							disabled={edit}
 							type='checkbox'
-							id='cb1'
-							name='american'
-							checked={formInfo.culinaryType.american}
+							id='cb31'
+							name='glutenFree'
+							checked={formInfo.specialDiet.glutenFree}
 							onChange={(e) =>
-								setCulinaryType((pre) => ({
+								setSpecialDiets((pre) => ({
 									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
+									[e.target.name]: !specialDiet[e.target.name],
 								}))
 							}
 						/>
-						<label for='cb1'>
-							<div className='cuisine-types-container'>
-								<Image src={AmericanCuisine} roundedCircle />
-								<span>American</span>
+						<label for='cb31'>
+							<div className='diet-types-container'>
+								<Image src={GlutenFree} roundedCircle />
+								<span>GlutenFree</span>
 							</div>
 						</label>
 					</li>
 					<li>
 						<input
+							disabled={edit}
 							type='checkbox'
-							id='cb2'
-							name='brazilian'
-							checked={formInfo.culinaryType.brazilian}
+							id='cb32'
+							name='halal'
+							checked={formInfo.specialDiet.halal}
 							onChange={(e) =>
-								setCulinaryType((pre) => ({
+								setSpecialDiets((pre) => ({
 									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
+									[e.target.name]: !specialDiet[e.target.name],
 								}))
 							}
+							diet
 						/>
-						<label for='cb2'>
-							<div className='cuisine-types-container'>
-								<Image src={BrazilianCuisine} roundedCircle />
-								<span>Brazilian</span>
+						<label for='cb32'>
+							<div className='diet-types-container'>
+								<Image src={Halal} roundedCircle />
+								<span>Halal</span>
 							</div>
 						</label>
 					</li>
 					<li>
 						<input
+							disabled={edit}
 							type='checkbox'
-							id='cb3'
-							name='caribbean'
-							checked={formInfo.culinaryType.caribbean}
+							id='cb33'
+							name='keto'
+							checked={formInfo.specialDiet.keto}
 							onChange={(e) =>
-								setCulinaryType((pre) => ({
+								setSpecialDiets((pre) => ({
 									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
+									[e.target.name]: !specialDiet[e.target.name],
 								}))
 							}
 						/>
-						<label for='cb3'>
-							<div className='cuisine-types-container'>
-								<Image src={CaribbeanCuisine} roundedCircle />
-								<span>Caribbean</span>
+						<label for='cb33'>
+							<div className='diet-types-container'>
+								<Image src={Keto} roundedCircle />
+								<span>Keto</span>
 							</div>
 						</label>
 					</li>
 					<li>
 						<input
+							disabled={edit}
 							type='checkbox'
-							id='cb4'
-							name='chinese'
-							checked={formInfo.culinaryType.chinese}
+							id='cb34'
+							name='Kosher'
+							checked={formInfo.specialDiet.Kosher}
 							onChange={(e) =>
-								setCulinaryType((pre) => ({
+								setSpecialDiets((pre) => ({
 									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
+									[e.target.name]: !specialDiet[e.target.name],
 								}))
 							}
 						/>
-						<label for='cb4'>
-							<div className='cuisine-types-container'>
-								<Image src={ChineseCuisine} roundedCircle />
-								<span>Chinese</span>
-							</div>
-						</label>
-					</li>
-				</ul>
-			</div>
-
-			<div className='types-of-cuisines'>
-				<ul className='types-of-cuisines-list'>
-					<li>
-						<input
-							type='checkbox'
-							id='cb5'
-							name='english'
-							checked={formInfo.culinaryType.english}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb5'>
-							<div className='cuisine-types-container'>
-								<Image src={EnglishCuisine} roundedCircle />
-								<span>English</span>
+						<label for='cb34'>
+							<div className='diet-types-container'>
+								<Image src={Kosher} roundedCircle />
+								<span>Kosher</span>
 							</div>
 						</label>
 					</li>
 					<li>
 						<input
+							disabled={edit}
 							type='checkbox'
-							id='cb6'
-							name='ethiopian'
-							checked={formInfo.culinaryType.ethiopian}
+							id='cb35'
+							name='paleo'
+							checked={formInfo.specialDiet.paleo}
 							onChange={(e) =>
-								setCulinaryType((pre) => ({
+								setSpecialDiets((pre) => ({
 									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
+									[e.target.name]: !specialDiet[e.target.name],
 								}))
 							}
 						/>
-						<label for='cb6'>
-							<div className='cuisine-types-container'>
-								<Image src={EthiopianCuisine} roundedCircle />
-								<span>Ethiopian</span>
+						<label for='cb35'>
+							<div className='diet-types-container'>
+								<Image src={Paleo} roundedCircle />
+								<span>Paleo</span>
 							</div>
 						</label>
 					</li>
 					<li>
 						<input
+							disabled={edit}
 							type='checkbox'
-							id='cb7'
-							name='french'
-							checked={formInfo.culinaryType.french}
+							id='cb36'
+							name='pescaterian'
+							checked={formInfo.specialDiet.pescaterian}
 							onChange={(e) =>
-								setCulinaryType((pre) => ({
+								setSpecialDiets((pre) => ({
 									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
+									[e.target.name]: !specialDiet[e.target.name],
 								}))
 							}
 						/>
-						<label for='cb7'>
-							<div className='cuisine-types-container'>
-								<Image src={FrenchCuisine} roundedCircle />
-								<span>French</span>
+						<label for='cb36'>
+							<div className='diet-types-container'>
+								<Image src={Pescaterian} roundedCircle />
+								<span>Pescaterian</span>
 							</div>
 						</label>
 					</li>
 					<li>
 						<input
+							disabled={edit}
 							type='checkbox'
-							id='cb8'
-							name='filipino'
-							checked={formInfo.culinaryType.filipino}
+							id='cb37'
+							name='vegeterian'
+							checked={formInfo.specialDiet.vegeterian}
 							onChange={(e) =>
-								setCulinaryType((pre) => ({
+								setSpecialDiets((pre) => ({
 									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
+									[e.target.name]: !specialDiet[e.target.name],
 								}))
 							}
 						/>
-						<label for='cb8'>
-							<div className='cuisine-types-container'>
-								<Image src={FilipinoCuisine} roundedCircle />
-								<span>Filipino</span>
-							</div>
-						</label>
-					</li>
-				</ul>
-			</div>
-
-			<div className='types-of-cuisines'>
-				<ul className='types-of-cuisines-list'>
-					<li>
-						<input
-							type='checkbox'
-							id='cb9'
-							name='georgian'
-							checked={formInfo.culinaryType.georgian}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb9'>
-							<div className='cuisine-types-container'>
-								<Image src={GeorgianCuisine} roundedCircle />
-								<span>Georgian</span>
+						<label for='cb37'>
+							<div className='diet-types-container'>
+								<Image src={Vegeterian} roundedCircle />
+								<span>Vegeterian</span>
 							</div>
 						</label>
 					</li>
 					<li>
 						<input
+							disabled={edit}
 							type='checkbox'
-							id='cb10'
-							name='german'
-							checked={formInfo.culinaryType.german}
+							id='cb38'
+							name='vegan'
+							checked={formInfo.specialDiet.vegan}
 							onChange={(e) =>
-								setCulinaryType((pre) => ({
+								setSpecialDiets((pre) => ({
 									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
+									[e.target.name]: !specialDiet[e.target.name],
 								}))
 							}
 						/>
-						<label for='cb10'>
-							<div className='cuisine-types-container'>
-								<Image src={GermanCuisine} roundedCircle />
-								<span>German</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input
-							type='checkbox'
-							id='cb11'
-							name='greek'
-							checked={formInfo.culinaryType.greek}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb11'>
-							<div className='cuisine-types-container'>
-								<Image src={GreekCuisine} roundedCircle />
-								<span>Greek</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input
-							type='checkbox'
-							id='cb12'
-							name='indian'
-							checked={formInfo.culinaryType.indian}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb12'>
-							<div className='cuisine-types-container'>
-								<Image src={IndianCuisine} roundedCircle />
-								<span>Indian</span>
-							</div>
-						</label>
-					</li>
-				</ul>
-			</div>
-
-			<div className='types-of-cuisines'>
-				<ul className='types-of-cuisines-list'>
-					<li>
-						<input
-							type='checkbox'
-							id='cb13'
-							name='indonesian'
-							checked={formInfo.culinaryType.indonesian}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb13'>
-							<div className='cuisine-types-container'>
-								<Image src={IndonesianCuisine} roundedCircle />
-								<span>Indonesian</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input
-							type='checkbox'
-							id='cb14'
-							name='italian'
-							checked={formInfo.culinaryType.italian}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb14'>
-							<div className='cuisine-types-container'>
-								<Image src={ItalianCuisine} roundedCircle />
-								<span>Italian</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input
-							type='checkbox'
-							id='cb15'
-							name='jamaican'
-							checked={formInfo.culinaryType.jamaican}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb15'>
-							<div className='cuisine-types-container'>
-								<Image src={JamaicanCuisine} roundedCircle />
-								<span>Jamaican</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input
-							type='checkbox'
-							id='cb16'
-							name='japanese'
-							checked={formInfo.culinaryType.japanese}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb16'>
-							<div className='cuisine-types-container'>
-								<Image src={JapaneseCuisine} roundedCircle />
-								<span>Japanese</span>
-							</div>
-						</label>
-					</li>
-				</ul>
-			</div>
-
-			<div className='types-of-cuisines'>
-				<ul className='types-of-cuisines-list'>
-					<li>
-						<input
-							type='checkbox'
-							id='cb17'
-							name='jewish'
-							checked={formInfo.culinaryType.jewish}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb17'>
-							<div className='cuisine-types-container'>
-								<Image src={JewishCuisine} roundedCircle />
-								<span>Jewish</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input
-							type='checkbox'
-							id='cb18'
-							name='korean'
-							checked={formInfo.culinaryType.korean}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb18'>
-							<div className='cuisine-types-container'>
-								<Image src={KoreanCuisine} roundedCircle />
-								<span>Korean</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input
-							type='checkbox'
-							id='cb19'
-							name='mexican'
-							checked={formInfo.culinaryType.mexican}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb19'>
-							<div className='cuisine-types-container'>
-								<Image src={MexicanCuisine} roundedCircle />
-								<span>Mexican</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input
-							type='checkbox'
-							id='cb20'
-							name='polish'
-							checked={formInfo.culinaryType.polish}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb20'>
-							<div className='cuisine-types-container'>
-								<Image src={PolishCuisine} roundedCircle />
-								<span>Polish</span>
-							</div>
-						</label>
-					</li>
-				</ul>
-			</div>
-
-			<div className='types-of-cuisines'>
-				<ul className='types-of-cuisines-list'>
-					<li>
-						<input
-							type='checkbox'
-							id='cb21'
-							name='persian'
-							checked={formInfo.culinaryType.persian}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb21'>
-							<div className='cuisine-types-container'>
-								<Image src={PersianCuisine} roundedCircle />
-								<span>Persian</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input
-							type='checkbox'
-							id='cb22'
-							name='portuguese'
-							checked={formInfo.culinaryType.portuguese}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb22'>
-							<div className='cuisine-types-container'>
-								<Image src={PortugueseCuisine} roundedCircle />
-								<span>Portuguese</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input
-							type='checkbox'
-							id='cb23'
-							name='russian'
-							checked={formInfo.culinaryType.russian}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb23'>
-							<div className='cuisine-types-container'>
-								<Image src={RussianCuisine} roundedCircle />
-								<span>Russian</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input
-							type='checkbox'
-							id='cb24'
-							name='spanish'
-							checked={formInfo.culinaryType.spanish}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb24'>
-							<div className='cuisine-types-container'>
-								<Image src={SpanishCuisine} roundedCircle />
-								<span>Spanish</span>
-							</div>
-						</label>
-					</li>
-				</ul>
-			</div>
-
-			<div className='types-of-cuisines'>
-				<ul className='types-of-cuisines-list'>
-					<li>
-						<input
-							type='checkbox'
-							id='cb25'
-							name='thai'
-							checked={formInfo.culinaryType.thai}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb25'>
-							<div className='cuisine-types-container'>
-								<Image src={ThaiCuisine} roundedCircle />
-								<span>Thai</span>
-							</div>
-						</label>
-					</li>
-					<li>
-						<input
-							type='checkbox'
-							id='cb26'
-							name='vietnamese'
-							checked={formInfo.culinaryType.vietnamese}
-							onChange={(e) =>
-								setCulinaryType((pre) => ({
-									...pre,
-									[e.target.name]: !culinaryType[e.target.name],
-								}))
-							}
-						/>
-						<label for='cb26'>
-							<div className='cuisine-types-container'>
-								<Image src={VietnameseCuisine} roundedCircle />
-								<span>Vietnamese</span>
+						<label for='cb38'>
+							<div className='diet-types-container'>
+								<Image src={Vegan} roundedCircle />
+								<span>Vegan</span>
 							</div>
 						</label>
 					</li>

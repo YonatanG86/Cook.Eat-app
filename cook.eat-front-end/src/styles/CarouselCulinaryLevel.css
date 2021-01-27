@@ -42,6 +42,7 @@
     -ms-user-select: none;
     user-select: none;
     z-index: 1;
+    color: lightgray;
 }
 
 .culinary-level-carousel label::before {
@@ -75,13 +76,13 @@
 
 .culinary-level-carousel :checked+label::before {
     content: "✓";
-    background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
+    background-image: linear-gradient(315deg, #e8c99b 0%, #E96156 74%);
     transform: scale(1);
     border: none;
 }
 
 .culinary-level-carousel :checked+label img {
     transform: scale(0.9);
-    box-shadow: 0 0 5px orange;
+    box-shadow: 0 0 5px #E96156;
     z-index: -1;
 }

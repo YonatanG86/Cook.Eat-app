@@ -40,7 +40,6 @@ const App = () => {
                 path="/profile-settings"
                 component={ProfileSettings}
               />
-
               <Route path="/sign-out">
                 <HomePage />
               </Route>

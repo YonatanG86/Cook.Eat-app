@@ -27,17 +27,9 @@ const searchRecipes = async() => {
     }
     const data = await res.json();
     setRecipes(data);
-}
-
+  }
 
   useEffect(() => {
-    // async function searchRecipes() {
-
-    //   const res = await fetch(`http://localhost:5000/recipes`);
-    //   const data = await res.json();
-    //   console.log("data", data);
-      
-    // }
     searchRecipes();
   }, []);
 

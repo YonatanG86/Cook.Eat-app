@@ -9,25 +9,23 @@
 }
 
 .my-recipe-cards-container .card {
-  padding: 40px 10px 10px 20px;
   border-radius: 20px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   border: none;
-  background-image: url("../img/backgrounds/cards-bg.jpg");
-  border: 2px solid #8a2604;
-  height: 500px;
+  background-image: url('../img/backgrounds/cards-bg.jpg');
+  border: 2px solid #8A2604;
+  overflow: hidden;
 }
 
 .my-recipe-cards-container img {
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
-  width: 25.5rem;
+  width: 30rem;
   height: 230px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   object-fit: cover;
-  border-radius: 10px;
 }
 
 .recipe-cards-title-container {
@@ -41,24 +39,24 @@
   font-size: 19px;
 }
 
-.card-information-container {
-  display: flex;
-  justify-content: space-between;
-  color: white;
-}
-
 #cards-like-button {
+  background-color: #C7B653;
+  border: none;
+  padding: 7px;
   font-family: "arial";
-  display: inline-flex;
-  border-radius: 6px;
+  border-radius: 4px;
   color: white;
   font-weight: bold;
-  padding: 0.5rem 1rem;
-  align-items: center;
-  margin-top: 1rem;
-  border: none;
-  background-color: #c7b653;
-  /* background-color: #8A2604; */
+  position: absolute;
+  top: 194px;
+  right: 0px;
+}
+
+.card-information-container {
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+  position: relative;
 }
 
 .card-dish-type {
@@ -67,14 +65,14 @@
 }
 
 #world-icon {
-  font-size: 20px;
+  font-size: 23px;
   margin: 0 5px 3px 0;
   color: #d1c28b;
 }
 
 .card-dish-time {
   border-right: 2px solid #903403;
-  width: 30%;
+  width: 28%;
   text-align: center;
 }
 
@@ -82,6 +80,7 @@
   font-size: 23px;
   margin: 0 5px 3px 0;
   color: #d1c28b;
+  text-align: center;
 }
 
 .card-dish-level {
@@ -98,19 +97,20 @@
 .card-links {
   margin-top: 15px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+#show-more-button {
+  background: none;
+  border: none;
+  color: #A4420B;
+  font-weight: bold;
 }
 
 a.show-more-card {
   padding-top: 15px;
   color: lightgray;
-}
-.show-more-card {
-  color: lightgray;
-  border: none;
-  background: transparent;
-  padding-top: 15px;
-}
-.show-more-card:focus {
-  outline: none;
+  align-items: baseline;
 }
