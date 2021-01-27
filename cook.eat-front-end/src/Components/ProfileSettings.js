@@ -394,15 +394,17 @@ const ProfileSettings = () => {
 				<PPTypesOfCuisines setFormInfo={setFormInfo} edit={edit} formInfo={formInfo} />
 
 				<div className='button-container'>
-					<Button
-						style={{ display: { edit } ? 'block' : 'none' }}
-						className='save-profile-button'
-						controlId='save-profile-button'
-						variant='primary'
-						type='submit'
-					>
-						Save Changes
-					</Button>
+					{!edit && (
+						<Button
+							style={{ display: { edit } ? 'block' : null }}
+							className='save-profile-button'
+							controlId='save-profile-button'
+							variant='primary'
+							type='submit'
+						>
+							Save Changes
+						</Button>
+					)}
 				</div>
 			</Form>
 		</div>
