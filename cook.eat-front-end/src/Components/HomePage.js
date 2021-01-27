@@ -16,7 +16,7 @@ const HomePage = () => {
   const [ userId, setUserId ] = useState()
 
 const searchRecipes = async() => {
-  const user = await localStorage.getItem("user");
+  const user = localStorage.getItem("user");
   let res
   console.log(user)
     if(user){
@@ -27,17 +27,9 @@ const searchRecipes = async() => {
     }
     const data = await res.json();
     setRecipes(data);
-}
-
+  }
 
   useEffect(() => {
-    // async function searchRecipes() {
-
-    //   const res = await fetch(`http://localhost:5000/recipes`);
-    //   const data = await res.json();
-    //   console.log("data", data);
-      
-    // }
     searchRecipes();
   }, []);
 
