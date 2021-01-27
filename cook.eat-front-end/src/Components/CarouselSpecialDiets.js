@@ -30,9 +30,9 @@ const CarouselSpecialDiets = ({ setCarouselData }) => {
 		setCarouselData((previous) => ({ ...previous, specialDiet }));
 		console.log(specialDiet);
 	};
-	useEffect(() => {
-		console.log('useeffect', specialDiet);
-	}, [specialDiet]);
+	// useEffect(() => {
+	// 	console.log('useeffect', specialDiet);
+	// }, [specialDiet]);
 
 	return (
 		<>
