@@ -45,7 +45,7 @@ const AddRecipe = (props) => {
   const [recipeImage, setRecipeImage] = useState();
   const [ingredients, setIngredients] = useState([{}]);
   const [step, setStep] = useState();
-  const [steps, setSteps] = useState([]);
+  const [steps, setSteps] = useState([""]);
   const update = props.match.params.update;
 
   const getRecipeData = async () => {
@@ -99,44 +99,43 @@ const AddRecipe = (props) => {
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    const type = e.nativeEvent.submitter.name;
+    // const type = e.nativeEvent.submitter.name;
     setLoading(true);
     setDisabled(true);
-    if (type === "Updated") updRecipe();
-    else {
-      const res = saveIngredient();
-      if (res) {
-        let formData = new FormData();
-        formData.append("data", JSON.stringify(formInfo));
-        formData.append("picture", file);
-        const result = await addRecipe(formData);
-        if (result) {
-          notifySuccess("Your recipe🥝has been successfully saved!");
-          history.push("/my-recipes");
-        }
+    const res = saveIngredient();
+    if (res) {
+      let formData = new FormData();
+      formData.append("data", JSON.stringify(formInfo));
+      formData.append("picture", file);
+      const result = await addRecipe(formData);
+      if (result) {
+        notifySuccess("Your recipe🥝has been successfully saved!");
+        setLoading(false);
+        setDisabled(false);
+        history.push("/my-recipes");
       }
-      setLoading(false);
-      setDisabled(false);
     }
-  };
-
-  const updRecipe = async () => {
-    if (ingredient || step) saveIngredient();
-    else {
-      formInfo.ingredients = ingredients;
-      formInfo.steps = steps;
-    }
-    let formData = new FormData();
-    formData.append("data", JSON.stringify(formInfo));
-    formData.append("picture", file);
-    const result = await UpdateRecipe(update, formData);
-    if (result) {
-      history.push("/my-recipes");
-    }
-
     setLoading(false);
     setDisabled(false);
   };
+
+  // const updRecipe = async () => {
+  //   if (ingredient || step) saveIngredient();
+  //   else {
+  //     formInfo.ingredients = ingredients;
+  //     formInfo.steps = steps;
+  //   }
+  //   let formData = new FormData();
+  //   formData.append("data", JSON.stringify(formInfo));
+  //   formData.append("picture", file);
+  //   const result = await UpdateRecipe(update, formData);
+  //   if (result) {
+  //     history.push("/my-recipes");
+  //   }
+
+  //   setLoading(false);
+  //   setDisabled(false);
+  // };
 
   // on change in Ingredient input
   const onIngredient = (e) => {
@@ -157,8 +156,6 @@ const AddRecipe = (props) => {
       notifyError("📋 What about preparation instructions or ingredients?");
       return false;
     } else {
-      if (ingredients) ingredients.push(ingredient);
-      if (step) steps.push(step);
       formInfo.ingredients = ingredients.filter(
         (item) => Object.keys(item).length !== 0
       );
@@ -171,7 +168,6 @@ const AddRecipe = (props) => {
 
   // add Ingredient to list
   const addIngredient = () => {
-    // if (update) setIngred("");
     if (ingredient || ingredients.length === 0) {
       setIngredients((ingredients) => [...ingredients, ingredient]);
       setIngred("");
@@ -188,9 +184,6 @@ const AddRecipe = (props) => {
 
   const addStep = () => {
     if (step || steps.length === 0) {
-      setSteps((steps) => [...steps, step]);
-      setStep("");
-    } else if (update) {
       setSteps((steps) => [...steps, step]);
       setStep("");
     }
@@ -324,9 +317,9 @@ const AddRecipe = (props) => {
               onChange={handleChange}
             >
               <option>None</option>
-              <option>Beginners</option>
-              <option>Amateurs</option>
-              <option>Professional</option>
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
             </Form.Control>
           </div>
           <div className="last-box">
