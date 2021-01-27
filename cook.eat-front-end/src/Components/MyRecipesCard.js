@@ -66,6 +66,7 @@ const MyRecipesCard = (props) => {
               </div>
             </div>
 
+<<<<<<< HEAD
             <div className="card-links">
               <NavLink
                 exact
@@ -83,6 +84,28 @@ const MyRecipesCard = (props) => {
           </Card.Body>
         </Card>
       </div>
+=======
+        <div className="card-btns">
+          <NavLink
+            exact
+            to={`/recipe/${recipe._id}`}
+            className="show-more-card"
+          >
+            Show More
+          </NavLink>
+          {user === recipe.writer && (
+            <NavLink
+              exact
+              to={`/add-recipe/${recipe._id}`}
+              className="my-update"
+            >
+              update
+            </NavLink>
+          )}
+        </div>
+      </Card.Body>
+    </Card>
+>>>>>>> e303a39298ede784702c0fdf91c0bcb15b8a7294
   );
 };
 

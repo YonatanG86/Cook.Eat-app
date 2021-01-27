@@ -32,12 +32,12 @@ const formFields = {
   mealType: "",
   writer: localStorage.getItem("user"),
 };
-const AddRecipe = () => {
+const AddRecipe = (props) => {
   const types = ["image/png", "image/jpeg", "image/jpg"];
   const history = useHistory();
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { addRecipe } = useAuth();
+  const { addRecipe, getRecipe, UpdateRecipe } = useAuth();
   const { register, handleSubmit, errors } = useForm();
   const [formInfo, setFormInfo] = useState(formFields);
   const [ingredient, setIngred] = useState();
@@ -45,7 +45,36 @@ const AddRecipe = () => {
   const [recipeImage, setRecipeImage] = useState();
   const [ingredients, setIngredients] = useState([{}]);
   const [step, setStep] = useState();
-  const [steps, setSteps] = useState([""]);
+  const [steps, setSteps] = useState([]);
+  const update = props.match.params.update;
+
+  const getRecipeData = async () => {
+    if (update) {
+      const res = await getRecipe(update);
+      if (res) {
+        setFormInfo({
+          recipeTitle: res.recipeTitle,
+          description: res.description,
+          cuisineType: res.cuisineType,
+          dietType: res.dietType,
+          preparationTime: +res.preparationTime,
+          ingredients: res.ingredients,
+          steps: res.steps,
+          servings: +res.servings,
+          calories: +res.calories,
+          dishLevel: res.dishLevel,
+          mealType: res.mealType,
+          writer: localStorage.getItem("user"),
+        });
+        setRecipeImage(res.picture);
+        setIngredients((ingredients) => [...res.ingredients, ...ingredients]);
+        setSteps((steps) => [...res.steps, ...steps]);
+      }
+    }
+  };
+  useEffect(() => {
+    getRecipeData();
+  }, []);
 
   const handleChange = (e) => {
     setFormInfo({
@@ -70,21 +99,43 @@ const AddRecipe = () => {
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
+    const type = e.nativeEvent.submitter.name;
     setLoading(true);
     setDisabled(true);
-    const res = saveIngredient();
-    if (res) {
-      let formData = new FormData();
-      formData.append("data", JSON.stringify(formInfo));
-      formData.append("picture", file);
-      const result = await addRecipe(formData);
-      if (result) {
-        notifySuccess("Your recipe🥝has been successfully saved!");
-        history.push("/my-recipes");
+    if (type === "Updated") updRecipe();
+    else {
+      const res = saveIngredient();
+      if (res) {
+        let formData = new FormData();
+        formData.append("data", JSON.stringify(formInfo));
+        formData.append("picture", file);
+        const result = await addRecipe(formData);
+        if (result) {
+          notifySuccess("Your recipe🥝has been successfully saved!");
+          history.push("/my-recipes");
+        }
       }
       setLoading(false);
       setDisabled(false);
     }
+  };
+
+  const updRecipe = async () => {
+    if (ingredient || step) saveIngredient();
+    else {
+      formInfo.ingredients = ingredients;
+      formInfo.steps = steps;
+    }
+    let formData = new FormData();
+    formData.append("data", JSON.stringify(formInfo));
+    formData.append("picture", file);
+    const result = await UpdateRecipe(update, formData);
+    if (result) {
+      history.push("/my-recipes");
+    }
+
+    setLoading(false);
+    setDisabled(false);
   };
 
   // on change in Ingredient input
@@ -106,8 +157,8 @@ const AddRecipe = () => {
       notifyError("📋 What about preparation instructions or ingredients?");
       return false;
     } else {
-      ingredients.push(ingredient);
-      steps.push(step);
+      if (ingredients) ingredients.push(ingredient);
+      if (step) steps.push(step);
       formInfo.ingredients = ingredients.filter(
         (item) => Object.keys(item).length !== 0
       );
@@ -120,6 +171,7 @@ const AddRecipe = () => {
 
   // add Ingredient to list
   const addIngredient = () => {
+    // if (update) setIngred("");
     if (ingredient || ingredients.length === 0) {
       setIngredients((ingredients) => [...ingredients, ingredient]);
       setIngred("");
@@ -136,6 +188,9 @@ const AddRecipe = () => {
 
   const addStep = () => {
     if (step || steps.length === 0) {
+      setSteps((steps) => [...steps, step]);
+      setStep("");
+    } else if (update) {
       setSteps((steps) => [...steps, step]);
       setStep("");
     }
@@ -178,6 +233,7 @@ const AddRecipe = () => {
           <Form.Control
             name="recipeTitle"
             type="title"
+            value={formInfo.recipeTitle || ""}
             placeholder="Title"
             onChange={handleChange}
             required
@@ -188,6 +244,7 @@ const AddRecipe = () => {
           <Form.Label>Description</Form.Label>
           <Form.Control
             name="description"
+            value={formInfo.description || ""}
             as="textarea"
             rows={3}
             onChange={handleChange}
@@ -200,6 +257,7 @@ const AddRecipe = () => {
             <Form.Label>Type of Cuisine</Form.Label>
             <Form.Control
               name="cuisineType"
+              value={formInfo.cuisineType || ""}
               as="select"
               className="type-diet dropdown-link"
               onChange={handleChange}
@@ -240,6 +298,7 @@ const AddRecipe = () => {
             <Form.Label>Type of Diet</Form.Label>
             <Form.Control
               name="dietType"
+              value={formInfo.dietType || ""}
               as="select"
               className="type-diet dropdown-link"
               onChange={handleChange}
@@ -259,6 +318,7 @@ const AddRecipe = () => {
             <Form.Label>Dish Level</Form.Label>
             <Form.Control
               name="dishLevel"
+              value={formInfo.dishLevel || ""}
               as="select"
               className="type-diet dropdown-link"
               onChange={handleChange}
@@ -274,6 +334,7 @@ const AddRecipe = () => {
             <Form.Control
               required
               name="mealType"
+              value={formInfo.mealType || ""}
               as="select"
               className="type-diet dropdown-link"
               onChange={handleChange}
@@ -293,6 +354,7 @@ const AddRecipe = () => {
             <InputGroup className="mb-3">
               <FormControl
                 name="preparationTime"
+                value={formInfo.preparationTime || ""}
                 type="number"
                 onChange={handleChange}
                 min="1"
@@ -308,6 +370,7 @@ const AddRecipe = () => {
             <InputGroup className="mb-3">
               <FormControl
                 name="servings"
+                value={formInfo.servings || ""}
                 type="number"
                 onChange={handleChange}
                 min="1"
@@ -323,6 +386,7 @@ const AddRecipe = () => {
             <InputGroup className="mb-3">
               <Form.Control
                 name="calories"
+                value={formInfo.calories || ""}
                 type="number"
                 onChange={handleChange}
                 min="1"
@@ -342,6 +406,7 @@ const AddRecipe = () => {
               addIngredient={onIngredient}
               removeIngredient={removeIngredient}
               id={index}
+              dealtas={item}
             />
           );
         })}
@@ -351,7 +416,7 @@ const AddRecipe = () => {
           onClick={addIngredient}
         >
           Add ingredient
-          <img src="./addRecipe/plus.png" alt="+" />
+          <img src="../addRecipe/plus.png" alt="+" />
         </Button>
         {steps.map((item, index) => {
           return (
@@ -360,6 +425,7 @@ const AddRecipe = () => {
               removeStep={removeStep}
               onStepChange={onStepChange}
               id={index}
+              dealtas={item}
             />
           );
         })}
@@ -369,7 +435,7 @@ const AddRecipe = () => {
           onClick={addStep}
         >
           Add steps
-          <img src="./addRecipe/plus.png" alt="+" />
+          <img src="../addRecipe/plus.png" alt="+" />
         </Button>
         <Form.Group className="upload-img mt-3">
           <Form.File
@@ -377,18 +443,34 @@ const AddRecipe = () => {
             label="Upload a picture"
             className="file"
             onChange={handleFileUpload}
-            required
+            required={!update ? true : false}
           />
           <img src={recipeImage} alt="" />
         </Form.Group>
 
-        <Button className="add-recipe-btn" type="submit" disabled={disabled}>
-          Submit your Recipe
-        </Button>
+        {!update ? (
+          <Button
+            name="Add"
+            className="add-recipe-btn"
+            type="submit"
+            disabled={disabled}
+          >
+            Submit your Recipe
+          </Button>
+        ) : (
+          <Button
+            name="Updated"
+            className="add-recipe-btn"
+            type="submit"
+            disabled={disabled}
+          >
+            Update Recipe
+          </Button>
+        )}
       </Form>
       <img
         className="add-recipe-img"
-        src="./addRecipe/add_recipe.jpg"
+        src="../addRecipe/add_recipe.jpg"
         alt="add-recipe"
       />
       <BounceLoader

@@ -186,4 +186,8 @@ export const AutoProvider = ({ children }) => {
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 
+
 };
+
+};
+
