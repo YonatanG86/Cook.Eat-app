@@ -11,7 +11,7 @@ import SignUpModal from "./Components/SignUpModal";
 // import SignUpModalNew from './Components/SignUpModalNew';
 
 import AddRecipe from "./Components/AddRecipe";
-import Recipe from "./Components/Recipe";
+// import Recipe from "./Components/Recipe";
 import MyRecipes from "./Components/MyRecipes";
 import SavedRecipes from "./Components/SavedRecipes";
 import RecipePage from "./Components/RecipePage";
@@ -33,7 +33,7 @@ const App = () => {
               </Route>
               {/* <PrivateRoute path="/recipe/:id" component={RecipePage} /> */}
               <PrivateRoute path="/my-recipes" component={MyRecipes} />
-              <PrivateRoute path="/recipes" component={Recipe} />
+              {/* <PrivateRoute path="/recipes" component={Recipe} /> */}
               <PrivateRoute path="/saved-recipes" component={SavedRecipes} />
               <PrivateRoute path="/add-recipe/:update?" component={AddRecipe} />
               <PrivateRoute

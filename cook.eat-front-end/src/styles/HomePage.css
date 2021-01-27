@@ -34,10 +34,6 @@
     font-family: "Trajan";
 }
 
-.search-bar {
-
-}
-
 .search-bar input {
     background-color: white;
     border-radius: 8px;
@@ -55,4 +51,12 @@
 
 #search-icon {
     font-size: 20px;
+}
+
+.my-recipe-cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
 }

@@ -32,11 +32,10 @@ const RegistrationCarousel = () => {
 				className='registration-carousel'
 				interval={null}
 				activeIndex={index}
-				nextIcon={directionButtons('Next')}
-				prevIcon={directionButtons('Previous')}
+				nextIcon={index === 3 ? null : directionButtons('Next')}
+				prevIcon={index === 0 ? null : directionButtons('Previous')}
+				controls={true}
 				onSelect={handleSelect}
-				prevLabel={index === 0 ? null : 'Previous'}
-				nextLabel={index === 3 ? null : 'Next'}
 			>
 				<Carousel.Item>
 					<p className='personalized-experience'>PERSONALIZE YOUR EXPERIENCE</p>

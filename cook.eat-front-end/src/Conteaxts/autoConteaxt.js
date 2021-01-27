@@ -9,6 +9,7 @@ export const useAuth = () => {
 };
 
 export const AutoProvider = ({ children }) => {
+
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
   const history = useHistory();
@@ -190,3 +191,4 @@ export const AutoProvider = ({ children }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
+
