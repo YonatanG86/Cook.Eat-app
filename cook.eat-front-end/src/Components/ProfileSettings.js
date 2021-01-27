@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PPTypesOfCuisines from './PPTypesOfCuisines';
 import PPCulinaryLevel from './PPCulinaryLevel';
+import PPTypesOfDiets from './PPTypesOfDiets';
 import '../styles/ProfileSettings.css';
 import { Col, Row, Form, Button, Image, Carousel } from 'react-bootstrap';
 import { CountryDropdown } from 'react-country-region-selector';
@@ -264,6 +265,7 @@ const ProfileSettings = () => {
 							<Form.Group as={Row}>
 								<Form.Label as='legend' column sm={5}>
 									Special Diets
+									<PPTypesOfDiets setFormInfo={setFormInfo} edit={edit} formInfo={formInfo} />
 								</Form.Label>
 								<Form.Check type='checkbox' label={<div>test</div>} />
 								<Col sm={7} id='diets-checkbox-column'>
