@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/RegistrationCarousel.css';
 import CarouselTypesOfCuisines from '../Components/CarouselTypesOfCuisines';
 import CarouselSpecialDiets from '../Components/CarouselSpecialDiets';
@@ -13,6 +13,10 @@ const RegistrationCarousel = () => {
 	const handleSelect = (selectedIndex, event) => {
 		setIndex(selectedIndex);
 	};
+
+	useEffect(() => {
+		console.log('carouselData', carouselData);
+	}, [carouselData]);
 
 	const directionButtons = (direction) => {
 		return (

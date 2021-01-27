@@ -121,7 +121,9 @@ router.put('/removeRecipe/:id', async(req, res) => {
 	try{
 		let user = await UserModel.findOneAndUpdate({ recipes: { $in: recipeId}}, 
 			{ $pull: { recipes: recipeId }}, {new:true} )
-		res.status(200).send(user)
+		let likedUser = await UserModel.updateMany({ recipesSaved: { $in: recipeId}}, 
+			{ $pull: { recipesSaved: recipeId }}, {new:true} )
+		res.status(200).send('recipe deleted')
 	} catch (err){
 		console.log(err)
 		res.status(500).send(err)

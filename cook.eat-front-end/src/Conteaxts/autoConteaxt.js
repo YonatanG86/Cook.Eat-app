@@ -1,14 +1,15 @@
-import React, { useState, useContext, useEffect } from 'react';
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from "react";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { useHistory } from "react-router-dom";
 const AuthContext = React.createContext();
 
 export const useAuth = () => {
-	return useContext(AuthContext);
+  return useContext(AuthContext);
 };
 
 export const AutoProvider = ({ children }) => {
+
 	const [currentUser, setCurrentUser] = useState();
 	const [loading, setLoading] = useState(true);
 	const history = useHistory();
@@ -17,7 +18,7 @@ export const AutoProvider = ({ children }) => {
 	//signUp
 	const signupUser = async (formInfo) => {
 		//Todo: Submitting the form to a server
-		// console.log(formInfo);
+		console.log(formInfo);
 		try {
 			console.log('before', formInfo);
 			const res = await axios.post(`${baseUrl}/auth/signup`, formInfo);
@@ -79,7 +80,7 @@ export const AutoProvider = ({ children }) => {
 		try {
 			const res = await axios.put(`${baseUrl}/users/${id}`, formInfo);
 			if (res.data) {
-				console.log(res.data)
+				console.log(res.data);
 				return res.data;
 			}
 		} catch (err) {
@@ -130,18 +131,15 @@ export const AutoProvider = ({ children }) => {
 		}
 	};
 
+	//add recipe
+	const addRecipe = async (content) => {
+		try {
+			const userId = localStorage.getItem('user');
+			const res = await axios.post(`${baseUrl}/recipes/`, content);
+			if (res.data) {
+				const recipeId = res.data._id;
+				await axios.put(`${baseUrl}/users/myRecipes/${userId}/${recipeId}`, recipeId);
 
-  //add recipe
-  const addRecipe = async (content) => {
-    try {
-      const userId = localStorage.getItem("user");
-      const res = await axios.post(`${baseUrl}/recipes/`, content);
-      if (res.data) {
-        const recipeId = res.data._id;
-        await axios.put(
-          `${baseUrl}/users/myRecipes/${userId}/${recipeId}`,
-          recipeId
-        );
 				return res.data;
 			}
 		} catch (err) {
@@ -153,6 +151,7 @@ export const AutoProvider = ({ children }) => {
 	const removeRecipe = async (id) => {
 		try {
 			const res = await axios.delete(`${baseUrl}/recipes/${id}`);
+			const response = await axios.put(`${baseUrl}/users/removeRecipe/${id}`);
 			return res.data;
 		} catch (err) {
 			return err.response.data;
@@ -186,4 +185,5 @@ export const AutoProvider = ({ children }) => {
 	};
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+
 };

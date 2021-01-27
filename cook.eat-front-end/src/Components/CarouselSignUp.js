@@ -27,6 +27,8 @@ const CarouselSignUp = ({ carouselData }) => {
 			...formInfo,
 			[e.target.name]: e.target.value,
 		});
+		const allInfoForNewUser = { ...carouselData, ...formInfo };
+		console.log(allInfoForNewUser);
 	};
 
 	const handleFileUpload = (e) => {
@@ -45,7 +47,6 @@ const CarouselSignUp = ({ carouselData }) => {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		console.log(formInfo);
 		const allInfoForNewUser = { ...carouselData, ...formInfo };
 		let formData = new FormData();
 		formData.append('data', JSON.stringify(formInfo));
@@ -63,7 +64,12 @@ const CarouselSignUp = ({ carouselData }) => {
 							name='userName'
 							type='username'
 							placeholder='Enter username'
-							onChange={handleChange}
+							onChange={(e) => {
+								setFormInfo({
+									...formInfo,
+									[e.target.name]: e.target.value,
+								});
+							}}
 							minLength='2'
 							maxLength='15'
 							ref={register({ pattern: /^[A-Za-z\s]+$/i })}
@@ -83,7 +89,12 @@ const CarouselSignUp = ({ carouselData }) => {
 							name='email'
 							type='email'
 							placeholder='Enter email'
-							onChange={handleChange}
+							onChange={(e) => {
+								setFormInfo({
+									...formInfo,
+									[e.target.name]: e.target.value,
+								});
+							}}
 							required
 							// ref={register({
 							// 	pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
@@ -103,7 +114,12 @@ const CarouselSignUp = ({ carouselData }) => {
 							name='password'
 							type='password'
 							placeholder='Password'
-							onChange={handleChange}
+							onChange={(e) => {
+								setFormInfo({
+									...formInfo,
+									[e.target.name]: e.target.value,
+								});
+							}}
 							required
 							// ref={register({ pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm })}
 						/>
@@ -116,7 +132,12 @@ const CarouselSignUp = ({ carouselData }) => {
 							name='repatePass'
 							type='password'
 							placeholder='Confirm Password'
-							onChange={handleChange}
+							onChange={(e) => {
+								setFormInfo({
+									...formInfo,
+									[e.target.name]: e.target.value,
+								});
+							}}
 							required
 							// ref={register({
 							// 	validate: (value) => value === password.current || 'The passwords do not match',
