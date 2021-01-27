@@ -28,7 +28,7 @@ const MyRecipesCard = (props) => {
   return (
       <div className="my-recipe-cards-container">
         <Card 
-          style={{ width: '30rem' }}>
+          style={{ width: '25rem' }}>
           <Card.Img 
             variant="top" 
             src={recipe.picture || "./addRecipe/no-imag.png"}

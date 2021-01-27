@@ -31,13 +31,14 @@ const RegistrationCarousel = () => {
 			<Carousel
 				className='registration-carousel'
 				interval={null}
+				indicators={false}
 				activeIndex={index}
 				nextIcon={index === 3 ? null : directionButtons('Next')}
 				prevIcon={index === 0 ? null : directionButtons('Previous')}
 				controls={true}
 				onSelect={handleSelect}
 			>
-				<Carousel.Item>
+				<Carousel.Item id="test">
 					<p className='personalized-experience'>PERSONALIZE YOUR EXPERIENCE</p>
 					<h3>What are your favorite cuisines?</h3>
 					<CarouselTypesOfCuisines setCarouselData={setCarouselData} />

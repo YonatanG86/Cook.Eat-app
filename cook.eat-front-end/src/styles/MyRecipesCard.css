@@ -9,25 +9,25 @@
 }
 
 .my-recipe-cards-container .card {
-  padding: 40px 10px 10px 20px;
+  /* padding: 40px 30px 10px 28px; */
   border-radius: 20px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   border: none;
   background-image: url('../img/backgrounds/cards-bg.jpg');
   border: 2px solid #8A2604;
-  height: 500px;
+  /* height: 500px; */
+  overflow: hidden;
 }
 
 .my-recipe-cards-container img {
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
-  width: 25.5rem;
+  width: 30rem;
   height: 230px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   object-fit: cover;
-  border-radius: 10px;
 }
 
 .recipe-cards-title-container {
@@ -45,20 +45,20 @@
   display: flex;
   justify-content: space-between;
   color: white;
+  position: relative;
 }
 
 #cards-like-button {
+  background-color: #C7B653;
+  border: none;
   font-family: "arial";
-  display: inline-flex;
-  border-radius: 6px;
+  border-radius: 4px;
   color: white;
   font-weight: bold;
   padding: .5rem 1rem;
-  align-items: center;
-  margin-top: 1rem;
-  border: none;
-  background-color: #C7B653;
-  /* background-color: #8A2604; */
+  position: absolute;
+  top: 192px;
+  right: 0px;
 }
 
 .card-dish-type {
@@ -99,9 +99,19 @@
   margin-top: 15px;
   display: flex;
   justify-content: center;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+#show-more-button {
+  background: none;
+  border: none;
+  color: #A4420B;
+  font-weight: bold;
 }
 
 a.show-more-card {
   padding-top: 15px;
   color: lightgray;
+  align-items: baseline;
 }
