@@ -66,6 +66,7 @@ router.put('/:id', upload.single('profileImage'), async (req, res) => {
 			};
 		} else {
 			updateUser = { ...req.body };
+			console.log(updateUser)
 		}
 		//update user in database
 		user = await UserModel.findByIdAndUpdate(req.params.id, updateUser, { new: true });
@@ -81,7 +82,7 @@ router.put('/likes/:id', async (req, res) => {
 	const { recipeId } = req.body;
 	try {
 		let user = await UserModel.findById(req.params.id);
-		if (!user[0].recipesSaved.includes(recipeId)) {
+		if (!user.recipesSaved.includes(recipeId)) {
 			user = await UserModel.findByIdAndUpdate(
 				req.params.id,
 				{ $push: { recipesSaved: recipeId } },
@@ -97,6 +98,7 @@ router.put('/likes/:id', async (req, res) => {
 			res.status(201).send('The recipe deleted from your list');
 		}
 	} catch (err) {
+		console.log(err)
 		res.status(500).send(err);
 	}
 });
@@ -112,5 +114,20 @@ router.put('/myRecipes/:id', async (req, res) => {
 		res.status(500).send(err);
 	}
 });
+
+//remove recipe
+router.put('/removeRecipe/:id', async(req, res) => {
+	const recipeId = req.params.id
+	try{
+		let user = await UserModel.findOneAndUpdate({ recipes: { $in: recipeId}}, 
+			{ $pull: { recipes: recipeId }}, {new:true} )
+		let likedUser = await UserModel.updateMany({ recipesSaved: { $in: recipeId}}, 
+			{ $pull: { recipesSaved: recipeId }}, {new:true} )
+		res.status(200).send('recipe deleted')
+	} catch (err){
+		console.log(err)
+		res.status(500).send(err)
+	}
+})
 
 module.exports = router;
