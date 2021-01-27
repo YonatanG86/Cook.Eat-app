@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "Trajan";
-    src: local("Trajan"), url(../fonts//Trajan.ttf) format("truetype");
+  font-family: "Trajan";
+  src: local("Trajan"), url(../fonts//Trajan.ttf) format("truetype");
 }
 
 .my-recipe-cards-container {
@@ -9,13 +9,11 @@
 }
 
 .my-recipe-cards-container .card {
-  /* padding: 40px 30px 10px 28px; */
   border-radius: 20px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   border: none;
   background-image: url('../img/backgrounds/cards-bg.jpg');
   border: 2px solid #8A2604;
-  /* height: 500px; */
   overflow: hidden;
 }
 
@@ -41,47 +39,48 @@
   font-size: 19px;
 }
 
-.card-information-container {
-  display: flex;
-  justify-content: space-between;
-  color: white;
-  position: relative;
-}
-
 #cards-like-button {
   background-color: #C7B653;
   border: none;
+  padding: 7px;
   font-family: "arial";
   border-radius: 4px;
   color: white;
   font-weight: bold;
-  padding: .5rem 1rem;
   position: absolute;
-  top: 192px;
+  top: 194px;
   right: 0px;
 }
 
+.card-information-container {
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+  position: relative;
+}
+
 .card-dish-type {
-  border-right: 2px solid  #903403;
+  border-right: 2px solid #903403;
   width: 33%;
 }
 
 #world-icon {
-  font-size: 20px;
+  font-size: 23px;
   margin: 0 5px 3px 0;
-  color: #D1C28B;
+  color: #d1c28b;
 }
 
 .card-dish-time {
   border-right: 2px solid #903403;
-  width: 30%;
+  width: 28%;
   text-align: center;
 }
 
 #time-icon {
   font-size: 23px;
   margin: 0 5px 3px 0;
-  color: #D1C28B;
+  color: #d1c28b;
+  text-align: center;
 }
 
 .card-dish-level {
@@ -92,7 +91,7 @@
 #level-icon {
   font-size: 23px;
   margin: 0 5px 3px 0;
-    color: #D1C28B;
+  color: #d1c28b;
 }
 
 .card-links {

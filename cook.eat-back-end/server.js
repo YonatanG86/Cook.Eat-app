@@ -18,7 +18,7 @@ mongoose.connect(
     useUnifiedTopology: true,
   },
   function (error) {
-    if (error) {
+    if (error) { 
       console.log("Error!" + error);
     } else {
       console.log("Connencted to db");

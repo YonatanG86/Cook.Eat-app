@@ -23,7 +23,7 @@ const addRecipeToProfile = async (userId, recipeId) => {
 };
 
 const likeRecipe = async (id, likes) => {
-	const response = await fetch(`${BASE_URL}/recipes/${id}`, {
+	const response = await fetch(`${BASE_URL}/recipes/likes/${id}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -52,9 +52,10 @@ const getUserById = async (id) => {
 const getSavedRecipes = async (id) => {
 	let savedRecipes = [];
 	const user = await getUserById(id);
-	const recipes = user.recipesSaved;
+    const recipes = user.recipesSaved;
 	if (recipes) {
-		for (let recipe of recipes) {
+		for (let recipe of recipes) { 
+            console.log(recipe)
 			const response = await fetch(`${BASE_URL}/recipes/${recipe}`);
 			const data = await response.json();
 			savedRecipes.push(data);
