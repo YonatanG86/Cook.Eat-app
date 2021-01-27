@@ -65,9 +65,6 @@ const CarouselTypesOfCuisines = ({ setCarouselData }) => {
         setCarouselData((previous) => ({...previous, culinaryType})); // current state (next) of culinary
     }
 
-
-
-
     return (
         <div className="types-of-cuisines-wrapper">
             <div className="types-of-cuisines-main-container">
