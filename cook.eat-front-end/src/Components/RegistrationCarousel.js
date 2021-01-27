@@ -14,9 +14,7 @@ const RegistrationCarousel = () => {
 		setIndex(selectedIndex);
 	};
 
-	useEffect(() => {
-		console.log('carouselData', carouselData);
-	}, [carouselData]);
+	useEffect(() => {}, [carouselData]);
 
 	const directionButtons = (direction) => {
 		return (

@@ -14,6 +14,48 @@ import Vegeterian from '../img/special-diets/vegeterian.png';
 import Vegan from '../img/special-diets/vegan.png';
 import { useAuth } from '../Conteaxts/autoConteaxt';
 
+const specialDietData = [
+	{
+		name: 'glutenFree',
+		src: GlutenFree,
+		span: 'Gluten-Free',
+	},
+	{
+		name: 'halal',
+		src: Halal,
+		span: 'Halal',
+	},
+	{
+		name: 'keto',
+		src: Keto,
+		span: 'Keto',
+	},
+	{
+		name: 'aleo',
+		src: Paleo,
+		span: 'Paleo',
+	},
+	{
+		name: 'kosher',
+		src: Kosher,
+		span: 'Kosher',
+	},
+	{
+		name: 'pescaterian',
+		src: Pescaterian,
+		span: 'Pescaterian',
+	},
+	{
+		name: 'vegeterian',
+		src: Vegeterian,
+		span: 'Vegeterian',
+	},
+	{
+		name: 'vegan',
+		src: Vegan,
+		span: 'Vegan',
+	},
+];
 const specialDiets = {
 	glutenFree: false,
 	halal: false,
@@ -26,6 +68,7 @@ const specialDiets = {
 };
 const formFields = {
 	userName: '',
+	birthDate: '',
 	email: '',
 	password: '',
 	profileImage: '',
@@ -68,7 +111,7 @@ const ProfileSettings = () => {
 	const [specialDietField, setSpecialDietField] = useState(specialDiets);
 	const [carouselIndex, setCarouselIndex] = useState(0);
 	const { userInfo, updateUserInfo } = useAuth();
-	let id
+	let id;
 	// const [isChecked, setIsChecked] = useState(false);
 
 	const handleCarouselSelect = (selectedIndex, event) => {
@@ -78,6 +121,7 @@ const ProfileSettings = () => {
 		setEdit(!edit);
 	};
 	const handleChangeSpecialDiet = (e) => {
+		console.log();
 		setSpecialDietField({
 			...specialDietField,
 			[e.target.id]: e.target.value,
@@ -86,9 +130,10 @@ const ProfileSettings = () => {
 			...formInfo,
 			specialDietField,
 		});
-		console.log(formInfo);
+		console.log('formInfo', formInfo);
 	};
 	const handleChange = (e) => {
+		console.log([e.target.name], ':', e.target.value);
 		setFormInfo({
 			...formInfo,
 			[e.target.name]: e.target.value,
@@ -109,7 +154,7 @@ const ProfileSettings = () => {
 	};
 
 	useEffect(() => {
-		loadUserInfo();	
+		loadUserInfo();
 	}, []);
 
 	return (
@@ -154,7 +199,7 @@ const ProfileSettings = () => {
 						<Form.Label>Birth Date</Form.Label>
 						<Form.Control
 							type='date'
-							name='dob'
+							name='birthDate'
 							onChange={handleChange}
 							disabled={edit}
 							placeholder={formInfo.birthDate}
@@ -220,6 +265,7 @@ const ProfileSettings = () => {
 								<Form.Label as='legend' column sm={5}>
 									Special Diets
 								</Form.Label>
+								<Form.Check type='checkbox' label={<div>test</div>} />
 								<Col sm={7} id='diets-checkbox-column'>
 									<Form.Check
 										disabled={edit}
@@ -227,7 +273,7 @@ const ProfileSettings = () => {
 										name='typeOfDiet'
 										id='glutenFree'
 										onChange={handleChange}
-										checked={formInfo.specialDiet.glutenFree}
+										// checked={formInfo.specialDiet.glutenFree}
 										label={
 											<div>
 												Gluten-Free

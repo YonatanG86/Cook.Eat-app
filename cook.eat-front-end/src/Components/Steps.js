@@ -9,7 +9,7 @@ const Steps = ({ removeStep, onStepChange, id, dealtas }) => {
       </InputGroup.Prepend>
       <FormControl
         as="textarea"
-        value={dealtas}
+        // value={dealtas}
         onChange={onStepChange}
         required
       />
