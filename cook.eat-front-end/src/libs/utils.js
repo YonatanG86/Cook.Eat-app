@@ -52,9 +52,10 @@ const getUserById = async (id) => {
 const getSavedRecipes = async (id) => {
 	let savedRecipes = [];
 	const user = await getUserById(id);
-	const recipes = user.recipesSaved;
+    const recipes = user.recipesSaved;
 	if (recipes) {
-		for (let recipe in recipes) {
+		for (let recipe of recipes) {
+            console.log(recipe)
 			const response = await fetch(`${BASE_URL}/recipes/${recipe}`);
 			const data = await response.json();
 			savedRecipes.push(data);

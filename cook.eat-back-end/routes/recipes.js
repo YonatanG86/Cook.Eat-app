@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const RecipesModel = require("../models/recipes");
+const UserModel = require("../models/users");
 const cloudinary = require("../util/cloudinary");
 const upload = require("../util/multer");
 
@@ -40,7 +41,7 @@ router.post("/filter", async (req, res) => {
   if (dietType) filters.dietType = dietType;
   if (dishLevel) filters.dishLevel = dishLevel;
 
-  const results = await PetModel.find(filters);
+  const results = await RecipesModel.find(filters);
   res.send(results);
 });
 
@@ -154,6 +155,60 @@ router.get("/myRecipes/:id", async (req, res) => {
   } catch (err) {
     res.status(400).send(err);
   }
+});
+
+//filter recipe
+router.post("/filter/:userId", async (req, res) => {
+  const user = await UserModel.findById(req.params.userId)
+  const culinaryType = user.culinaryType;
+  const specialDiet = user.specialDiet
+  let cuisine = []
+  let diet = []
+  let dishLevel
+  if(user.culinaryLevel){
+    dishLevel = user.culinaryLevel
+  }
+  for(let item in culinaryType){
+    if(culinaryType[item] === true){
+      cuisine.push(item)
+    }
+  }
+  cuisine.shift()
+  
+  for(let item in specialDiet){
+    if(specialDiet[item] === true){
+      diet.push(item)
+    }
+  }
+  diet.shift()
+  let results
+  if(dishLevel){
+    results = await RecipesModel.find({dishLevel: dishLevel})
+  } else {
+    results = await RecipesModel.find({})
+  }
+  if(cuisine.length > 0){
+    const newRes = results.filter(
+      item => {for(let x of cuisine)
+        {console.log(x, item.cuisineType)
+          if(item.cuisineType == x){
+          return true
+        }
+      }})
+    results = newRes
+  }
+  if(diet.length > 0){
+    const final = newRes.filter(item => {
+      for(let i of diet){
+        console.log(i, item)
+        if(item.dietType == i){
+          return true
+        }
+      }
+    })
+    results = final
+  }
+  res.send(results)
 });
 
 function escapeRegex(text) {
