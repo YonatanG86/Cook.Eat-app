@@ -160,35 +160,29 @@ router.get("/myRecipes/:id", async (req, res) => {
 
 //filter recipe
 router.post("/filter/:userId", async (req, res) => {
+  try{
+
+  
   const user = await UserModel.findById(req.params.userId)
   const culinaryType = user.culinaryType;
   const specialDiet = user.specialDiet
   let cuisine = []
   let diet = []
   let dishLevel
+  let results
   if(user.culinaryLevel){
     dishLevel = user.culinaryLevel
-  }
-  for(let item in culinaryType){
-    if(culinaryType[item] === true){
-      cuisine.push(item)
-    }
-  }
-  cuisine.shift()
-  
-  for(let item in specialDiet){
-    if(specialDiet[item] === true){
-      diet.push(item)
-    }
-  }
-  diet.shift()
-  let results
-  if(dishLevel){
     results = await RecipesModel.find({dishLevel: dishLevel})
   } else {
     results = await RecipesModel.find({})
   }
-  if(cuisine.length > 0){
+  if (culinaryType.length > 0){
+    for(let item in culinaryType){
+      if(culinaryType[item] === true){
+        cuisine.push(item)
+      }
+    }
+    cuisine.shift()
     const newRes = results.filter(
       item => {for(let x of cuisine)
         {console.log(x, item.cuisineType)
@@ -198,8 +192,14 @@ router.post("/filter/:userId", async (req, res) => {
       }})
     results = newRes
   }
-  if(diet.length > 0){
-    const final = newRes.filter(item => {
+  if(specialDiet.length > 0){
+    for(let item in specialDiet){
+      if(specialDiet[item] === true){
+        diet.push(item)
+      }
+    }
+    diet.shift()
+    const final = results.filter(item => {
       for(let i of diet){
         console.log(i, item)
         if(item.dietType == i){
@@ -209,7 +209,10 @@ router.post("/filter/:userId", async (req, res) => {
     })
     results = final
   }
-  res.send(results)
+  res.status(200).send(results)
+  } catch (err) {
+    res.status(500).send(err)
+  }
 });
 
 function escapeRegex(text) {
