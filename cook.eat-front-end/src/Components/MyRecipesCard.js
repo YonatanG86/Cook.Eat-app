@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/MyRecipes.css";
-import {
-  Button,
-  CardGroup,
-  Card,
-  ListGroup,
-  ListGroupItem,
-} from "react-bootstrap";
+import { Button, CardGroup, Card, Modal, ListGroupItem } from "react-bootstrap";
 import "../styles/MyRecipesCard.css";
 import { FaHeart } from "react-icons/fa";
 import { BiWorld } from "react-icons/bi";
@@ -27,6 +21,10 @@ const MyRecipesCard = (props) => {
   const [user, setUser] = useState();
   const { removeRecipe } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const { recipe } = props;
 
   const getUser = () => {
@@ -94,7 +92,7 @@ const MyRecipesCard = (props) => {
               <b>Show More</b>
             </NavLink>
             {user === recipe.writer && (
-              <button className="show-more-card" onClick={deleteRecipe}>
+              <button className="show-more-card" onClick={handleShow}>
                 <b>Delete</b>
               </button>
             )}
@@ -110,12 +108,27 @@ const MyRecipesCard = (props) => {
           </div>
         </Card.Body>
       </Card>
-      <BounceLoader
-        css={override}
-        size={80}
-        color={"#B73032"}
-        loading={loading}
-      />
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          {/* <Modal.Title>Modal heading</Modal.Title> */}
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={deleteRecipe}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+        <BounceLoader
+          css={override}
+          size={80}
+          color={"#B73032"}
+          loading={loading}
+        />
+      </Modal>
     </div>
   );
 };
