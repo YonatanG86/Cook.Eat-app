@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 .add-recipe-form-container {
   position: relative;
-  border: 2px solid red;
   display: flex;
   align-items: center;
   justify-content: space-around;
