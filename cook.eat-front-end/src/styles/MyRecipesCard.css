@@ -132,8 +132,9 @@ button.show-more-card.btn.btn-primary:hover {
 }
 
 .delete-recipe-modal .modal-header {
-  background-color: lightgray;
+  background-color: darkgray;
   border-bottom: none;
+
 }
 
 .delete-recipe-modal .modal-body {
@@ -149,4 +150,11 @@ button.show-more-card.btn.btn-primary:hover {
 #remove-recipe {
   background-color: black;
   color: lightgray;
+  border: 1px solid black;
+}
+
+#remove-recipe:hover {
+  color: black;
+  background-color: #A4420B;
+  border: 1px solid #A4420B;
 }
