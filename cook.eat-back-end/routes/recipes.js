@@ -11,7 +11,7 @@ const upload = require("../util/multer");
 router.use(express.static("imgaes"));
 router.use(express.json());
 
-//get all the recipes
+//get all the recipes when no user
 router.get("/", async (req, res) => {
   if (req.query.search) {
     //search by title and description and ingidients
@@ -159,15 +159,34 @@ router.get("/myRecipes/:id", async (req, res) => {
 });
 
 //filter recipe
-router.post("/filter/:userId", async (req, res) => {
+router.get("/filter/:userId", async (req, res) => {
+  try{
+    if (req.query.search) {
+      //search by title and description and ingidients
+      const regex = new RegExp(escapeRegex(req.query.search), "gi");
+      const result = await RecipesModel.find(
+        {
+          $or: [
+            { "ingredients.ingredientName": regex },
+            { $text: { $search: regex } },
+          ],
+        },
+        { score: { $meta: "textScore" } }
+      ).sort({ score: { $meta: "textScore" } });
+      res.send(result);
+  } else {
   const user = await UserModel.findById(req.params.userId)
   const culinaryType = user.culinaryType;
   const specialDiet = user.specialDiet
   let cuisine = []
   let diet = []
   let dishLevel
+  let results
   if(user.culinaryLevel){
     dishLevel = user.culinaryLevel
+    results = await RecipesModel.find({dishLevel: dishLevel})
+  } else {
+    results = await RecipesModel.find({})
   }
   for(let item in culinaryType){
     if(culinaryType[item] === true){
@@ -175,41 +194,33 @@ router.post("/filter/:userId", async (req, res) => {
     }
   }
   cuisine.shift()
-  
+  if(cuisine.length > 0){
+    const newRes = results.filter(
+      item => {for(let x of cuisine){
+        if(item.cuisineType == x){
+        return true
+        }}})
+    results = newRes
+  }
   for(let item in specialDiet){
     if(specialDiet[item] === true){
       diet.push(item)
     }
   }
   diet.shift()
-  let results
-  if(dishLevel){
-    results = await RecipesModel.find({dishLevel: dishLevel})
-  } else {
-    results = await RecipesModel.find({})
-  }
-  if(cuisine.length > 0){
-    const newRes = results.filter(
-      item => {for(let x of cuisine)
-        {console.log(x, item.cuisineType)
-          if(item.cuisineType == x){
-          return true
-        }
-      }})
-    results = newRes
-  }
   if(diet.length > 0){
-    const final = newRes.filter(item => {
+    const final = results.filter(item => {
       for(let i of diet){
-        console.log(i, item)
         if(item.dietType == i){
           return true
-        }
-      }
-    })
+        }}})
     results = final
   }
-  res.send(results)
+  res.status(200).send(results)
+  }
+} catch (err) {
+    res.status(500).send(err)
+  }
 });
 
 function escapeRegex(text) {

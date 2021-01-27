@@ -16,14 +16,12 @@ function RecipePage(props) {
     const [ cuisines, setCuisines ] = useState()
     const [ writerName, setWriterName ] = useState()
     const {id} = props.match.params
-    // const id = '600d3dd109c0130810aa4560'
- 
+
 
     //add or remove likes
     const addLike = async() => {
         let likes = recipe.likes
         const like = await addRecipeToProfile(user, id)
-        console.log(like)
         if(!like){
             setCountLikes(countLikes + 1)
             likes = likes - 1
@@ -77,7 +75,8 @@ function RecipePage(props) {
                     <img className='cuisineImg' src={cuisines} alt={recipe.cuisineType}/>
                     <div>{recipe.cuisineType}</div>  
                 </div>
-                <button disabled={!user} type='click' onClick={addLike} className='likeBox'><FaHeart style={{marginRight:'1rem'}}/>{recipe.likes}</button>  
+                <button disabled={!user} type='click' onClick={addLike} className='likeBox'>
+                <FaHeart style={{marginRight:'1rem'}}/>{recipe.likes}</button>  
 
             </div>
             <div className='desc'>{recipe.description}</div>
