@@ -142,8 +142,6 @@ export const AutoProvider = ({ children }) => {
           `${baseUrl}/users/myRecipes/${userId}/${recipeId}`,
           recipeId
         );
-
-
 				return res.data;
 			}
 		} catch (err) {
@@ -155,6 +153,7 @@ export const AutoProvider = ({ children }) => {
 	const removeRecipe = async (id) => {
 		try {
 			const res = await axios.delete(`${baseUrl}/recipes/${id}`);
+			const response = await axios.put(`${baseUrl}/users/removeRecipe/${id}`);
 			return res.data;
 		} catch (err) {
 			return err.response.data;
