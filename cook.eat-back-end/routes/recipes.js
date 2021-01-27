@@ -99,7 +99,7 @@ router.delete("/:id", async (req, res) => {
     await result.remove();
     res.status(200).send("recipe has been deleted");
   } catch (err) {
-    res.status(400).send(err);
+    res.status(500).send(err);
   }
 });
 

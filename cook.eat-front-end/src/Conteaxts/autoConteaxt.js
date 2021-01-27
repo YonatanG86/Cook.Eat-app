@@ -79,6 +79,7 @@ export const AutoProvider = ({ children }) => {
 		try {
 			const res = await axios.put(`${baseUrl}/users/${id}`, formInfo);
 			if (res.data) {
+				console.log(res.data)
 				return res.data;
 			}
 		} catch (err) {
@@ -89,7 +90,7 @@ export const AutoProvider = ({ children }) => {
 	//remove user
 	const removeUser = async (uId) => {
 		try {
-			const res = await axios.delete(`${baseUrl}/user/${uId}`);
+			const res = await axios.delete(`${baseUrl}/users/${uId}`);
 			return res.data;
 		} catch (err) {
 			return err.response.data;
@@ -99,7 +100,7 @@ export const AutoProvider = ({ children }) => {
 	//get all the recipes
 	const getAllRecipes = async (id) => {
 		try {
-			const res = await axios.get(`${baseUrl}/user/${id}`);
+			const res = await axios.get(`${baseUrl}/users/${id}`);
 			return res.data;
 		} catch (err) {
 			return err.response.data;
@@ -109,7 +110,7 @@ export const AutoProvider = ({ children }) => {
 	// update recipe
 	const UpdateRecipe = async (id, formInfo) => {
 		try {
-			const res = await axios.put(`${baseUrl}/user/${id}`, formInfo);
+			const res = await axios.put(`${baseUrl}/users/${id}`, formInfo);
 			if (res.data) {
 				return res.data;
 			}
