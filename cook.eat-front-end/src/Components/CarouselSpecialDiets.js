@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/CarouselSpecialDiets.css';
 import { Image } from 'react-bootstrap';
 import GlutenFree from '../img/special-diets-carousel/gluten-free.png';
@@ -23,10 +23,16 @@ const CarouselSpecialDiets = ({ setCarouselData }) => {
 	});
 
 	const handleChange = (event) => {
-		setSpecialDiet((specialDiet) => ({ ...specialDiet, [event.target.name]: !specialDiet[event.target.name] }));
+		setSpecialDiet((specialDiet, current) => ({
+			...current,
+			[event.target.name]: !specialDiet[event.target.name],
+		}));
 		setCarouselData((previous) => ({ ...previous, specialDiet }));
 		console.log(specialDiet);
 	};
+	useEffect(() => {
+		console.log('useeffect', specialDiet);
+	}, [specialDiet]);
 
 	return (
 		<>
