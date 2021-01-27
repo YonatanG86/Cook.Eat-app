@@ -104,7 +104,9 @@ const MyRecipesCard = (props) => {
         className="delete-recipe-modal"
         show={show} 
         onHide={handleClose}>
-        <Modal.Header closeButton />
+        <Modal.Header closeButton>
+          Confirm Deletion
+        </Modal.Header>
         <Modal.Body>
           <span>Are you sure you want to delete this recipe?</span>
           <br/>
@@ -112,7 +114,7 @@ const MyRecipesCard = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cancel
           </Button>
           <Button id="remove-recipe" variant="primary" onClick={deleteRecipe}>
             Delete Anyways
