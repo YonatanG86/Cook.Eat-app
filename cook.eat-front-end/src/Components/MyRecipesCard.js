@@ -92,25 +92,30 @@ const MyRecipesCard = (props) => {
               <b>Show More</b>
             </NavLink>
             {user === recipe.writer && (
-              <button className="show-more-card" onClick={handleShow}>
-                <b>Delete</b>
-              </button>
+              <Button className="show-more-card" onClick={handleShow}>
+                <span id="delete-button">Delete</span>
+              </Button>
             )}
           </div>
         </Card.Body>
       </Card>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          {/* <Modal.Title>Modal heading</Modal.Title> */}
-        </Modal.Header>
-        <Modal.Body>Are you sure you want to delete?</Modal.Body>
+      <Modal 
+        className="delete-recipe-modal"
+        show={show} 
+        onHide={handleClose}>
+        <Modal.Header closeButton />
+        <Modal.Body>
+          <span>Are you sure you want to delete this recipe?</span>
+          <br/>
+          <span>Please note that this action is irreverisble.</span>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={deleteRecipe}>
-            Save Changes
+          <Button id="remove-recipe" variant="primary" onClick={deleteRecipe}>
+            Delete Anyways
           </Button>
         </Modal.Footer>
         <BounceLoader
