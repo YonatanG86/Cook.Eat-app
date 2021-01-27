@@ -37,7 +37,7 @@ const MyRecipes = () => {
       {recipes.map(function (recipe, i) {
         return <MyRecipesCard key={i} recipe={recipe} />;
       })}
-    </div>:<h3>no recipes</h3>}
+    </div>:<h5 id="no-uploaded-recipes">You haven't uploaded any recipes yet.</h5>}
     </div>
   );
 };
