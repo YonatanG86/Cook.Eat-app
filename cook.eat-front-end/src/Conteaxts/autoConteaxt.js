@@ -142,8 +142,6 @@ export const AutoProvider = ({ children }) => {
           `${baseUrl}/users/myRecipes/${userId}/${recipeId}`,
           recipeId
         );
-
-
 				return res.data;
 			}
 		} catch (err) {

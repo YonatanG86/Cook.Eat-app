@@ -1,114 +1,107 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
-.myrecipe-card {
-  position: relative;
-  margin: 0.5rem 0 1rem 2.5rem;
-  background: #c9ccd3;
-  box-shadow: -2px 4px 12px 0px rgba(21, 26, 30, 0.75);
-  -webkit-box-shadow: -2px 4px 12px 0px rgba(21, 26, 30, 0.75);
-  -moz-box-shadow: -2px 4px 12px 0px rgba(21, 26, 30, 0.75);
-  color: black;
-  max-width: 20vw;
-  border: none;
-  border-radius: 0.5rem;
-  font-family: "Josefin Sans", sans-serif;
-  transition: 0.6s linear;
-}
-.myrecipe-card:hover {
-  transform: scale(1.122);
-  z-index: 10;
-}
-.card-image {
-  max-width: 100%;
-  height: 14rem;
+@font-face {
+    font-family: "Trajan";
+    src: local("Trajan"), url(../fonts//Trajan.ttf) format("truetype");
 }
 
-.card-content {
-  padding: 24px;
-  border-radius: 0 0 2px 2px;
-}
-.card-description {
-  mask-image: -webkit-gradient(
-    linear,
-    left 10%,
-    left bottom,
-    from(rgba(0, 0, 0, 1)),
-    to(rgba(0, 0, 0, 0))
-  );
-}
-.description {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
-  font-size: 1.1rem;
-}
-.info-card {
-  display: flex;
-  align-items: center;
-  font-weight: 400;
-}
-.info-card span {
-  font-weight: 600;
-}
-.info-cuisine {
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: #1c385c;
-}
-.card-title {
-  font-weight: 600;
-  color: black;
-  text-transform: uppercase;
-}
-.card-btns {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.top-card {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-}
-.likes-totel {
-  position: absolute;
-  right: 0.8rem;
-  top: 0.3rem;
-  color: whitesmoke;
-  font-weight: 600;
-  z-index: 10;
-}
-.my-likes {
-  color: #ff0810;
-  font-size: 2.1rem;
-  animation: heartbeat 1.3s infinite;
-}
-.show-more-card {
-  background-color: transparent;
-  border: none;
-  font-weight: 600;
-  color: #b73032;
-  text-decoration: none !important;
-}
-.my-update {
-  background-color: transparent;
-  border: none;
-  font-weight: 600;
-  color: #09203f;
+.my-recipe-cards-container {
+  margin-top: 50px;
+  padding: 50px 30px;
 }
 
-@keyframes heartbeat {
-  0% {
-    transform: scale(1);
-  }
-  20% {
-    transform: scale(1.2);
-  }
-  40% {
-    transform: scale(1.3);
-  }
+.my-recipe-cards-container .card {
+  padding: 40px 20px 20px 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  border: none;
+  background-image: url('../img/backgrounds/cards-bg.jpg');
+  border: 2px solid #8A2604;
 }
-@keyframes cardbeat {
-  100% {
-    transform: scale(1.2);
-  }
+
+.my-recipe-cards-container img {
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+  width: 23rem;
+  height: 230px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.recipe-cards-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 30px;
+  color: white;
+  font-family: "Trajan";
+  color: lightgray;
+  font-size: 19px;
+}
+
+.card-information-container {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+#cards-like-button {
+  font-family: "arial";
+  display: inline-flex;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  padding: .5rem 1rem;
+  align-items: center;
+  margin-top: 1rem;
+  border: none;
+  background-color: #C7B653;
+  /* background-color: #8A2604; */
+  
+}
+
+.card-dish-type {
+  border-right: 2px solid  #903403;
+  width: 33%;
+}
+
+#world-icon {
+  font-size: 20px;
+  margin: 0 5px 3px 0;
+  color: #D1C28B;
+}
+
+.card-dish-time {
+  border-right: 2px solid #903403;
+  width: 33%;
+  text-align: center;
+}
+
+#time-icon {
+  font-size: 23px;
+  margin: 0 5px 3px 0;
+  color: #D1C28B;
+}
+
+.card-dish-level {
+  width: 33%;
+  text-align: center;
+}
+
+#level-icon {
+  font-size: 23px;
+  margin: 0 5px 3px 0;
+    color: #D1C28B;
+}
+
+.card-links {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+a.show-more-card {
+  padding-top: 15px;
+  color: lightgray;
 }

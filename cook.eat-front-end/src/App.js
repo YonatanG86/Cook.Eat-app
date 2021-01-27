@@ -11,7 +11,6 @@ import SignUpModal from './Components/SignUpModal';
 // import SignUpModalNew from './Components/SignUpModalNew';
 
 import AddRecipe from './Components/AddRecipe';
-import Recipe from './Components/Recipe';
 import MyRecipes from './Components/MyRecipes';
 import SavedRecipes from './Components/SavedRecipes';
 import RecipePage from './Components/RecipePage';
@@ -34,9 +33,6 @@ const App = () => {
 							</Route>
 							<Route path='/my-recipes'>
 								<MyRecipes />
-							</Route>
-							<Route path='/recipes'>
-								<Recipe />
 							</Route>
 							<Route path='/saved-recipes'>
 								<SavedRecipes />
