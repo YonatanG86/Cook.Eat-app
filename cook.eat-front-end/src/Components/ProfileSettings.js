@@ -64,6 +64,7 @@ const formFields = {
 		vietnamese: false,
 	},
 };
+
 const ProfileSettings = () => {
 	const [edit, setEdit] = useState(true);
 	const [formInfo, setFormInfo] = useState(formFields);
