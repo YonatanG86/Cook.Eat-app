@@ -34,7 +34,7 @@ const SavedRecipes = () => {
                 {recipesSaved.map(function (recipe, i) {
                 return <MyRecipesCard key={i} recipe={recipe} />;
             })}
-        </div>:<h4 id="no-saved-recipes">You haven't saved any recipes yet.</h4>}</div>
+        </div>:<h3 id="no-reciped">You haven't uploaded any recipes yet.</h3>}</div>
     )
 }
 

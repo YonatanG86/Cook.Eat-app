@@ -76,6 +76,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 					<ul className='types-of-cuisines-list'>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb1'
 								name='american'
@@ -96,6 +97,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb2'
 								name='brazilian'
@@ -116,6 +118,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb3'
 								name='caribbean'
@@ -136,6 +139,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb4'
 								name='chinese'
@@ -163,6 +167,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 					<ul className='types-of-cuisines-list'>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb5'
 								name='english'
@@ -183,6 +188,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb6'
 								name='ethiopian'
@@ -203,6 +209,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb7'
 								name='french'
@@ -223,6 +230,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb8'
 								name='filipino'
@@ -250,6 +258,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 					<ul className='types-of-cuisines-list'>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb9'
 								name='georgian'
@@ -270,6 +279,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb10'
 								name='german'
@@ -290,6 +300,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb11'
 								name='greek'
@@ -310,6 +321,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb12'
 								name='indian'
@@ -337,6 +349,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 					<ul className='types-of-cuisines-list'>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb13'
 								name='indonesian'
@@ -357,6 +370,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb14'
 								name='italian'
@@ -377,6 +391,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb15'
 								name='jamaican'
@@ -397,6 +412,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb16'
 								name='japanese'
@@ -424,6 +440,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 					<ul className='types-of-cuisines-list'>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb17'
 								name='jewish'
@@ -444,6 +461,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb18'
 								name='korean'
@@ -464,6 +482,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb19'
 								name='mexican'
@@ -484,6 +503,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb20'
 								name='polish'
@@ -511,6 +531,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 					<ul className='types-of-cuisines-list'>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb21'
 								name='persian'
@@ -531,6 +552,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb22'
 								name='portuguese'
@@ -551,6 +573,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb23'
 								name='russian'
@@ -571,6 +594,7 @@ const CarouselTypesOfCuisines = ({ setFormInfo, edit, formInfo }) => {
 						</li>
 						<li>
 							<input
+								disabled={edit}
 								type='checkbox'
 								id='cb24'
 								name='spanish'
